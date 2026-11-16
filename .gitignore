@@ -1,0 +1,67 @@
+# ============================================================
+# 依依的礼物 · Git 忽略规则
+# 原则：只跟踪"能重建这个项目"的源码/文档/素材；构建产物、
+#       工具链、缓存、私密凭据、授权受限字体不入库。
+# ============================================================
+
+# ---- 构建产物 / 缓存 / 历史备份 ----
+build/
+*.log
+__pycache__/
+*.pyc
+map32~
+
+# ---- 第三方工具链 / 克隆 / 浏览器配置（体积大，可重新获取）----
+tools/*
+!tools/panel-libraries/
+# TFT_eSPI 是带 .git 的第三方克隆，按依赖处理、不作为嵌套仓库入库（见 tools/panel-libraries/README.md）
+tools/panel-libraries/TFT_eSPI/
+!tools/font-tools/
+!tools/downloads/
+!tools/portal/
+llm2lvgl/
+.preview-browser3/
+.portal-browser/
+dsh-plugin-research/
+DSH插件推荐.md
+pip-*/
+
+# ---- 厂家资料（838MB，建议单独归档，不进版本库）----
+2.8inch_IPS_ESP32-S3_ILI9341V_ES3C28P_ES3N28P_V1.0/
+
+# ---- 压缩包（可由仓库内源码/原始文件重新生成）----
+*.zip
+
+# ---- 生成型预览 / 中间产物 ----
+lvgl_ui_project/build-mingw/
+lvgl_ui_project/preview-bin/
+lvgl_ui_project/review/
+lvgl_ui_project/.cache.json
+design/review/
+
+# ---- 私密凭据（手机调试证书/私钥/日志，绝不入库）----
+design/.local/
+*.pem
+*.key
+*.cer
+*.crt
+
+# ---- 授权受限字体：Windows 系统字体（微软雅黑/Segoe/Georgia/楷体）不入库 ----
+# 生成字库的方法见 README「字体与授权」一节；所需 TTF 从本机 C:\Windows\Fonts 取。
+lvgl_ui_project/fonts/Gift_*.ttf
+
+# ---- 系统文件 ----
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ---- 设计工具字体构建缓存标记 ----
+*.stamp
+
+# ---- 发布/第三方参考（2026-11-16 发布到 GitHub 时补充）----
+# 允许提交最终发布 ZIP（其余 *.zip 仍忽略）
+!release/依依的礼物-最终版-20261116.zip
+!release/依依的礼物-最终版-20261116/02-源码快照/*.zip
+# 第三方参考工程不随本仓库发布（体积大、版权/来源独立）
+260422-Flip-Clock-ESP32-LVGL-EEZ-Studio-main/
+design/barbar-clock-20261115/upstream/

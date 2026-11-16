@@ -1,0 +1,84 @@
+{
+  "model": "https://huggingface.co/othytenk/lama-int4-int8/blob/main/lama_int4_int8.onnx",
+  "modelSha256": "d69db99d833ae6fb194fbbe43aa77de5369fff2d906053d693c16ae96ce9a312",
+  "sources": [
+    {
+      "period": "morning",
+      "filename": "IMG_20261007_234908.jpg",
+      "bounds": [
+        23,
+        14,
+        863,
+        414
+      ],
+      "originalSha256": "92ec73fbf32d45e5d2b8ad6922f58f076e25f87fa2d52578021eca68129b140d",
+      "cleanedSha256": "882db0ab27f60ac36bb892df2cbafe15ec8ce4a7ff327a64ac521061eff09389",
+      "screenSha256": "0c31d48e832185b17b527ec1506a8593210706eea3bb3254b614784616ce694e"
+    },
+    {
+      "period": "day",
+      "filename": "IMG_20261008_081659.jpg",
+      "bounds": [
+        4,
+        1,
+        842,
+        403
+      ],
+      "originalSha256": "b9819c3a1d300fb9863c26a392ce63ec454b90248e433819e44e9893d818b71a",
+      "cleanedSha256": "94536c8acbd5fcf387c6b93cfbccab4f6db16138296da9372121df17c345fcc6",
+      "screenSha256": "bf689fd134bb2041cdfe62ee917056752d6e07d5f131a8b674a8aa65d74d9022"
+    },
+    {
+      "period": "predawn",
+      "filename": "IMG_20261008_081716.jpg",
+      "bounds": [
+        0,
+        5,
+        832,
+        406
+      ],
+      "originalSha256": "f6191409be870fe309c0113c4bb125a683de9da3febd7e0079884264a5432cdb",
+      "cleanedSha256": "51222af23c0319a552ff3094d83f3648ca3bd3dde891305afbf3b9ec0e228748",
+      "screenSha256": "99176c87d944c55d0a0bdbc0f2ff8182fd4e9207a6b80cce1aab4b88d17aa48b"
+    },
+    {
+      "period": "night",
+      "filename": "IMG_20261008_081731.jpg",
+      "bounds": [
+        2,
+        3,
+        842,
+        402
+      ],
+      "originalSha256": "eed62cbce64e74cddc15cb8c84130f9b2733a961ac55928a72b061a55636d3b9",
+      "cleanedSha256": "c179e77a188211ac440a7ba2cffda9704631723a2a18c0143b78b7bad85e750b",
+      "screenSha256": "6ae21d9c13dd01203f7122c4e935ef1d2c15e292e11f8c2534c6a7c17b00375e"
+    },
+    {
+      "period": "dusk",
+      "filename": "IMG_20261008_081746.jpg",
+      "bounds": [
+        0,
+        3,
+        837,
+        404
+      ],
+      "originalSha256": "b0c3eebd7c8dff9a822df65c83c48fb9f12df2eaf4b4c4af69f59e3b36407637",
+      "cleanedSha256": "3b98e0d8800aae6020d627b6ca8dc6d135abe2cf966ddc185ed0f321daa6c539",
+      "screenSha256": "9abbb25a61bc96a0eb41e3ba38ff9de5369338cdc4d7a7e49c7c0309904e19f3"
+    },
+    {
+      "period": "sunset",
+      "filename": "IMG_20261008_081812.jpg",
+      "bounds": [
+        0,
+        9,
+        837,
+        404
+      ],
+      "originalSha256": "9fee780b0069b065caf42c71918fd45b11bbe67b959ccd1be0d7d2b51d574429",
+      "cleanedSha256": "4cc6a8f6f655f0f7bf0670554f1f4b55a12c1afde5f3a23c8168e7c3db9fda4e",
+      "screenSha256": "b2b6abf36352d412dd18eea8471a9e69e65e0774b778f4e9809fae188a42003f"
+    }
+  ]
+}

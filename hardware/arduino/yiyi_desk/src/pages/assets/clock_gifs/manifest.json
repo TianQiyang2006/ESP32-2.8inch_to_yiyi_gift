@@ -1,0 +1,54 @@
+[
+  {
+    "symbol": "clock_gif_0",
+    "source": "lv_0_20261028210454.gif",
+    "sourceSha256": "a9691eec6f999172f7e8668a2d2f15b8e88b17ea5160d843e484100397a3fec2",
+    "size": [
+      237,
+      153
+    ],
+    "frames": 121,
+    "durationMs": 8590,
+    "bytes": 219415,
+    "crop": [
+      24,
+      153,
+      208,
+      272
+    ],
+    "sha256": "e6035a4aae0db98ede0552a11adc901b5b6286964140e85c3242e19bc15a87c5"
+  },
+  {
+    "symbol": "clock_gif_1",
+    "source": "lv_0_20261028210512.gif",
+    "sourceSha256": "443728e9059fa9dd955017ed5f77ac3dca0025f9b420f4a0d0beb46edd5eb718",
+    "size": [
+      273,
+      153
+    ],
+    "frames": 122,
+    "durationMs": 8740,
+    "bytes": 273618,
+    "crop": [
+      27,
+      158,
+      232,
+      273
+    ],
+    "sha256": "c200e2f6cdeba9c96aa3a32949254bc3a476c99400fe5458b81573b144d7f8ca"
+  },
+  {
+    "symbol": "clock_gif_4",
+    "source": "lv_0_20261028210538.gif",
+    "sourceSha256": "db3283760969c1625d838d31b9f5633cf7cad2efc558d66bd4c9733e88ebf2ad",
+    "size": [
+      256,
+      143
+    ],
+    "frames": 114,
+    "durationMs": 11390,
+    "bytes": 467804,
+    "crop": null,
+    "sha256": "f0cc465c8d27509f0bf5fc75a2322cc9e28e55ecc6a762bc95984b1e26c3a6b6"
+  }
+]

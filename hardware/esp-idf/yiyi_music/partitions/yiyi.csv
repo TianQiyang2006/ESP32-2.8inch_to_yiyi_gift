@@ -1,0 +1,9 @@
+# 依依桌面 ES3C28P 双应用分区表（音乐固件替换版）
+# app0 = 桌面 7.5MiB，app1 = 音乐小智 5.0MiB，model = 唤醒模型 2.5MiB，spiffs = 桌面 LittleFS
+# Name, Type, SubType, Offset, Size, Flags
+nvs,      data, nvs,     0x9000,   0x5000,
+otadata,  data, ota,     0xe000,   0x2000,
+app0,     app,  ota_0,   0x10000,  0x780000,
+app1,     app,  ota_1,   0x790000, 0x500000,
+model,    data, spiffs,  0xc90000, 0x280000,
+spiffs,   data, spiffs,  0xf10000, 0xf0000,

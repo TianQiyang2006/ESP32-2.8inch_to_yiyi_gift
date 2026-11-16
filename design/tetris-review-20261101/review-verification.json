@@ -1,0 +1,42 @@
+{
+  "status": "proposal-for-user-review",
+  "date": "2026-11-01",
+  "native_resolution": [
+    320,
+    240
+  ],
+  "firmware_modified_by_this_review": false,
+  "serial_opened": false,
+  "hardware_flashed": false,
+  "native_lvgl_launcher_rendered": true,
+  "original_launcher_reference": "build/app-master-volume-20261101/verified-ui/launcher-2.png",
+  "new_launcher_entry_rectangle": [
+    64,
+    148,
+    144,
+    240
+  ],
+  "changed_pixels_outside_new_entry": 0,
+  "launcher_label_font": "saved_gift_font_bold_14_0",
+  "launcher_label_background_opacity": 0,
+  "board": {
+    "columns": 10,
+    "visible_rows": 16,
+    "cell_pixels": [
+      16,
+      15
+    ],
+    "variant": "compact-small-display-proposal"
+  },
+  "game_frame_origin": "existing proposed draft native LVGL renders; draft assets and source hashes verified",
+  "example_data_only": true,
+  "firmware_snapshot_sha256": "eb86dc6b5bba3ebe38b8aeba0b41ede490f05dcd17edf6e1e1d7a7a840772452",
+  "assets_sha256": {
+    "01-launcher.png": "ea1f3d791280d1681ce2c79cf8b4edd49828deef26615172eb3b632745a714b9",
+    "02-play.png": "c8cb2d703ea2134ffbea13b7c8f0391ce6534f1ec0100f5fd326d8b85f90b463",
+    "03-pause.png": "26d5c8dad50f9d742de0c4ba4883d33d672a97dad75a385ca2f1c8f8c2263b93",
+    "04-gameover.png": "c83b64fe3237f8711e7bd6a900848a9e4a72d165a681c9dd023de57a566875c8",
+    "05-start.png": "2cfaa7a5eead40b7e44f4fe8a1328a9476ea1c085d1617c08981bf514fe6d840",
+    "tetris-design-preview.png": "c366be1f049554ceada363232d348b87d4e91fff221f43e9da049dcbd2b25742"
+  }
+}

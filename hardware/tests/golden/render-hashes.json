@@ -1,0 +1,84 @@
+{
+  "frames": {
+    "app-clock": {
+      "bytes": 153600,
+      "sha256": "b0fb804c95000d34ce4343076078801800d42065d0464ff6553bdcec5944f224"
+    },
+    "apps": {
+      "bytes": 153600,
+      "sha256": "cc560fa746dfe7e814e3d056236b49e3cff49c1e28a7f3da81f17ce3936a05ba"
+    },
+    "daily-main": {
+      "bytes": 153600,
+      "sha256": "52791b7e452461e62bfcf17ade9fcc80d81bd1d14730da743f3e044442c496fe"
+    },
+    "daily-mood-editor": {
+      "bytes": 153600,
+      "sha256": "d707d5f5b535d00b315c9e5ba87e372047a3ecfd6e2626b719dacff9693af4ec"
+    },
+    "daily-water-detail": {
+      "bytes": 153600,
+      "sha256": "c525059363146494646817c8000a777bb563e2139f0af46ec1af803a0fddecab"
+    },
+    "daily-wood-detail": {
+      "bytes": 153600,
+      "sha256": "9aaa85abc27ca289f38b70fdb80dfd569bb272263ce79f6b02c53ac4667b6649"
+    },
+    "holiday": {
+      "bytes": 153600,
+      "sha256": "88389fc43a087230f53ac563d18f766cd7c7c666db5151dd4eb2ca3c703ef956"
+    },
+    "home-no-time": {
+      "bytes": 153600,
+      "sha256": "059b8ca8dd23a55d03121e49c8ee20b4479e20982d2aa4bcc3c75728d0c55ca0"
+    },
+    "home-offline": {
+      "bytes": 153600,
+      "sha256": "de2328c12706f05f97494aebfb931bf2125515718f397ed6c2ce407c7694e125"
+    },
+    "home-online": {
+      "bytes": 153600,
+      "sha256": "133805474a0e1494a44394fcf30ddceba2b72410fdf1ab452362f7bcff661940"
+    },
+    "reading-main": {
+      "bytes": 153600,
+      "sha256": "21cad02e52064fa441482ddec4a7dff5a12f9a1a016585771e49fe241dfe5e2b"
+    },
+    "reading-main-longquote": {
+      "bytes": 153600,
+      "sha256": "c4622e9886b424f90cd345f46063efe0c71c8e8d9cf58c1fc6f272623919d8f7"
+    },
+    "reading-poem-detail": {
+      "bytes": 153600,
+      "sha256": "30556608fe43c1e9e0822b7786559fdd1e1a06f0050a4fc93c4ee82c601daeeb"
+    },
+    "reading-quote-detail": {
+      "bytes": 153600,
+      "sha256": "a90061a7edc5e9b2ab2aedfdb1396da203f518741490fa49e29fe3376c93db5a"
+    },
+    "schedule-current": {
+      "bytes": 153600,
+      "sha256": "c097621896e643b01d4381c2c66ebf87555210fe1918d1da25085f60601384cb"
+    },
+    "settings": {
+      "bytes": 153600,
+      "sha256": "1015e3bf28e8ae43fc59fec86741b27716ea8ca7097ff8e8db34151a32647b2b"
+    },
+    "weather-offline-cache": {
+      "bytes": 153600,
+      "sha256": "6997385497660a1a8ee181c2ac50275c83999a809d1250d06c375f949a1d8f5f"
+    },
+    "weather-offline-empty": {
+      "bytes": 153600,
+      "sha256": "cf05bdf303f584e1795cd7c46afba76846bd64b065dbf82ae83ec59c2393e236"
+    },
+    "weather-online": {
+      "bytes": 153600,
+      "sha256": "8e3d02fb6844c62ff234440577627df83fc71808b47db29202a082858bbcd9fc"
+    },
+    "weather-updating": {
+      "bytes": 153600,
+      "sha256": "fb9afdef412920f79b2c55719a8fc753c367bf387cba118c0ea89af28cfc6bf5"
+    }
+  }
+}

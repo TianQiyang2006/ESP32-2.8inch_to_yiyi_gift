@@ -1,0 +1,47 @@
+{
+  "version": "home-v1",
+  "canvas": {
+    "width": 320,
+    "height": 240,
+    "orientation": "landscape"
+  },
+  "sample_data": {
+    "clock": "10:08",
+    "date": "2026-10-06",
+    "weather": "晴",
+    "temperature_c": 24,
+    "low_c": 18,
+    "high_c": 26
+  },
+  "colors": {
+    "background": "#F7F7ED",
+    "primary": "#284C3D",
+    "secondary": "#637F68",
+    "weather_panel": "#E3ECD9"
+  },
+  "font_sizes_design_px": {
+    "clock": 66,
+    "date": 13,
+    "weather": 15,
+    "temperature": 29,
+    "range": 13
+  },
+  "artwork": "Locally drawn character study; not official artwork or an AI-generated asset.",
+  "preview": "3x nearest-neighbor enlargement of the native bitmap, not additional screen detail.",
+  "touch_regions": [
+    {
+      "action": "open_weather",
+      "x": 16,
+      "y": 174,
+      "width": 288,
+      "height": 44
+    }
+  ],
+  "page_navigation": {
+    "right_swipe": "home -> album -> message -> countdown -> apps -> home",
+    "left_swipe": "reverse"
+  },
+  "voice": "Wake-word detection interrupts the UI and enters the existing Xiaozhi conversation flow; requires firmware integration.",
+  "firmware_asset_rgb565_bytes": 153600,
+  "hardware_verified": false
+}

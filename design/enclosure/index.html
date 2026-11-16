@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>依依的小小森林 · 外壳设计</title>
+  <link rel="stylesheet" href="enclosure.css">
+</head>
+<body>
+  <header>
+    <a class="wordmark" href="#"><span class="brand-icon">✦</span> 依依的小小森林</a>
+    <span class="edition">ENCLOSURE STUDIES <i>/</i> 01</span>
+    <span class="stage-label">外观提案 · 2026.10</span>
+  </header>
+  <main>
+    <section class="workspace" aria-label="三维外观预览">
+      <div class="canvas-heading"><span class="eyebrow">A LITTLE COMPANION, EVERY DAY.</span><h1>把陪伴，装进小黑的怀里。</h1><p>为 2.8 英寸触摸屏设计的桌面小伙伴</p></div>
+      <div id="viewport"></div>
+      <div id="loading" role="status">正在布置小小森林…</div>
+      <div class="view-tools" aria-label="观察角度">
+        <button data-view="hero" class="active">斜视</button>
+        <button data-view="front">正面</button>
+        <button data-view="back">背面</button>
+        <button data-view="side">侧面</button>
+      </div>
+      <div class="viewport-footer"><span class="gesture">拖动旋转 · 滚轮缩放</span><button id="rotate" aria-pressed="false">自动旋转 <span>↻</span></button></div>
+    </section>
+    <aside>
+      <div class="aside-intro"><span class="eyebrow">THREE WAYS TO FEEL AT HOME</span><h2>挑一个喜欢的模样</h2><p>先选外观，再决定用积木还是 3D 打印。</p></div>
+      <div class="concept-list" aria-label="外观方案">
+        <button class="concept active" data-concept="a" aria-pressed="true"><span class="concept-letter">A</span><span><strong>小黑抱抱 <em>推荐</em></strong><small>圆耳尖 · 小猫爪 · 叶绿点缀</small></span><span class="selection">↗</span></button>
+        <button class="concept" data-concept="b" aria-pressed="false"><span class="concept-letter">B</span><span><strong>像素小黑</strong><small>阶梯猫耳 · 积木纹理 · 方块脚</small></span><span class="selection">↗</span></button>
+        <button class="concept" data-concept="c" aria-pressed="false"><span class="concept-letter">C</span><span><strong>森林信笺</strong><small>奶油相框 · 墨绿底座 · 小黑角标</small></span><span class="selection">↗</span></button>
+      </div>
+      <div class="description"><span id="concept-tag" class="tag">像一只安静陪你的黑猫</span><p id="concept-description">圆润的墨黑机身，猫耳藏一点叶绿。屏幕是小黑抱着的窗口，两只小爪稳稳落在桌上。</p></div>
+      <div class="spec"><span>建议体量 <small>宽 × 深 × 高</small></span><strong id="dimensions">约 104 × 48 × 100 mm</strong><div class="scale"><span class="scale-screen"></span><p>显示区保持真实比例<br><b>57.6 × 43.2 mm · 横屏</b></p></div></div>
+      <div class="screen-control"><label for="screen">看看亮屏的样子</label><select id="screen"><option value="home">森林主页</option><option value="clock">像素时钟</option></select></div>
+      <div class="design-note"><span>○</span><p>这是外观概念。接口、内支架与喇叭腔体会在确定制作方式后，结合实物细化。</p></div>
+      <a class="download-link" href="renders/concept-comparison.png" target="_blank">查看三款对比大图 <span>↗</span></a>
+    </aside>
+  </main>
+  <footer><span>DESIGNED WITH A LITTLE LOVE.</span><span>小黑主题桌面摆件 / 外观方案 v1</span></footer>
+  <script type="module" src="enclosure.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "status": "user-approved-design",
+  "approved_on": "2026-11-01",
+  "approval_text": "很好，定稿。接着重构番茄时钟",
+  "implementation_status": "pending",
+  "hardware_tested": false,
+  "files_sha256": {
+    "01-alarm-list.png": "07113ef43b083ba8beb5521f1b9a91cdbfa867ab546870728d07d3c7c8fb9d88",
+    "02-time-picker.png": "b5819de6e788a4d996be573c693aa3b6cda541f2fe079116f6d6dccc6b0d8718",
+    "03-alarm-settings.png": "204ca4b61bfda3ebf5194ef244c288314c89ea255353dbeb8428010dabae4d76",
+    "04-ringtones.png": "fecb2aa91a81b1259cd3cef86cdf2ef5adf13b7d2c31a3baea7be7586b65f26c",
+    "05-ringing.png": "dd49658f4d63a88d8cd23374f3982d3641699b6bf432260deb2e70161d1ce8d0",
+    "alarm-main-and-time-preview.png": "2da61527ec04b1a3fb09fda88218126f6a334f3a0cc9fbd3fd141cbe7e0c030e",
+    "alarm-sounds-and-ringing-preview.png": "52f29ab5aaf1e8c09330d126a1b6bc3c397a7b5323db54f86cac06cc4ba1a80a",
+    "alarm_ui_preview.cpp": "0c2d3704a487ee3e42efcbeb14035ff5034f4a3d6aca23ec87a51a0f944044a3",
+    "make_review.py": "810d89be0eebaa06c18e408f0413487d3fcc0339ce0e59cce3caac1db54f85cc",
+    "README.md": "ea5788ca001b8e81e40cd3debdbd4f77e3fccf77a70483c4c20906da36097e2b",
+    "ringtone-classic.wav": "2fc3ee94a19e9e6716bf2895443a77c2d12e5c76237450358da6dbd61b4a3247",
+    "ringtone-gentle.wav": "77b1c6febc42945c02e88c4a4aa401455ed69eb7c33fa1faabffc75b98f4d55c",
+    "ringtone-progressive.wav": "7479a883c90596f36bef28828d563fe01983ce65e28d8ac9b311709490726f47",
+    "ringtone-samples.json": "a154b460e0f48ea539f83ac28b46118cd661d3c90f82378cc1bfadd7eeded4df"
+  }
+}

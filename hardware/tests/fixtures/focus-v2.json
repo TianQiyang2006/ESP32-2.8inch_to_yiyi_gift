@@ -1,0 +1,7 @@
+{
+  "description": "Host-generated 0.7.1 v2 focus journal; synthetic alarm 07:30, volume80, pomodoro volume15. No device/user NVS data.",
+  "source": "build/focus-volume-20261101/restart-_1jdg66c/focus/focus0.bin",
+  "bytes": 652,
+  "sha256": "a433a4caae5c10ad5da010f8d2b326b0bab5e0b08215d9eddc81a900a32eceac",
+  "format_version": 2
+}

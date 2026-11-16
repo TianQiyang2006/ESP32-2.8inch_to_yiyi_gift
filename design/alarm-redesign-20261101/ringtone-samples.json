@@ -1,0 +1,23 @@
+[
+  {
+    "id": "classic",
+    "name": "经典滴滴",
+    "sample_rate": 16000,
+    "seconds": 8,
+    "file": "ringtone-classic.wav"
+  },
+  {
+    "id": "gentle",
+    "name": "温柔钟声",
+    "sample_rate": 16000,
+    "seconds": 8,
+    "file": "ringtone-gentle.wav"
+  },
+  {
+    "id": "progressive",
+    "name": "渐快提醒",
+    "sample_rate": 16000,
+    "seconds": 8,
+    "file": "ringtone-progressive.wav"
+  }
+]

@@ -1,0 +1,1027 @@
+{
+  "schema": 1,
+  "name": "yiyi-desk 设备 golden 视图表（V2 Core Phase 1）",
+  "updatedAt": "2026-10-28",
+  "description": "每个视图 = 入口串口命令序列 → 冻结 RTC → 等 transitionActive=false 且画面 hash 稳定（可带掩码）→ status 环境信封 → screenshot 原始 RGB565 帧 SHA-256。目标版 32 个视图：7 页 + 8 个 App + 时钟 picker/landscape(日/夜)/matrix/flip + Wi-Fi 列表/键盘（小写/大写/符号）+ 阅读/每日/课程表详情态 + 状态栏 online/offline 环境变体。wifi-list（扫描结果随环境变化）与 clock-flip（每秒翻页动画）为 informational：只出图、记录 hash 供人工查看，不参与 --check 的 hash 门禁；statusbar-* 为可选环境变体（环境不匹配或采集失败时 SKIP+WARN，不算 FAIL）。",
+  "references": {
+    "contract": "代码审查/V2实施-接口契约.md §7 设备 golden",
+    "plan": "代码审查/优化方案V2-20261028.md Phase 1",
+    "entryEvidence": [
+      "build/review/device_capture_allb.py（7 页 / app-* / settings→Wi-Fi / clock picker→landscape 入口与 epoch）",
+      "build/review/device_capture_allb2.py（wifi-list→wifi-keyboard、clock day/night 入口）",
+      "build/review/device_capture_keyboard.py（手动输入行 tap 160 122）",
+      "build/review/device_layout_evidence.py（timeset 冻结协议）",
+      "src/pages/reading_page.cpp（名言卡 6,5,309,131 / 诗词卡 4,141,311,90 的点击热区）",
+      "src/pages/daily_page.cpp（今日心情环 (36,51)-(103,118) / 饮水热区 waterCard(213,140)+(0,0,76,52) / 木鱼“更多>” woodCard(8,140)+(64,4,36,22)）",
+      "src/saved_design/screen_schedule.cpp（课程块 openDetail；tap 77 69 = 第 9 周周二第 1 大节块）"
+    ]
+  },
+  "frame": {
+    "width": 320,
+    "height": 240,
+    "bytes": 153600,
+    "pixelFormat": "RGB565 little-endian",
+    "sha256Input": "screenshot 指令返回的原始 payload（153600 B，不含 FRAME 头与 END 尾）；先应用视图 mask 再 hash"
+  },
+  "epochs": {
+    "tue0956": 1793066160,
+    "tue1200": 1793073600,
+    "tue2200": 1793109600,
+    "thu1200": 1793246400,
+    "notes": "2026-10-27 为周二（学期 2026-08-31 起第 9 周），2026-10-29 为周四。固定 epoch 只用于渲染，不写 NVS；timeset 在固件里要求 epoch > 1700000000。"
+  },
+  "protocol": {
+    "settleSeconds": 0.6,
+    "settleTimeoutSeconds": 8.0,
+    "freezeEpoch": 1793066160,
+    "freezeSettleSeconds": 0.6,
+    "entryDefaultWait": 0.9,
+    "captureAttempts": 3,
+    "repeatDefault": 1,
+    "settleDefaults": {
+      "maxAnimations": 1,
+      "stableFrames": 2,
+      "intervalMs": 220,
+      "timeoutSeconds": 8.0
+    },
+    "notes": [
+      "标准视图：入口命令 → settleSeconds → timeset <freezeEpoch>（冻结）→ settle 判定（transitionActive=false；若 animations>0 或视图声明 stableFrames>=2，则用带 mask 的 hash 连续稳定 stableFrames 帧确认画面静止；animations 只做 WARN，不再硬性要求为 0）→ status（抓图前信封）→ 一次 write 原子发送 'timeset <epoch>\\nscreenshot\\n'（渲染与取帧同一 loop 迭代，秒级时钟标签固定）→ status（抓图后信封）。",
+      "settle 探针默认 stableFrames=2（多抓 1 帧确认稳定）；clock-flip / wifi-list 这类周期性变化视图声明 stableFrames=1 跳过探针。探针不通过时只 WARN，最终由 --repeat 双跑一致性裁决。",
+      "captureFreeze=false 的视图（schedule-detail / 阅读/每日详情 / Wi-Fi 键盘 / Wi-Fi 列表）在入口序列里已用 timeset 冻结，抓图时只发 screenshot：额外 render() 会重置页面内部 view（阅读/每日详情会被打回主页，见 reading_page.cpp:663、daily_page.cpp:761）或重建页面状态（键盘模式按钮文字、课程表详情浮层）。",
+      "mask：视图可声明 [x,y,w,h] 矩形列表；hash/参考帧/diff 都在 mask 之后，用于屏蔽 Wi-Fi 键盘聚焦输入框的 1px 光标闪烁（LVGL caret blink 的 animations 计数常驻 1，且光标相位不可控）。键盘 mask 覆盖名称/密码两个输入框（52,34,258,26）与（52,63,258,26），不影响 y>=134 的键帽区。",
+      "离线夹具：设备无 Wi-Fi 时 requestWeather/requestReading 不会发出（都要求 WiFi.status()==WL_CONNECTED && timeValid()），是推荐的可复现环境；当前固件的 timeset 会拒绝 epoch<=1700000000（打印 TIME INVALID，不改 RTC），所以不能用 'timeset 1' 主动把 timeValid 置 false。"
+    ]
+  },
+  "envelope": {
+    "wifi": "same",
+    "timeValid": true,
+    "weatherValid": "same",
+    "batteryInstalled": "same",
+    "externalPower": "same",
+    "brightness": "same",
+    "volume": "same",
+    "bgr": "same",
+    "inverted": "same",
+    "transitionActive": false,
+    "uptimeMs": "monotonic",
+    "resetReason": "record",
+    "sketchMd5": "record",
+    "version": "record",
+    "page": "expect",
+    "app": "expect"
+  },
+  "views": [
+    {
+      "id": "page-0-home",
+      "fixture": "page-0",
+      "description": "主页（7 页之 0）：时钟卡 / 天气卡 / 日历卡 / 状态栏",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.5
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 0
+      },
+      "expectNoChange": true
+    },
+    {
+      "id": "page-1-weather",
+      "fixture": "page-1",
+      "description": "天气页（7 页之 1，WeatherPage 模块；与 app-weather 同画面是预期的，两者共用 WeatherPage::build）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 1",
+          "wait": 1.0
+        }
+      ],
+      "expect": {
+        "page": 1,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "page-2-holiday",
+      "fixture": "page-2",
+      "description": "假期页（7 页之 2，saved_design screen_holiday）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 2",
+          "wait": 1.1
+        }
+      ],
+      "expect": {
+        "page": 2,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ]
+    },
+    {
+      "id": "page-3-reading",
+      "fixture": "page-3",
+      "description": "阅读页（7 页之 3）：名言卡 + 诗词卡",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 3",
+          "wait": 1.1
+        }
+      ],
+      "expect": {
+        "page": 3,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "page-4-daily",
+      "fixture": "page-4",
+      "description": "每日页（7 页之 4）：今日心情 / 敲木鱼 / 饮水",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 4",
+          "wait": 1.1
+        }
+      ],
+      "expect": {
+        "page": 4,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "page-5-schedule",
+      "fixture": "page-5",
+      "description": "课程表页（7 页之 5，saved_design screen_schedule）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.8
+        },
+        {
+          "cmd": "page 5",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 245 16",
+          "wait": 1.0
+        }
+      ],
+      "expect": {
+        "page": 5,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ],
+      "captureFreeze": false,
+      "note": "V2 字体放大 A：先 timeset 再点「本周」，固定 selectedWeek=currentWeek（第 9 周），避免上次浏览周残留。"
+    },
+    {
+      "id": "page-6-apps",
+      "fixture": "page-6",
+      "description": "Apps 页（7 页之 6，saved_design screen_apps）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 6",
+          "wait": 1.0
+        }
+      ],
+      "expect": {
+        "page": 6,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-0-home"
+      ]
+    },
+    {
+      "id": "app-clock-picker",
+      "fixture": "app-clock-picker",
+      "description": "时钟 App：三预设选择页；入口先点一次 landscape 预设再 back，保证高亮边框不依赖 NVS 里的上一次预设",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app clock",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 57 98",
+          "wait": 1.4
+        },
+        {
+          "cmd": "back",
+          "wait": 1.0
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 12
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-weather",
+      "fixture": "app-weather",
+      "description": "天气 App（App::Weather，WeatherPage 模块；与 page-1-weather 同画面是预期的）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app weather",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 3
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "app-calendar",
+      "fixture": "app-calendar",
+      "description": "日历 App（App::Calendar）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app calendar",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 4
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-countdown",
+      "fixture": "app-countdown",
+      "description": "倒计时 App（App::Countdown）；若 NVS 里没有目标则显示空态，有目标时秒数由冻结 epoch 固定",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app countdown",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 5
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-settings",
+      "fixture": "app-settings",
+      "description": "设置 App（App::Settings）：亮度/音量滑杆 + 四个入口行",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app settings",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 6
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-phone",
+      "fixture": "app-phone",
+      "description": "连接手机 App（App::Phone）：设备热点名/密码来自持久 NVS，同板同次基线内稳定",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app phone",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 7
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-about",
+      "fixture": "app-about",
+      "description": "关于 App（App::About）：版本号文本变化属于需人工评审的预期变化（更新基线前先确认）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app about",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 8
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "app-diagnostics",
+      "fixture": "app-diagnostics",
+      "description": "颜色与触摸 App（App::Diagnostics）：色块 + 触摸坐标提示（无触摸时静态）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app diagnostics",
+          "wait": 1.2
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 9
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-6-apps"
+      ]
+    },
+    {
+      "id": "clock-landscape-day",
+      "description": "时钟 face：时光山水（landscape）预设，白天背景（12:00）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app clock",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 57 98",
+          "wait": 1.4
+        },
+        {
+          "cmd": "timeset 1793073600",
+          "wait": 0.8
+        }
+      ],
+      "freezeEpoch": 1793073600,
+      "expect": {
+        "page": 0,
+        "app": 12
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "app-clock-picker",
+        "page-0-home"
+      ]
+    },
+    {
+      "id": "clock-landscape-night",
+      "description": "时钟 face：时光山水（landscape）预设，夜间背景（22:00）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app clock",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 57 98",
+          "wait": 1.4
+        },
+        {
+          "cmd": "timeset 1793109600",
+          "wait": 0.8
+        }
+      ],
+      "freezeEpoch": 1793109600,
+      "expect": {
+        "page": 0,
+        "app": 12
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "clock-landscape-day"
+      ]
+    },
+    {
+      "id": "clock-matrix",
+      "description": "时钟 face：蓝色像素（matrix）预设，HH:MM:SS 点阵 + 农历/天气行；秒数由抓图前原子 timeset 固定在 epoch 上",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app clock",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 160 98",
+          "wait": 1.6
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 12
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "app-clock-picker",
+        "clock-landscape-day"
+      ]
+    },
+    {
+      "id": "clock-flip",
+      "description": "时钟 face：白色翻页（flip）预设；每秒触发 300ms 翻转动画，原始帧 hash 天然不稳定，只作为 informational 出图供人工目视",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app clock",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 263 98",
+          "wait": 1.8
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 12
+      },
+      "hash": false,
+      "settle": {
+        "stableFrames": 1
+      },
+      "distinctFrom": [
+        "app-clock-picker"
+      ],
+      "note": "informational：不参与 hash 门禁（check 结果为 INFO-DIFF 而非 FAIL）；跳过 hash 稳定探针。"
+    },
+    {
+      "id": "reading-quote-detail",
+      "description": "阅读页 → 名言详情（点整张名言卡 tap 160 70）。captureFreeze=false：timeset 必须在 tap 之前，否则抓图前的 render() 会按 reading_page.cpp:663 把内部 view 重置回主页",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 3",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 160 70",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 3,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-3-reading"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "reading-poem-detail",
+      "description": "阅读页 → 诗词详情（点整张红色诗词卡 tap 160 186；同样 captureFreeze=false）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 3",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 160 186",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 3,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-3-reading",
+        "reading-quote-detail"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "daily-mood-editor",
+      "description": "每日页 → 今日心情编辑（点今日大圆环 tap 69 84；captureFreeze=false 保内部 view）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 4",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 69 84",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 4,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-4-daily"
+      ]
+    },
+    {
+      "id": "daily-water-detail",
+      "description": "每日页 → 饮水记录（点饮水卡统计区 tap 251 166；captureFreeze=false）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 4",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 251 166",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 4,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-4-daily",
+        "daily-mood-editor"
+      ]
+    },
+    {
+      "id": "daily-wood-detail",
+      "description": "每日页 → 敲木鱼记录（点木鱼卡右上“更多 >” tap 90 155；热区在木鱼卡上层，不会触发敲击计数）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 4",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 90 155",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 4,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-4-daily",
+        "daily-mood-editor"
+      ],
+      "hash": false,
+      "note": "informational（数据驱动页面）：天气/诗词/每日记录内容来自设备缓存与在线刷新，设备联网或刷新后会漂移；只出图供人工复核，不参与 --check 门禁。"
+    },
+    {
+      "id": "daily-thursday",
+      "fixture": "daily-thursday",
+      "description": "每日页（周四 epoch）：验证星期下划线在第二行的位置（B3 相关）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "page 4",
+          "wait": 1.1
+        },
+        {
+          "cmd": "timeset 1793246400",
+          "wait": 0.8
+        }
+      ],
+      "freezeEpoch": 1793246400,
+      "expect": {
+        "page": 4,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-4-daily"
+      ]
+    },
+    {
+      "id": "schedule-detail",
+      "description": "课程表页 → 课程详情浮层（tap 77 69 = 周二第 1 大节课程块；冻结 epoch 是第 9 周周二）。captureFreeze=false，否则 render() 重建 saved_design 页面会关闭详情浮层",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.8
+        },
+        {
+          "cmd": "page 5",
+          "wait": 1.2
+        },
+        {
+          "cmd": "tap 245 16",
+          "wait": 0.8
+        },
+        {
+          "cmd": "tap 77 69",
+          "wait": 1.3
+        }
+      ],
+      "captureFreeze": false,
+      "expect": {
+        "page": 5,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "page-5-schedule"
+      ],
+      "note": "V2 字体放大 A：timeset→本周→tap 77 69（周二 1-2 节）；captureFreeze=false，使 render 使用固定第 9 周。"
+    },
+    {
+      "id": "wifi-list",
+      "description": "Wi-Fi 配网列表页（设置 → tap 160 139 打开 Wi-Fi 行）；2.4GHz 扫描结果/信号强度随环境变化，只出图供人工查看",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app settings",
+          "wait": 1.3
+        },
+        {
+          "cmd": "tap 160 139",
+          "wait": 1.6
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        }
+      ],
+      "captureFreeze": false,
+      "settleSeconds": 2.5,
+      "settle": {
+        "stableFrames": 1
+      },
+      "expect": {
+        "page": 0,
+        "app": 11
+      },
+      "hash": false,
+      "distinctFrom": [
+        "app-settings"
+      ],
+      "note": "informational：扫描列表含周边 AP/RSSI，跨环境不可复现，不参与 hash 门禁；跳过 hash 稳定探针。"
+    },
+    {
+      "id": "statusbar-online",
+      "description": "状态栏 online 变体：Wi-Fi 已连接时的主页（与 page-0-home 同画面，只用于把环境写进基线；环境不匹配时 SKIP+WARN）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.5
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "optional": true,
+      "available": {
+        "wifi": true
+      },
+      "note": "optional：采集/信封失败只 SKIP+WARN，不算 FAIL。"
+    },
+    {
+      "id": "statusbar-offline",
+      "description": "状态栏 offline 变体：Wi-Fi 未连接（红线叉）时的主页；离线夹具/无 Wi-Fi 环境下的基线视图",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.5
+        }
+      ],
+      "expect": {
+        "page": 0,
+        "app": 0
+      },
+      "expectNoChange": true,
+      "optional": true,
+      "available": {
+        "wifi": false
+      },
+      "note": "optional：Wi-Fi 状态可能在扫描/自动重连时漂移；采集/信封失败只 SKIP+WARN，不算 FAIL。"
+    },
+    {
+      "id": "wifi-keyboard",
+      "description": "Wi-Fi 键盘（小写页）：设置 → Wi-Fi 行 → 手动输入行（tap 160 122）。mask 屏蔽聚焦输入框的光标闪烁（caret blink）；K2 已批准的视觉变化由 Lead 在 K2 后人工更新该项基线",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app settings",
+          "wait": 1.3
+        },
+        {
+          "cmd": "tap 160 139",
+          "wait": 1.6
+        },
+        {
+          "cmd": "tap 160 122",
+          "wait": 1.4
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        }
+      ],
+      "captureFreeze": false,
+      "mask": [
+        [
+          52,
+          34,
+          258,
+          30
+        ],
+        [
+          52,
+          63,
+          258,
+          30
+        ]
+      ],
+      "expect": {
+        "page": 0,
+        "app": 11
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "wifi-list",
+        "app-settings"
+      ],
+      "note": "K2 visual baseline updated on 2026-10-28 (evidence: build/device-golden/last/update-report.json); now gated as a normal no-change view."
+    },
+    {
+      "id": "wifi-keyboard-upper",
+      "description": "Wi-Fi 键盘（大写页）：小写页后点一次模式按钮（tap 124 105 = 命令行“小写”按钮中心）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app settings",
+          "wait": 1.3
+        },
+        {
+          "cmd": "tap 160 139",
+          "wait": 1.6
+        },
+        {
+          "cmd": "tap 160 122",
+          "wait": 1.4
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 124 105",
+          "wait": 0.9
+        }
+      ],
+      "captureFreeze": false,
+      "mask": [
+        [
+          52,
+          34,
+          258,
+          30
+        ],
+        [
+          52,
+          63,
+          258,
+          30
+        ]
+      ],
+      "expect": {
+        "page": 0,
+        "app": 11
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "wifi-keyboard"
+      ],
+      "note": "K2 visual baseline updated on 2026-10-28 (evidence: build/device-golden/last/update-report.json); now gated as a normal no-change view."
+    },
+    {
+      "id": "wifi-symbols",
+      "description": "Wi-Fi 键盘（符号页）：小写页后点两次模式按钮（单击循环 小写→大写→符号，K2 长按跳过中间页不改变该循环）",
+      "entry": [
+        {
+          "cmd": "page 0",
+          "wait": 0.4
+        },
+        {
+          "cmd": "app settings",
+          "wait": 1.3
+        },
+        {
+          "cmd": "tap 160 139",
+          "wait": 1.6
+        },
+        {
+          "cmd": "tap 160 122",
+          "wait": 1.4
+        },
+        {
+          "cmd": "timeset 1793066160",
+          "wait": 0.7
+        },
+        {
+          "cmd": "tap 124 105",
+          "wait": 0.8
+        },
+        {
+          "cmd": "tap 124 105",
+          "wait": 0.9
+        }
+      ],
+      "captureFreeze": false,
+      "mask": [
+        [
+          52,
+          34,
+          258,
+          30
+        ],
+        [
+          52,
+          63,
+          258,
+          30
+        ]
+      ],
+      "expect": {
+        "page": 0,
+        "app": 11
+      },
+      "expectNoChange": true,
+      "distinctFrom": [
+        "wifi-keyboard",
+        "wifi-keyboard-upper"
+      ],
+      "note": "K2 visual baseline updated on 2026-10-28 (evidence: build/device-golden/last/update-report.json); now gated as a normal no-change view."
+    }
+  ]
+}

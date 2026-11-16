@@ -1,0 +1,25 @@
+[Unit]
+Description=Yiyi independent desktop music streaming
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=yiyi-music
+Group=yiyi-music
+WorkingDirectory=/opt/yiyi-music
+ExecStart=/usr/bin/python3 /opt/yiyi-music/app_http.py
+Environment=YIYI_MUSIC_ROOT=/opt/yiyi-music
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/yiyi-music/data
+MemoryMax=192M
+TasksMax=32
+CPUQuota=40%
+
+[Install]
+WantedBy=multi-user.target

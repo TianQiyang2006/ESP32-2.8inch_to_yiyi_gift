@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "phase": "design-review",
+  "renderer": "actual LVGL 8.4 software renderer",
+  "screen": [
+    320,
+    240
+  ],
+  "fonts": "project NotoSansSC 10/12/14/16 px including actual fallbacks",
+  "checks": {
+    "labels": 168,
+    "glyphs": 516,
+    "controls": 102,
+    "bounds": 421,
+    "pointer_taps": 76
+  },
+  "frames": [
+    {
+      "name": "code-empty",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "da2acab9304a669535dea340c9e4294e0f2297f58f03dac43946f2c7516f07c0"
+    },
+    {
+      "name": "code-full",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "1da65e462a3934d9607c4c52f59a897c6e51e8d1cd3f9f6f3b18ac7669f13438"
+    },
+    {
+      "name": "code",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "da0efdd0f0f5c71f1aaab7f2acf911483bc2d4c84c44d573e03dceab3666eb0a"
+    },
+    {
+      "name": "fruit",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "82001cc3eb4c003059a342fa3dfef087d76a93b114ce75eca4e75d349868fa31"
+    },
+    {
+      "name": "gameover",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "a209e8c584945518b81b33cb2749f1454267fe11b11ad2d152cacfa11a1b6f74"
+    },
+    {
+      "name": "lobby",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "9a212efda1e928e7af2866a49a052575e8de37931997caf563cb0f9db3b8f4ce"
+    },
+    {
+      "name": "pause",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "6b3d1a15bdeb1e7afd832eac777ffbbd24cba2ed6873c141af036bd553be6a70"
+    },
+    {
+      "name": "ready",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "26fab9b722302596c40af97cc4465f450826d16a5fd2656c2c619d54843dd281"
+    },
+    {
+      "name": "restart",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "b032bbc58ac2300af471dd246e5d4f927c9704783e141ee45b0daf78fc1b3de0"
+    },
+    {
+      "name": "runner",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "ff01fdced1e374d88743c0285adea20fa0aa71e2bcb7e1e26c4318fc9b389a06"
+    },
+    {
+      "name": "slide",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "91822a5b8ba330fccbdf21c33f1ef9be4676ac0ac8f00795c63c72c743d002a9"
+    },
+    {
+      "name": "win",
+      "size": [
+        320,
+        240
+      ],
+      "sha256": "b11ef87366458fcd47a2915a85d96a837e7262d8207a95912362deaabb4302f4"
+    }
+  ],
+  "production_modified": false,
+  "device_flashed": false,
+  "physical_touch_validated": false,
+  "native_game_rules_integrated": false,
+  "notes": [
+    "Native runner checks labels, real glyph coverage, no text clipping, screen bounds, control dimensions and real LVGL pointer dispatch.",
+    "Decorative geometry has no bitmap assets. Native screens are design samples, not a finished game firmware."
+  ],
+  "source_sha256": "5bd6207c21aa592c35977dfd5ba5c23d91df5e9ede90423037392f8e7578814f"
+}

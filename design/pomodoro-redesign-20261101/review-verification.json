@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-01",
+  "status": "proposal-for-user-review",
+  "approved_alarm_assets_unchanged": true,
+  "approved_launcher_assets_unchanged": true,
+  "native_lvgl_frames": 8,
+  "native_resolution": [
+    320,
+    240
+  ],
+  "native_text_width_validation_passed": true,
+  "preview_data_is_demonstration_only": true,
+  "firmware_modified": false,
+  "hardware_flashed": false,
+  "timer_behaviour_tested_on_hardware": false
+}

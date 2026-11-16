@@ -1,0 +1,24 @@
+[Unit]
+Description=Yiyi private MP3 and LRC gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=yiyi-music
+Group=yiyi-music
+WorkingDirectory=/opt/yiyi-music
+Environment=YIYI_MUSIC_ROOT=/opt/yiyi-music
+ExecStart=/usr/bin/python3 -B /opt/yiyi-music/server.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/yiyi-music/data
+MemoryMax=96M
+TasksMax=32
+CPUQuota=30%
+
+[Install]
+WantedBy=multi-user.target

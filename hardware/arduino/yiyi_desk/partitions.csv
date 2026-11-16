@@ -1,0 +1,11 @@
+# GrokBot layout: app0 desktop 8.5MiB / app1 Xiaozhi 4MiB / assets 2.5MiB / spiffs 0.96MiB
+# Keep in sync with xiaozhi-esp32-2.5.3-dev-grokbot/partitions/yiyi-dual.csv.
+# Install or restore with hardware/scripts/install_grokbot.py using a checked full backup.
+# ASCII comments are required by the Windows Arduino core partition tool.
+# Name, Type, SubType, Offset, Size, Flags
+nvs, data, nvs, 0x9000, 0x5000,
+otadata, data, ota, 0xe000, 0x2000,
+app0, app, ota_0, 0x10000, 0x880000,
+app1, app, ota_1, 0x890000, 0x400000,
+assets, data, spiffs, 0xc90000, 0x280000,
+spiffs, data, spiffs, 0xf10000, 0xf0000,

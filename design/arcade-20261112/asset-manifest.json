@@ -1,0 +1,14 @@
+{
+  "covers": 15,
+  "cover_format": "INDEXED_8BIT",
+  "full_cover_bytes": 668160,
+  "thumbnail_bytes": 112800,
+  "cover_bytes": 780960,
+  "levels": 12611,
+  "level_bytes": 1198045,
+  "all_solutions_replayed": true,
+  "difficulty_cycle": 1024,
+  "prefix_stable": true,
+  "attempts": 33812,
+  "seed": 20261112
+}

@@ -1,0 +1,37 @@
+{
+  "basis": "existing build/arcade-20261112/firmware/yiyi_desk.ino.map; allocated flash-address input sections only; not a future bin prediction",
+  "art_pixel_bytes": 780960,
+  "art_metadata_bytes": 480,
+  "sokoban_level_bytes": 1198045,
+  "sokoban_count_bytes": 4,
+  "tetris_icon_bytes": 9420,
+  "reclaimable_constant_lower_bound": 1988909,
+  "allocated_objects": {
+    "arcade_art.c.o": {
+      "flash": 781440,
+      "ram": 0
+    },
+    "arcade_levels.c.o": {
+      "flash": 1198049,
+      "ram": 0
+    },
+    "arcade_font_8.c.o": {
+      "flash": 18246,
+      "ram": 8
+    },
+    "arcade_font_10.c.o": {
+      "flash": 22571,
+      "ram": 8
+    },
+    "arcade_font_12.c.o": {
+      "flash": 27527,
+      "ram": 8
+    },
+    "tetris_app_icon.c.o": {
+      "flash": 9420,
+      "ram": 0
+    }
+  },
+  "current_bin_bytes": 8911824,
+  "app0_bytes": 8912896
+}

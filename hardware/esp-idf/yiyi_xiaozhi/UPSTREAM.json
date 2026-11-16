@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/78/xiaozhi-esp32",
+  "release": "v2.5.0",
+  "commit": "ac6deed3d8e75348475364bf40ad953c6cd48054",
+  "releaseUrl": "https://github.com/78/xiaozhi-esp32/releases/tag/v2.5.0",
+  "espIdf": "v6.0.1",
+  "board": "yiyi-es3c28p",
+  "integration": ["desktop Wi-Fi", "exit to desktop", "no interruption", "dual-app partitions", "USB diagnostics"]
+}

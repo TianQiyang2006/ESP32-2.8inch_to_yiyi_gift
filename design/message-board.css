@@ -1,0 +1,37 @@
+#screen .message-page { padding: 0; background: #faf3bf !important; color: #644a34; }
+.message-board { position: absolute; inset: 0; width: 320px; height: 240px; background: #faf3bf; }
+.message-board-art, .message-detail-art { position: absolute; inset: 0; width: 320px; height: 240px; object-fit: cover; pointer-events: none; }
+.message-board-art { filter: opacity(.18); }
+.message-board-heading { position: absolute; left: 16px; top: 13px; width: 194px; height: 29px; font-size: 22px; }
+.message-board-title { margin: 0; font-size: inherit; line-height: 1.25; color: #694b31; letter-spacing: 2px; }
+.message-board-title span { display: inline-block; margin-left: 7px; color: #b18b57; font-size: .7em; font-weight: 400; vertical-align: 2px; }
+.message-phone { position: absolute; left: 244px; top: 15px; width: 62px; height: 25px; padding: 2px 3px; border: 1px solid #baa57570; border-radius: 5px; background: #fffbe445; color: #8a7149; font: inherit; font-size: 9px; cursor: pointer; }
+.message-phone:focus-visible, .message-read:focus-visible { outline: 1.5px solid #977745; outline-offset: 2px; }
+.message-note { position: absolute; left: 16px; top: 51px; width: 288px; height: 178px; display: flex; flex-direction: column; align-items: stretch; color: #674c36; font-size: 19px; }
+#screen .message-note-scroll { flex: 1; min-height: 0; height: auto; overflow-y: auto; padding: 7px 9px 10px; background: transparent; border-radius: 5px; scrollbar-width: thin; scrollbar-color: #c8ad76 transparent; user-select: text; touch-action: pan-y; }
+.message-note-scroll:focus-visible { outline: 1px solid #c8ad76; outline-offset: 1px; }
+.message-note-summary { display: block; margin: 0; color: #795a3b; font-size: .84em; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.message-note-preview { margin: 9px 0 0; font-size: inherit; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; color: #705137; }
+.message-note-sign { margin-top: 12px; font-size: 11px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; text-align: right; color: #98794e; }
+.message-note[data-empty="true"] .message-note-preview { color: #9b8159; }
+.message-read { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; padding: 3px 9px 2px; min-height: 22px; border: 0; background: transparent; color: #80613d; font: inherit; font-size: 9px; line-height: 1.4; cursor: pointer; flex-shrink: 0; }
+.message-read span:last-child { font-size: 12px; }
+@media (hover:hover) { .message-read:hover, .message-phone:hover { color: #4f3823; } }
+.message-detail { position: absolute; inset: 0; height: 240px; background: #faf3bf; color: #644a34; }
+.message-detail-nav { position: relative; height: 34px; display: flex; align-items: center; justify-content: space-between; padding: 2px 8px; font-size: 11px; }
+.message-detail-nav > span { color: #a18a5e; font-size: 10px; }
+.message-detail-nav button { min-height: 28px; padding: 4px 6px; border: 0; border-radius: 5px; background: transparent; color: inherit; font: inherit; font-size: 10px; cursor: pointer; }
+.message-detail-nav button:focus-visible, .message-empty-action:focus-visible { outline: 1.5px solid #977745; outline-offset: 1px; }
+.message-detail .message-reader { position: absolute; inset: 34px 8px 8px; width: auto; height: auto; margin: 0; padding: 0; border: 1px solid #dbc99b; border-radius: 4px 4px 12px 4px; background: #fffbe9f2; overflow: hidden; }
+#screen .message-detail .message-text { height: 100%; margin: 0; padding: 12px 14px 16px; overflow: auto; overscroll-behavior: contain; touch-action: pan-y; user-select: text; outline: none; scrollbar-width: thin; scrollbar-color: #d8c69c transparent; }
+.message-detail .message-text:focus-visible { box-shadow: inset 2px 0 #d2ba81; }
+#screen .message-detail .message-reader h2 { margin: 0; color: #684c33; font-size: 18px !important; line-height: 1.5; overflow-wrap: anywhere; }
+.message-body { margin-top: 11px; padding-top: 10px; border-top: 1px solid #e6dabd; font-size: 18px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.message-empty { color: #a08b65; font-size: 15px; }
+.message-empty-action { margin-top: 12px; padding: 6px 11px; border: 1px solid #d3bf8d; border-radius: 5px; background: #f8edc8; color: #80643f; font: inherit; font-size: 11px; cursor: pointer; }
+.message-detail .message-sign { margin-top: 18px; max-height: none; color: #9e8660; font-size: 11px; line-height: 1.7; text-align: right; white-space: pre-wrap; overflow-wrap: anywhere; }
+.message-page:has(.message-detail) .dots { display: none; }
+.message-page .dots { height: 8px !important; bottom: 0 !important; }
+#screen .message-page .dot { height: 8px; }
+#screen .message-page .dot:after { top: 2px; height: 3px; background: #bca47a; opacity: .35; }
+#screen .message-page .dot.active:after { background: #947044; opacity: .8; }

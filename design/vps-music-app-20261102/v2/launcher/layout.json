@@ -1,0 +1,144 @@
+{
+  "screen_size": [
+    320,
+    240
+  ],
+  "status": "user-approved",
+  "order": [
+    "闹钟",
+    "番茄时钟",
+    "音乐",
+    "俄罗斯方块"
+  ],
+  "grid": [
+    2,
+    2
+  ],
+  "rows": [
+    [
+      "闹钟",
+      "番茄时钟"
+    ],
+    [
+      "音乐",
+      "俄罗斯方块"
+    ]
+  ],
+  "tiles": [
+    {
+      "name": "闹钟",
+      "position": [
+        64,
+        16
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ],
+      "caption_position": [
+        0,
+        71
+      ],
+      "caption_size": [
+        80,
+        24
+      ]
+    },
+    {
+      "name": "番茄时钟",
+      "position": [
+        176,
+        16
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ],
+      "caption_position": [
+        0,
+        71
+      ],
+      "caption_size": [
+        80,
+        24
+      ]
+    },
+    {
+      "name": "音乐",
+      "position": [
+        64,
+        125
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ],
+      "caption_position": [
+        0,
+        71
+      ],
+      "caption_size": [
+        80,
+        24
+      ]
+    },
+    {
+      "name": "俄罗斯方块",
+      "position": [
+        176,
+        125
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ],
+      "caption_position": [
+        0,
+        71
+      ],
+      "caption_size": [
+        80,
+        24
+      ]
+    }
+  ],
+  "caption_font": "saved_gift_font_bold_14_0",
+  "caption_color": "#FBF6E9",
+  "caption_background_opacity": 0,
+  "background_outside_tiles_unchanged": true,
+  "preview_renderer": "native-lvgl",
+  "firmware_modified": false,
+  "flashed": false
+}

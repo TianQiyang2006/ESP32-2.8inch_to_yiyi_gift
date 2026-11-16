@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YiYiDeskTop设置</title>
+<style>body{margin:0;background:#f4f7ef;color:#244432;font:15px/1.6 system-ui,"Microsoft YaHei",sans-serif}main{max-width:620px;margin:auto;padding:18px}h1{font-size:23px}h2{font-size:18px}section{background:#fff;border-radius:14px;padding:18px;margin:15px 0}label{display:block;margin:10px 0}input,textarea,select,button{font:inherit;box-sizing:border-box}input:not([type=checkbox]):not([type=color]),textarea,select{display:block;width:100%;padding:8px;border:1px solid #c6d8c3;border-radius:6px}input[type=range]{accent-color:#619b78}textarea{min-height:100px}button{border:0;border-radius:7px;padding:8px 16px;background:#619b78;color:white;margin-top:8px}small,p.hint{color:#7c9275;font-size:12px}output{float:right}#status{position:sticky;top:0;padding:10px;background:#deebd5;border-radius:8px;z-index:2}.error{color:#b32a20}details{margin:12px 0}a{color:#39784e}.row{display:flex;gap:10px}.row>*{flex:1}#places button{display:block;width:100%;text-align:left}</style><script>
+// Preview fixture transport only. The markup, styles and application script below
+// are extracted unchanged from the production GiftPortalHtml source.
+(()=>{'use strict';
+const clone=value=>JSON.parse(JSON.stringify(value));
+let catalog={limit:20,revision:1,stations:[{"id":"beijing_music","name":"北京音乐广播","tag":"音乐 · FM97.4","url":"http://lhttp.qingting.fm/live/332/64k.mp3"},{"id":"shanghai_pop","name":"动感101","tag":"流行 · FM101.7","url":"http://lhttp.qingting.fm/live/274/64k.mp3"},{"id":"shanghai_classic","name":"经典947","tag":"古典 · FM94.7","url":"http://lhttp.qingting.fm/live/267/64k.mp3"},{"id":"guangdong_music","name":"广东音乐之声","tag":"音乐 · FM99.3","url":"http://lhttp.qtfm.cn/live/1260/64k.mp3"},{"id":"cnr_voice","name":"中国之声","tag":"新闻 · 综合","url":"http://lhttp.qtfm.cn/live/15318317/64k.mp3"},{"id":"beijing_news","name":"北京新闻广播","tag":"新闻 · FM94.5","url":"http://lhttp.qtfm.cn/live/339/64k.mp3"}]},nextId=100;
+let gift={today:'2026-11-14',deviceSettings:{brightness:70,volume:45,autoHome:true},power:{externalPower:true,batteryInstalled:false},battery:{installed:false,externalPower:true},countdownDays:{items:[{id:1,name:'依依的生日',date:'2027-04-18',yearly:true,color:0},{id:2,name:'下一次见面',date:'2026-12-05',yearly:false,color:1}]},city:'杭州',weather:{condition:'晴',temperature:18},daily:{waterGoal:1000,sound:true},holiday:{weekday:5,label:'放假'},countdown:{name:'',date:''},reading:{autoUpdate:true,quoteMode:'api',poemMode:'api'},dailyRecords:{}};
+const reply=(body,status=200)=>new Response(JSON.stringify(clone(body)),{status,headers:{'Content-Type':'application/json'}});
+window.fetch=async(path,options={})=>{
+ await new Promise(resolve=>setTimeout(resolve,240));
+ const route=new URL(String(path),'https://preview.local').pathname;
+ let data;try{data=options.body?JSON.parse(options.body):null;}catch{return reply({error:'请求格式不正确'},400);}
+ if(route==='/api/radio-stations'){
+  if(!data)return reply(catalog);
+  if(data.revision!==catalog.revision)return reply({error:'电台列表已更新，请刷新后重试'},409);
+  if(data.action==='upsert'){
+   const station=data.station||{},index=catalog.stations.findIndex(item=>item.id===station.id);
+   if(station.id&&index<0)return reply({error:'电台已被删除'},404);
+   if(index<0&&catalog.stations.length>=20)return reply({error:'最多保存20个电台'},400);
+   if(!station.name||Array.from(station.name).length>24||Array.from(station.tag||'').length>24||!/^https?:\/\//i.test(station.url||'')||station.url.length>512)return reply({error:'请检查电台名称、标签和直播地址'},400);
+   const value={id:station.id||'preview-'+nextId++,name:station.name,tag:station.tag||'',url:station.url};
+   if(index<0)catalog.stations.push(value);else catalog.stations[index]=value;
+  }else if(data.action==='remove'){
+   const index=catalog.stations.findIndex(item=>item.id===data.id);if(index<0)return reply({error:'电台已被删除'},404);catalog.stations.splice(index,1);
+  }else return reply({error:'操作不支持'},400);
+  catalog.revision++;return reply(catalog);
+ }
+ if(route==='/api/countdown-days'&&data){if(data.action==='remove')gift.countdownDays.items=gift.countdownDays.items.filter(item=>item.id!==data.id);else if(data.item){const item=clone(data.item);if(!item.id)item.id=Date.now();const index=gift.countdownDays.items.findIndex(entry=>entry.id===item.id);if(index<0)gift.countdownDays.items.push(item);else gift.countdownDays.items[index]=item;}return reply({ok:true});}
+ if(route==='/api/gift'){if(data)Object.assign(gift,data);return reply(gift);}
+ if(route==='/api/location'&&data){gift.city=data.city;return reply({ok:true});}
+ return reply({ok:true});
+};
+})();
+</script>
+</head>
+<body><aside style="padding:12px 18px;background:#e6edde;color:#526748;font:12px/1.7 system-ui,sans-serif;text-align:center">手机电台管理 · 设计预览<br>本页使用示例数据，操作只在当前页面生效，不会写入设备。 <a href="#radio-manager" style="color:#294c37">查看电台管理 ↓</a></aside><main><h1>依依的桌面-手机设置</h1><p id="status">正在连接设备…</p>
+<style>
+#countdown-days{padding:0;overflow:hidden;border:1px solid #e1e9dc;box-shadow:0 8px 30px #324c3310;scroll-margin-top:68px}.days-head{padding:24px 22px 20px;background:linear-gradient(135deg,#edf3e7,#faf8ef);position:relative}.days-eyebrow{font-size:10px;letter-spacing:2.5px;color:#7b9275;margin:0 0 8px}.days-head h2{font-size:25px;letter-spacing:1px;line-height:1.4;margin:0 0 7px;font-weight:700;color:#294c37}.days-head p:last-child{font-size:12px;color:#788570;max-width:83%;margin:0;line-height:1.8}.days-mark{position:absolute;right:22px;top:26px;width:43px;height:45px;background:#fffaf0;border:1.5px solid #a1b59a;border-radius:9px;transform:rotate(8deg);box-shadow:3px 4px 0 #cbd9be70}.days-mark:before{content:"";position:absolute;left:-1px;right:-1px;top:10px;border-top:1.5px solid #a1b59a}.days-mark:after{content:"";position:absolute;top:20px;left:10px;width:5px;height:5px;border-radius:1px;background:#90a583;box-shadow:10px 0 #90a583,20px 0 #90a583,0 10px #90a583,10px 10px #90a583}.days-body{padding:20px 20px 22px}.days-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.days-heading h3{font-size:15px;margin:0;color:#344e3c}.days-count{font-size:11px;color:#647d59;background:#edf3e7;border:1px solid #dfe8d8;border-radius:20px;padding:2px 9px;white-space:nowrap}.days-list{display:grid;gap:10px}.days-empty{text-align:center;padding:21px 14px;background:#fafbf7;border:1px dashed #d5dfcd;border-radius:12px;color:#809078;font-size:12px}.days-empty strong{display:block;font-size:15px;color:#536c49;font-weight:500;margin-bottom:6px}.days-card{padding:14px 14px 10px;border-radius:12px;border:1px solid #e1e8da;background:#eff5e9}.days-card.days-peach{background:#fbf0e7;border-color:#efdfd0}.days-card.days-blue{background:#eef4f8;border-color:#dae6ee}.days-card.days-lavender{background:#f2eff8;border-color:#e3ddf0}.days-card-top{display:flex;align-items:start;justify-content:space-between;gap:14px}.days-card-name{font-size:16px;font-weight:600;line-height:1.5;overflow-wrap:anywhere;min-width:0}.days-card-meta{font-size:11px;color:#7c8775;margin:4px 0 0;line-height:1.6}.days-card-number{font-size:24px;font-weight:650;line-height:1.1;letter-spacing:-.6px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums;min-width:65px}.days-card-number small{display:block;font-weight:400;font-size:10px;color:#7c8775;letter-spacing:0;margin-top:5px}.days-card-actions{display:flex;justify-content:flex-end;gap:4px;margin-top:5px}.days-card button{background:transparent;color:#5c7651;font-size:12px;padding:0 10px;min-height:40px;margin:0}.days-card button.days-danger{color:#a17967}.days-divider{height:1px;background:#e8eddf;margin:20px 0}.days-form-title{font-size:15px;font-weight:600;margin:0 0 14px;color:#344e3c}.days-form label{font-size:12px;color:#677b5d;margin:12px 0}.days-form input:not([type=checkbox]):not([type=radio]){background:#fafbf7;border-color:#dce5d4;border-radius:9px;padding:11px 12px;font-size:14px;color:#294c37;min-height:45px}.days-form input:focus-visible{outline:2px solid #91ad7c;outline-offset:2px}.days-form input::placeholder{color:#a1ad99}.days-form .days-repeat{display:flex;align-items:center;gap:8px;min-height:40px;margin:7px 0;color:#556f4a}.days-repeat input{width:17px;height:17px;accent-color:#698b54}.days-form fieldset{padding:0;border:0;min-width:0;margin:15px 0 6px}.days-form legend{font-size:12px;color:#677b5d;margin-bottom:8px}.days-swatches{display:flex;gap:8px}.days-form .days-color{flex:1;margin:0;min-width:0;position:relative;text-align:center}.days-color input{position:absolute;opacity:0;width:1px;height:1px}.days-color span{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:9px;font-size:11px;border:2px solid transparent;background:#eff5e9;color:#63795a}.days-color:nth-child(2) span{background:#fbf0e7;color:#a27f66}.days-color:nth-child(3) span{background:#eef4f8;color:#6f8c9e}.days-color:nth-child(4) span{background:#f2eff8;color:#8a7c9d}.days-color input:checked+span{border-color:#7d9b6a;box-shadow:0 0 0 2px #fff inset}.days-color input:focus-visible+span{outline:2px solid #7d9b6a;outline-offset:2px}.days-submit{display:block;width:100%;min-height:46px;background:#557748;font-size:14px;letter-spacing:1px;border-radius:10px;margin-top:15px}.days-cancel{display:block;width:100%;min-height:42px;background:transparent;color:#7e9074;font-size:12px;margin-top:5px}.days-hint{font-size:11px;color:#91a086;line-height:1.8;margin:12px 0 0}.days-note{font-size:12px;color:#6e875e;line-height:1.7;margin:10px 0 0;overflow-wrap:anywhere}.days-note.error{color:#b32a20}.days-form button:disabled,.days-card button:disabled{opacity:.45;cursor:wait}.days-delete{padding:12px 14px;border-radius:10px;background:#fcf4ed;color:#8b6c59;font-size:12px;margin-top:12px}.days-delete p{margin:0 0 6px;overflow-wrap:anywhere}.days-delete button{font-size:12px;min-height:40px;margin:0 6px 0 0;background:#a57f67}.days-delete button:last-child{background:#eadfce;color:#6b665a}[hidden]{display:none!important}@media(max-width:370px){.days-body{padding:16px}.days-head{padding:22px 18px}.days-head h2{font-size:23px}.days-card-name{font-size:14px}.days-swatches{gap:5px}}
+</style>
+<section id="countdown-days" aria-labelledby="days-title"><div class="days-head"><p class="days-eyebrow">LITTLE MOMENTS · 小小期待</p><h2 id="days-title">把期待，写进日子。</h2><p>生日、纪念日、下一次见面。<br>留在桌面上，陪你数着每一天。</p><span class="days-mark" aria-hidden="true"></span></div><div class="days-body"><div class="days-heading"><h3>我的倒数日</h3><span class="days-count" id="days-count">连接中</span></div><div id="days-list" class="days-list" aria-live="polite"><div class="days-empty"><strong>等设备连接一下</strong>你的期待，很快就会出现在这里。</div></div><div id="days-delete" class="days-delete" hidden><p id="days-delete-text"></p><button id="days-delete-confirm" type="button">确认删除</button><button id="days-delete-cancel" type="button">再想想</button></div><div class="days-divider"></div><form id="days-form" class="days-form"><h3 class="days-form-title" id="days-form-title">添加一个日子</h3><input name="id" type="hidden" value="0"><label>日子的名字<input name="name" required maxlength="24" autocomplete="off" placeholder="例如：依依的生日、我们的见面日"></label><label>期待的日期<input name="date" type="date" required min="1900-01-01" max="2099-12-31"></label><fieldset><legend>选一个喜欢的颜色</legend><div class="days-swatches"><label class="days-color"><input type="radio" name="color" value="0" checked><span>鼠尾草</span></label><label class="days-color"><input type="radio" name="color" value="1"><span>蜜桃</span></label><label class="days-color"><input type="radio" name="color" value="2"><span>晴空</span></label><label class="days-color"><input type="radio" name="color" value="3"><span>淡紫</span></label></div></fieldset><label class="days-repeat"><input name="yearly" type="checkbox">每年重复这个日子</label><button id="days-submit" class="days-submit" type="submit" disabled>保存到桌面</button><button id="days-cancel" class="days-cancel" type="button" hidden>取消编辑，添加新的日子</button><p id="days-note" class="days-note" role="status" aria-live="polite"></p><p class="days-hint">最多珍藏 20 个日子，保存后同步到设备「全部应用 → 倒数日」。天数按北京时间自然日计算；过去的日期显示已经过的天数。每年重复的 2 月 29 日在平年按 2 月 28 日计算。</p></form></div></section>
+<style>
+#radio-manager{padding:0;overflow:hidden;border:1px solid #dce5d5;box-shadow:0 8px 30px #324c3310;scroll-margin-top:68px}.radio-head{padding:24px 22px;background:linear-gradient(135deg,#254c3c,#183a2d);color:#fffaf0;position:relative}.radio-eyebrow{margin:0 0 9px;color:#d5b875;font-size:10px;letter-spacing:2.4px}.radio-head h2{font-size:25px;line-height:1.45;letter-spacing:.5px;margin:0 68px 8px 0;color:#fffaf0}.radio-head p:last-of-type{font-size:12px;line-height:1.8;color:#c4d3b7;margin:0;max-width:80%}.radio-speaker{position:absolute;right:22px;top:38px;width:48px;height:48px;border-radius:50%;border:5px solid #55705b;background:repeating-linear-gradient(0deg,#203e32 0,#203e32 3px,#75846a 3px,#75846a 4px);box-shadow:0 0 0 1px #86957844}.radio-speaker:after{content:"";position:absolute;left:15px;right:15px;bottom:-17px;height:3px;border-radius:2px;background:#c9a85c}.radio-body{padding:20px}.radio-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.radio-heading h3{margin:0;font-size:15px;color:#344e3c;display:flex;gap:9px;align-items:center}.radio-count{font-size:11px;font-weight:400;color:#637956;background:#edf3e7;padding:2px 9px;border-radius:20px;white-space:nowrap}.radio-tools{display:flex;gap:3px}.radio-tools button{font-size:12px;min-height:40px;margin:0;padding:6px 9px;border-radius:8px;background:#edf3e7;color:#486541}.radio-tools #radio-add{background:#2c513d;color:#fffaf0}.radio-limit{font-size:11px;line-height:1.8;color:#819076;margin:7px 0 13px}.radio-list{display:grid;gap:10px}.radio-card{padding:13px 14px 9px;background:#fafbf6;border:1px solid #e0e8d9;border-radius:12px;min-width:0}.radio-card-top{display:flex;align-items:flex-start;gap:10px}.radio-number{font-size:11px;line-height:25px;color:#9a8658;background:#f2ead6;min-width:27px;text-align:center;border-radius:7px;font-variant-numeric:tabular-nums}.radio-copy{min-width:0;flex:1}.radio-name{font-weight:600;font-size:15px;line-height:1.6;color:#294b38;overflow-wrap:anywhere}.radio-tag{display:inline-block;font-size:10px;line-height:1.7;color:#7b8c70;background:#edf2e5;border-radius:4px;padding:0 5px;margin-top:3px;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}.radio-url{font-size:11px;color:#8b9783;line-height:1.7;overflow-wrap:anywhere;word-break:break-word;margin:9px 0 0;font-family:ui-monospace,Consolas,monospace}.radio-card-actions{display:flex;justify-content:flex-end;gap:3px}.radio-card-actions button{background:transparent;color:#56734d;font-size:12px;min-height:40px;margin:1px 0 0;padding:0 10px}.radio-card-actions .radio-danger{color:#9f7461}.radio-empty{text-align:center;padding:24px 14px;background:#fafbf7;border:1px dashed #d5dfcd;border-radius:12px;font-size:12px;color:#809078;line-height:1.8}.radio-empty strong{display:block;color:#536c49;font-size:15px;margin-bottom:5px;font-weight:500}.radio-divider{height:1px;background:#e8eddf;margin:21px 0}.radio-form h3{margin:0 0 13px;color:#344e3c;font-size:15px}.radio-form label{font-size:12px;color:#677b5d;margin:13px 0}.radio-form input:not([type=hidden]){background:#fafbf7;border-color:#dce5d4;border-radius:9px;padding:11px 12px;font-size:14px;color:#294c37;min-height:46px;min-width:0}.radio-form input:focus-visible{outline:2px solid #91ad7c;outline-offset:2px}.radio-form input::placeholder{color:#a1ad99}.radio-form small{display:block;font-size:11px;color:#91a086;line-height:1.8;margin-top:5px}.radio-form #radio-url{font-size:12px;line-height:1.7;min-height:80px;resize:vertical;background:#fafbf7;border-color:#dce5d4;border-radius:9px;color:#294c37;overflow-wrap:anywhere;padding:11px 12px}.radio-submit{display:block;width:100%;min-height:46px;margin-top:16px;border-radius:10px;background:#2c513d;font-size:14px;letter-spacing:1px}.radio-cancel{display:block;width:100%;min-height:42px;background:transparent;color:#7e9074;font-size:12px;margin-top:4px}.radio-note{font-size:12px;line-height:1.8;color:#6e875e;margin:11px 0 0;overflow-wrap:anywhere}.radio-note.error{color:#b32a20}.radio-delete{background:#fcf4ed;color:#8b6c59;border:1px solid #efdfd0;border-radius:10px;padding:13px 14px;font-size:12px;margin-top:12px}.radio-delete p{margin:0 0 7px;overflow-wrap:anywhere}.radio-delete button{font-size:12px;min-height:40px;margin:0 6px 0 0;background:#a57f67}.radio-delete button:last-child{background:#eadfce;color:#6b665a}#radio-manager button:disabled{opacity:.45;cursor:not-allowed}#radio-manager button:focus-visible{outline:2px solid #b99a51;outline-offset:2px}@media(max-width:390px){.radio-body{padding:16px}.radio-head{padding:22px 18px}.radio-head h2{font-size:23px;margin-right:55px}.radio-head p:last-of-type{max-width:83%}.radio-speaker{right:18px;width:40px;height:40px}.radio-heading{gap:8px}.radio-tools button{padding:6px 8px}.radio-card{padding:12px 12px 7px}}
+</style>
+<section id="radio-manager" aria-labelledby="radio-title"><div class="radio-head"><p class="radio-eyebrow">YIYI RADIO · 声音收藏夹</p><h2 id="radio-title">收藏喜欢的声音。</h2><p>把常听的电台放进小黑，<br>让喜欢的声音，随时陪着你。</p><span class="radio-speaker" aria-hidden="true"></span></div><div class="radio-body"><div class="radio-heading"><h3>我的电台 <span id="radio-count" class="radio-count">连接中</span></h3><div class="radio-tools"><button id="radio-refresh" type="button">刷新列表</button><button id="radio-add" type="button" disabled>＋ 添加电台</button></div></div><p id="radio-limit-hint" class="radio-limit">最多保存 20 台，包含初始的 6 个电台；也可以全部删除。</p><div id="radio-list" class="radio-list" aria-live="polite"><div class="radio-empty"><strong>等设备连接一下</strong>你收藏的声音，很快就会出现在这里。</div></div><div id="radio-delete" class="radio-delete" hidden><p id="radio-delete-text"></p><button id="radio-delete-confirm" type="button">确认删除</button><button id="radio-delete-cancel" type="button">再想想</button></div><div class="radio-divider"></div><form id="radio-form" class="radio-form"><h3 id="radio-form-title">添加一个电台</h3><input name="id" type="hidden" value=""><label for="radio-name">电台名称 · 最多 24 字</label><input id="radio-name" name="name" required maxlength="24" autocomplete="off" placeholder="例如：深夜爵士电台"><label for="radio-tag">分类标签 · 最多 24 字，可不填</label><input id="radio-tag" name="tag" maxlength="24" autocomplete="off" placeholder="例如：音乐、新闻、陪伴"><label for="radio-url">音频直播地址</label><textarea id="radio-url" name="url" required maxlength="512" rows="3" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://example.com/live.mp3" aria-describedby="radio-url-help"></textarea><small id="radio-url-help">填写 HTTP / HTTPS 的 MP3 或 AAC 音频流直连地址，最多 512 个字符。请使用音频地址，电台网页或 m3u8 / HLS 播放列表暂不支持。</small><button id="radio-submit" class="radio-submit" type="submit" disabled>保存到小黑</button><button id="radio-cancel" class="radio-cancel" type="button" hidden>取消，清空草稿</button><p id="radio-note" class="radio-note" role="status" aria-live="polite"></p><p class="radio-limit">保存后同步到设备「全部应用 → 在线 FM」。添加地址不会自动播放，点选电台时再开始收听。</p></form></div></section>
+<section><h2>屏幕与声音</h2><form data-key="deviceSettings"><label>亮度 <output data-output="brightness"></output><input name="brightness" type="range" min="10" max="100"></label><label>音量 <output data-output="volume"></output><input name="volume" type="range" min="0" max="100"></label><label><input name="autoHome" type="checkbox"> 60 秒无操作回主页</label><button>保存</button></form></section>
+<section><h2>供电与电池</h2><p>18650 单节锂电池 · 3.7 V · 12775 mWh · 约 3453 mAh</p><p id="battery-status" role="status" aria-live="polite">等待电池数据…</p><form data-key="power"><label><input name="externalPower" type="checkbox"> 当前使用外部电源（手动设置）</label><label><input name="batteryInstalled" type="checkbox"> 已实际安装 3.7V 锂电池</label><p class="hint">电量及剩余容量按电压估算，每 2 秒采样。电量不足会弹窗提示请充电，设备继续使用；不会自动休眠，不需要按 RESET 恢复。充电仅使用外置模块。本板没有充电状态、电流或电池温度检测信号，充电和硬件保护由外置模块负责。</p><button>保存供电设置</button></form></section>
+<section><h2>连接 Wi-Fi</h2><p class="hint">在设备屏幕“设置 → Wi-Fi 配网”搜索并选择 2.4GHz 网络；这里也可手动填写网络名和密码。</p><form id="wifi"><label>网络名<input name="ssid" required maxlength="32"></label><label>密码<input name="password" type="password" maxlength="63" autocomplete="new-password"></label><button>连接</button></form></section>
+<section><h2>天气城市</h2><p id="city">还未设置城市</p><form id="location"><label>显示天气的城市<input name="city" type="text" inputmode="text" lang="zh-CN" autocomplete="address-level2" placeholder="例如：杭州、北京、昆明" required maxlength="40"></label><button>保存天气城市</button></form><p id="weather-status" class="hint" role="status"></p><p class="hint">直接使用手机中文输入法填写城市。天气由 UApi 提供，开发板连接 Wi-Fi 后更新；主页和天气页使用同一城市。</p></section>
+<section><h2>课程表</h2><p id="schedule-info" class="hint">正在读取…</p><label class="hint">选择课表文件（timetable.json）<input id="schedule-file" type="file" accept="application/json,.json"></label><textarea id="schedule-json" rows="4" placeholder="也可以把 timetable.json 的内容粘贴到这里"></textarea><button id="schedule-import" type="button">导入课表到桌面</button><button id="schedule-clear" type="button">恢复内置课表</button><p id="schedule-status" class="hint" role="status"></p><p class="hint">导入后第六页按当前周显示 7 天课表；单双周、短周课程自动过滤。数据只保存在设备上。</p></section>
+<section><h2>今日心情</h2><form id="mood"><label>心情<select name="mood"><option value="happy">开心</option><option value="calm">平静</option><option value="neutral">一般</option><option value="tired">疲惫</option><option value="anxious">焦虑</option><option value="sad">难过</option></select></label><button>保存今天的心情</button></form><button id="export-records" type="button">导出记录与设置</button><p class="hint">保存最近 31 天记录。未联网校时前不写入错误日期。</p></section>
+<section><h2>心情与日常</h2><form data-key="daily"><label>饮水目标（ml）<input name="waterGoal" type="number" min="200" max="10000" step="100"></label><label><input name="sound" type="checkbox"> 木鱼声音</label><button>保存日常设置</button></form></section>
+<section><h2>放假倒计时</h2><form data-key="holiday"><label>目标星期<select name="weekday"><option value="1">周一</option><option value="2">周二</option><option value="3">周三</option><option value="4">周四</option><option value="5">周五</option><option value="6">周六</option><option value="0">周日</option></select></label><label>当天文字<input name="label" maxlength="4"></label><button>保存</button></form><form id="countdown"><label>倒计时名称<input name="name" maxlength="40"></label><label>北京时间目标<input name="date" type="datetime-local" min="1900-01-01T00:00" max="2099-12-31T23:59"></label><button>保存倒计时</button><button id="clear-countdown" type="button">清除</button></form></section>
+<section><h2>名言与诗句</h2><form data-key="reading"><label><input name="autoUpdate" type="checkbox"> 每日联网更新</label><label>名言来源<select name="quoteMode"><option value="api">名言 API</option><option value="manual">自定义</option></select></label><label>名言<textarea name="quoteText" maxlength="600"></textarea></label><label>作者<input name="quoteAuthor" maxlength="80"></label><label>诗句来源<select name="poemMode"><option value="api">诗句 API</option><option value="manual">自定义</option></select></label><label>诗句<textarea name="poemText" maxlength="600"></textarea></label><label>诗名<input name="poemTitle" maxlength="80"></label><label>作者<input name="poemAuthor" maxlength="80"></label><label>朝代<input name="poemDynasty" maxlength="80"></label><button>保存阅读设置</button></form></section>
+</main><script>
+(()=>{'use strict';let config={},polling=false,writing=0,readGeneration=0,connected=false;const status=document.querySelector('#status');const show=(text,error=false)=>{status.textContent=text;status.classList.toggle('error',error);};
+async function api(path,data){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);try{const response=await fetch(path,{method:data?'POST':'GET',headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{}),signal:controller.signal});const value=await response.json();if(!response.ok){const error=Error(value.error||'连接失败');error.status=response.status;throw error;}return value;}finally{clearTimeout(timer);}}
+function values(form){const result=Object.fromEntries(new FormData(form));for(const input of form.elements){if(input.type==='checkbox')result[input.name]=input.checked;if(input.type==='range'||input.type==='number')result[input.name]=Number(input.value);}if(result.weekday!==undefined)result.weekday=Number(result.weekday);if(result.version!==undefined)result.version=Number(result.version);return result;}
+function fill(form,value){if(!form||form.dataset.dirty==='true')return;for(const input of form.elements){if(!input.name||input===document.activeElement||value[input.name]===undefined)continue;if(input.type==='checkbox')input.checked=!!value[input.name];else input.value=value[input.name];}updateOutputs(form);}
+function updateOutputs(form){for(const key of ['brightness','volume']){const input=form.elements[key],output=form.querySelector('[data-output="'+key+'"]');if(input&&output)output.textContent=input.value+'%';}}
+function batterySummary(battery){
+ if(!battery)return '等待设备电池数据';
+ const supply=battery.externalPower?'外接供电（手动设置）':'电池供电（手动设置）';
+ if(!battery.installed)return '未安装电池 · '+(battery.externalPower?supply:'供电状态待确认');
+ if(!battery.voltageValid||!Number.isFinite(battery.volts)||!Number.isFinite(battery.percent))return '电池电压读取异常 · '+supply+' · 充电状态未知';
+ const protection=battery.protection||{};
+ const care={high_voltage:'电压偏高，请断开充电检查',sensor_fault:'电压检测异常，请检查连接',critical:'电量很低，请充电',low:'低电量，请充电'}[protection.state];
+ const capacity=Number.isFinite(battery.remainingMahEstimate)?' · 剩余约 '+battery.remainingMahEstimate+' mAh':'';
+ return '电压 '+battery.volts.toFixed(2)+' V · 电量约 '+battery.percent+'%'+capacity+' · '+supply+' · '+(battery.chargingKnown?(battery.charging?'充电中':'未充电'):'充电状态未知')+(care?' · '+care:battery.critical?' · 电量很低':battery.low?' · 低电量':'');
+}
+function updateBattery(battery){const element=document.querySelector('#battery-status');if(!element)return;element.textContent=batterySummary(battery);element.classList.toggle('error',!!battery&&(battery.low||battery.installed&&!battery.voltageValid));}
+const daysForm=document.querySelector('#days-form'),daysList=document.querySelector('#days-list'),daysNote=document.querySelector('#days-note');
+let daysBusy=false,daysReady=false,daysItems=[],daysDeleteId=0,daysSignature='';
+function daysMessage(message,error=false){daysNote.textContent=message;daysNote.classList.toggle('error',error);}
+function daysDraft(){const draft=values(daysForm);return {id:Number(draft.id)||0,name:draft.name.trim(),date:draft.date,yearly:draft.yearly,color:Number(draft.color)};}
+function daysReset(){daysForm.reset();daysForm.elements.namedItem('id').value='0';daysForm.dataset.dirty='false';document.querySelector('#days-form-title').textContent='添加一个日子';document.querySelector('#days-submit').textContent='保存到桌面';document.querySelector('#days-cancel').hidden=true;}
+function daysDistance(item){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(config.today||''))return {number:'—',label:'设备等待校时'};
+ const [ty,tm,td]=config.today.split('-').map(Number),[oy,month,day]=item.date.split('-').map(Number);let year=oy;
+ const dayInYear=y=>Math.min(day,new Date(Date.UTC(y,month,0)).getUTCDate());
+ if(item.yearly){year=Math.max(oy,ty);if(Date.UTC(year,month-1,dayInYear(year))<Date.UTC(ty,tm-1,td))year++;}
+ const difference=Math.round((Date.UTC(year,month-1,dayInYear(year))-Date.UTC(ty,tm-1,td))/86400000);
+ return {number:difference===0?'今天':String(Math.abs(difference)),label:difference===0?'就是这个日子':difference>0?'天后 · 值得期待':'天前 · 值得记住'};
+}
+function daysElement(tag,className,text){const element=document.createElement(tag);if(className)element.className=className;if(text!==undefined)element.textContent=text;return element;}
+function daysEdit(item){if(daysBusy)return;daysReset();for(const name of ['id','name','date'])daysForm.elements.namedItem(name).value=item[name];daysForm.elements.namedItem('yearly').checked=item.yearly;const swatch=daysForm.querySelector('input[name="color"][value="'+item.color+'"]');if(swatch)swatch.checked=true;daysForm.dataset.dirty='true';document.querySelector('#days-form-title').textContent='编辑这个日子';document.querySelector('#days-submit').textContent='保存修改';document.querySelector('#days-cancel').hidden=false;daysMessage('改好以后，记得保存到桌面。');daysControls();daysForm.scrollIntoView({behavior:'smooth',block:'nearest'});daysForm.elements.namedItem('name').focus({preventScroll:true});}
+function daysControls(){
+ const editing=Number(daysForm.elements.namedItem('id').value)||0,missing=editing&&!daysItems.some(item=>item.id===editing);
+ document.querySelector('#days-submit').disabled=daysBusy||!daysReady||(!editing&&daysItems.length>=20)||!!missing;
+ document.querySelector('#days-cancel').disabled=daysBusy;
+ for(const button of daysList.querySelectorAll('button'))button.disabled=daysBusy;
+ document.querySelector('#days-delete-confirm').disabled=daysBusy;
+ document.querySelector('#days-delete-cancel').disabled=daysBusy;
+ if(missing&&!daysBusy)daysMessage('这个日子已在其他页面删除，当前草稿已保留。取消编辑后可以重新添加。',true);
+}
+function renderDays(){
+ daysReady=Array.isArray(config.countdownDays?.items);daysItems=daysReady?config.countdownDays.items:[];
+ document.querySelector('#days-count').textContent=daysReady?daysItems.length+' / 20 个日子':'等待设备连接';
+ const signature=JSON.stringify([daysItems,config.today,daysReady]);
+ if(signature!==daysSignature){
+  daysSignature=signature;daysList.replaceChildren();
+  if(!daysItems.length){const empty=daysElement('div','days-empty');empty.append(daysElement('strong','',daysReady?'每一个期待，都值得记住':'等设备连接一下'),document.createTextNode(daysReady?'写下第一个日子，让小黑陪你一起等。':'连接后，这里会显示设备保存的倒数日。'));daysList.append(empty);}
+  for(const item of daysItems){
+   const card=daysElement('article','days-card '+(['','days-peach','days-blue','days-lavender'][item.color]||'')),top=daysElement('div','days-card-top'),copy=daysElement('div','');
+   copy.append(daysElement('div','days-card-name',item.name),daysElement('p','days-card-meta',item.date+(item.yearly?' · 每年重复':'')));
+   const distance=daysDistance(item),number=daysElement('div','days-card-number',distance.number);number.append(daysElement('small','',distance.label));top.append(copy,number);
+   const actions=daysElement('div','days-card-actions'),edit=daysElement('button','','编辑'),remove=daysElement('button','days-danger','删除');edit.type=remove.type='button';edit.setAttribute('aria-label','编辑'+item.name);remove.setAttribute('aria-label','删除'+item.name);edit.onclick=()=>daysEdit(item);remove.onclick=()=>{if(daysBusy)return;daysDeleteId=item.id;document.querySelector('#days-delete-text').textContent='要删除「'+item.name+'」吗？删除后无法恢复。';document.querySelector('#days-delete').hidden=false;document.querySelector('#days-delete').scrollIntoView({behavior:'smooth',block:'nearest'});};actions.append(edit,remove);card.append(top,actions);daysList.append(card);
+  }
+ }
+ if(daysDeleteId&&!daysItems.some(item=>item.id===daysDeleteId)){daysDeleteId=0;document.querySelector('#days-delete').hidden=true;}
+ daysControls();
+}
+async function daysWrite(request,draft){
+ if(daysBusy)return;daysBusy=true;writing++;readGeneration++;daysControls();daysMessage(request.action==='remove'?'正在删除这个日子…':'正在把期待保存到桌面…');
+ try{
+  await api('/api/countdown-days',request);
+  if(request.action==='upsert'&&JSON.stringify(daysDraft())===draft)daysReset();
+  if(request.action==='remove'){daysDeleteId=0;document.querySelector('#days-delete').hidden=true;if(Number(daysForm.elements.namedItem('id').value)===request.id)daysReset();}
+  daysMessage(request.action==='remove'?'已删除，设备上的列表也会同步更新。':'已保存到设备，重启后也会留在这里。');show('倒数日已保存，设备会立即更新');
+  try{const latest=await api('/api/gift');config.countdownDays=latest.countdownDays;config.today=latest.today;renderDays();}catch(error){daysMessage('设备已保存，列表暂时未能刷新。请保持连接，稍后会自动更新。');}
+ }catch(error){const message=error.name==='AbortError'?'连接超时，草稿已保留。重连后请先核对列表再重试。':error.message+'；草稿已保留。';daysMessage(message,true);show(message,true);}
+ finally{daysBusy=false;writing--;daysControls();}
+}
+daysForm.onsubmit=event=>{event.preventDefault();if(daysBusy||!daysReady)return;const item=daysDraft();if(!item.name||Array.from(item.name).length>24){daysMessage('请给这个日子起一个 1～24 字的名字。',true);return;}if(!item.id&&daysItems.length>=20){daysMessage('已经珍藏了 20 个日子，可以先删除不再需要的日期。',true);return;}daysWrite({action:'upsert',item},JSON.stringify(item));};
+document.querySelector('#days-cancel').onclick=()=>{if(daysBusy)return;daysReset();daysMessage('');daysControls();};
+document.querySelector('#days-delete-cancel').onclick=()=>{if(daysBusy)return;daysDeleteId=0;document.querySelector('#days-delete').hidden=true;};
+document.querySelector('#days-delete-confirm').onclick=()=>{if(daysDeleteId&&!daysBusy)daysWrite({action:'remove',id:daysDeleteId});};
+const radioForm=document.querySelector('#radio-form'),radioList=document.querySelector('#radio-list'),radioNote=document.querySelector('#radio-note');
+let radioItems=[],radioRevision=0,radioDraftRevision=0,radioReady=false,radioLoaded=false,radioError='',radioBusy=false,radioLoads=0,radioReadEpoch=0,radioSignature='',radioConflict=false,radioDeleteId='',radioDeleteRevision=0;
+const radioField=name=>radioForm.elements.namedItem(name);
+function radioMessage(message,error=false){if(radioError&&!message.includes(radioError))message+=(message?' ':'')+radioError;radioNote.textContent=message;radioNote.classList.toggle('error',error||!!radioError);}
+function radioRaw(){return {id:radioField('id').value,name:radioField('name').value,tag:radioField('tag').value,url:radioField('url').value};}
+function radioReset(){radioForm.reset();radioField('id').value='';radioForm.dataset.dirty='false';radioDraftRevision=radioRevision;radioConflict=false;radioControls();}
+function radioControls(){
+ const editing=radioField('id').value,missing=!!editing&&!radioItems.some(item=>item.id===editing),full=radioItems.length>=20;
+ document.querySelector('#radio-submit').disabled=radioBusy||!radioReady||radioConflict||missing||(!editing&&full);
+ document.querySelector('#radio-submit').textContent=radioBusy?'正在保存…':editing?'保存修改':'保存到小黑';
+ document.querySelector('#radio-form-title').textContent=editing?'编辑这个电台':'添加一个电台';
+ document.querySelector('#radio-add').disabled=radioBusy||!radioReady||full;
+ document.querySelector('#radio-refresh').disabled=radioBusy||radioLoads>0;
+ document.querySelector('#radio-refresh').textContent=radioLoads?'正在刷新…':radioConflict?'保留草稿并刷新':'刷新列表';
+ document.querySelector('#radio-cancel').hidden=radioForm.dataset.dirty!=='true'&&!editing;
+ document.querySelector('#radio-cancel').disabled=radioBusy;
+ document.querySelector('#radio-delete-confirm').disabled=radioBusy||!radioReady||!radioDeleteId||radioConflict;
+ document.querySelector('#radio-delete-cancel').disabled=radioBusy;
+ document.querySelector('#radio-count').textContent=radioLoaded?radioItems.length+' / 20':'连接中';
+ document.querySelector('#radio-limit-hint').textContent=full?'已经收集了 20 个声音。仍可编辑，删除一台后就能继续添加。':'最多保存 20 台，包含初始的 6 个电台；也可以全部删除。';
+ for(const button of radioList.querySelectorAll('button'))button.disabled=radioBusy||!radioReady;
+}
+function radioFocus(){radioForm.scrollIntoView({behavior:'smooth',block:'nearest'});radioField('name').focus({preventScroll:true});}
+function radioEdit(item){
+ if(radioBusy)return;
+ if(radioForm.dataset.dirty==='true'){radioMessage('当前草稿还没有保存。请先保存或取消，再编辑其他电台。',true);radioFocus();return;}
+ radioReset();for(const name of ['id','name','tag','url'])radioField(name).value=item[name];
+ radioForm.dataset.dirty='true';radioDraftRevision=radioRevision;radioControls();radioMessage('改好名称、标签或直播地址后，保存到小黑。');radioFocus();
+}
+function radioRender(){
+ const signature=JSON.stringify([radioLoaded,radioItems]);if(signature===radioSignature){radioControls();return;}radioSignature=signature;radioList.replaceChildren();
+ if(!radioItems.length){const empty=daysElement('div','radio-empty');empty.append(daysElement('strong','',radioLoaded?'这里，还留着好多声音的位置':'等设备连接一下'),document.createTextNode(radioLoaded?'添加第一个电台，让喜欢的声音住进小黑。':'连接后，这里会显示设备保存的电台。'));radioList.append(empty);}
+ radioItems.forEach((item,index)=>{
+  const card=daysElement('article','radio-card'),top=daysElement('div','radio-card-top'),copy=daysElement('div','radio-copy');
+  copy.append(daysElement('div','radio-name',item.name));if(item.tag)copy.append(daysElement('span','radio-tag',item.tag));
+  top.append(daysElement('span','radio-number',String(index+1).padStart(2,'0')),copy);card.append(top,daysElement('p','radio-url',item.url));
+  const actions=daysElement('div','radio-card-actions'),edit=daysElement('button','','编辑'),remove=daysElement('button','radio-danger','删除');
+  edit.type=remove.type='button';edit.dataset.radioAction='edit';remove.dataset.radioAction='remove';edit.dataset.stationId=remove.dataset.stationId=item.id;
+  edit.setAttribute('aria-label','编辑'+item.name);remove.setAttribute('aria-label','删除'+item.name);edit.onclick=()=>radioEdit(item);
+  remove.onclick=()=>{if(radioBusy)return;radioDeleteId=item.id;radioDeleteRevision=radioRevision;document.querySelector('#radio-delete-text').textContent='要删除「'+item.name+'」吗？设备上的电台也会移除，这个操作无法撤销。';document.querySelector('#radio-delete').hidden=false;radioControls();document.querySelector('#radio-delete').scrollIntoView({behavior:'smooth',block:'nearest'});};
+  actions.append(edit,remove);card.append(actions);radioList.append(card);
+ });radioControls();
+}
+function radioApply(value){
+ if(value.limit!==20||!Number.isSafeInteger(value.revision)||value.revision<0||(value.error!==undefined&&typeof value.error!=='string')||!Array.isArray(value.stations)||value.stations.length>20||value.stations.some(item=>!item||typeof item.id!=='string'||!item.id||['name','tag','url'].some(key=>typeof item[key]!=='string')))throw Error('电台列表格式不完整，请刷新后重试');
+ const previousError=radioError;radioItems=value.stations;radioRevision=value.revision;radioLoaded=true;radioReady=radioRevision>0;radioError=value.error||(!radioReady?'电台存储暂时不可用，请刷新后重试':'');
+ if(radioForm.dataset.dirty!=='true'&&!radioField('id').value)radioDraftRevision=radioRevision;
+ if(radioDeleteId&&!radioItems.some(item=>item.id===radioDeleteId)){radioDeleteId='';document.querySelector('#radio-delete').hidden=true;}
+ radioRender();if(previousError!==radioError)radioMessage(radioError?'':'电台存储已恢复，草稿已保留。');
+ if(radioField('id').value&&!radioItems.some(item=>item.id===radioField('id').value)&&!radioBusy)radioMessage('这个电台已在其他页面删除，草稿已保留。请取消编辑，再添加新的电台。',true);
+}
+async function radioLoad({rebase=false,force=false}={}){
+ if(!force&&(radioBusy||writing||radioLoads))return false;
+ const epoch=++radioReadEpoch;radioLoads++;radioControls();
+ try{
+  const value=await api('/api/radio-stations');if(epoch!==radioReadEpoch)return false;radioApply(value);
+  if(rebase){radioDraftRevision=radioRevision;radioDeleteRevision=radioRevision;radioConflict=false;const missing=radioField('id').value&&!radioItems.some(item=>item.id===radioField('id').value);radioMessage(missing?'这个电台已经被删除，草稿已保留。请取消编辑后重新添加。':'列表已刷新，当前草稿已保留。请核对最新列表，再保存。',!!missing);}
+  return true;
+ }catch(error){if(epoch===radioReadEpoch)radioMessage(error.name==='AbortError'?'读取电台超时，草稿已保留。请保持连接后刷新。':'读取电台失败：'+error.message+'。草稿已保留。',true);return false;}
+ finally{radioLoads--;radioControls();}
+}
+async function radioWrite(request){
+ if(radioBusy||!radioReady||radioConflict)return;
+ const raw=radioRaw(),snapshot=JSON.stringify(raw),previousIds=new Set(radioItems.map(item=>item.id));
+ const revision=request.action==='remove'?radioDeleteRevision:radioDraftRevision;
+ radioBusy=true;writing++;readGeneration++;radioReadEpoch++;radioControls();radioForm.setAttribute('aria-busy','true');radioMessage(request.action==='remove'?'正在从小黑移除这个声音…':'正在把这个声音保存到小黑…');
+ try{
+  const value=await api('/api/radio-stations',{...request,revision});radioApply(value);const changed=JSON.stringify(radioRaw())!==snapshot;
+  if(request.action==='upsert'){
+   if(!changed){radioReset();radioMessage('已保存到小黑，重启后也会留在这里。');}
+   else{
+    if(!raw.id){const created=radioItems.filter(item=>!previousIds.has(item.id)&&['name','tag','url'].every(key=>item[key]===request.station[key]));if(created.length===1)radioField('id').value=created[0].id;else radioConflict=true;}
+    radioDraftRevision=radioRevision;radioForm.dataset.dirty='true';radioMessage(radioConflict?'上一次内容已保存，新修改仍是草稿。请先核对列表，取消后编辑已保存的电台。':'上一次内容已保存；你刚改的内容仍是草稿，点「保存修改」继续。',radioConflict);
+   }
+  }else{
+   radioDeleteId='';document.querySelector('#radio-delete').hidden=true;
+   if(raw.id===request.id&&!changed)radioReset();else if(radioDraftRevision===revision)radioDraftRevision=radioRevision;
+   const missing=radioField('id').value&&!radioItems.some(item=>item.id===radioField('id').value);
+   radioMessage(missing?'电台已删除，你刚改的草稿仍保留。请取消编辑后重新添加。':'已删除，设备上的选台列表也会同步更新。',!!missing);
+  }
+  show('FM 电台已保存，设备会同步更新');
+ }catch(error){
+  if(error.status===409){radioConflict=true;await radioLoad({force:true});radioMessage('电台列表已在其他页面更新，草稿已保留。点「保留草稿并刷新」，核对后再保存。',true);}
+  else{if(error.name==='AbortError'||!error.status)radioConflict=true;radioMessage(error.name==='AbortError'?'保存超时，草稿已保留。请先刷新并核对列表，再重试。':error.message+'；草稿已保留。'+(radioConflict?'请先刷新并核对列表。':''),true);}
+ }finally{radioBusy=false;writing--;radioForm.setAttribute('aria-busy','false');radioControls();}
+}
+radioForm.addEventListener('input',()=>{if(radioForm.dataset.dirty!=='true')radioDraftRevision=radioRevision;radioForm.dataset.dirty='true';radioControls();if(radioBusy)radioMessage('正在保存上一次内容；你现在的修改会保留为草稿。');});
+radioForm.onsubmit=event=>{
+ event.preventDefault();if(radioBusy||!radioReady||radioConflict)return;
+ const raw=radioRaw(),station={id:raw.id,name:raw.name.trim(),tag:raw.tag.trim(),url:raw.url.trim()};
+ if(!station.name||Array.from(station.name).length>24||Array.from(station.tag).length>24){radioMessage('请填写 1～24 字的电台名称；标签最多 24 字。',true);return;}
+ if(!station.url||station.url.length>512||/\s/.test(station.url)){radioMessage('请填写不超过 512 个字符的完整音频直播地址。',true);return;}
+ let parsed;try{parsed=new URL(station.url);}catch{radioMessage('地址格式不完整，请从 http:// 或 https:// 开始填写。',true);return;}
+ if(!['http:','https:'].includes(parsed.protocol)||!parsed.hostname){radioMessage('直播地址需要使用 HTTP 或 HTTPS。',true);return;}
+ if(/\.m3u8?$/i.test(parsed.pathname)||/\.pls$/i.test(parsed.pathname)){radioMessage('请使用 MP3 / AAC 音频流直连地址，m3u8 / HLS 或播放列表暂不支持。',true);return;}
+ if(!station.id&&radioItems.length>=20){radioMessage('已经有 20 个电台，删除一台后就能继续添加。',true);return;}
+ if(station.id&&!radioItems.some(item=>item.id===station.id)){radioMessage('这个电台已经被删除，草稿已保留。请取消编辑后重新添加。',true);return;}
+ radioWrite({action:'upsert',station});
+};
+document.querySelector('#radio-refresh').onclick=()=>radioLoad({rebase:true});
+document.querySelector('#radio-add').onclick=()=>{if(radioForm.dataset.dirty==='true')radioMessage('请先保存或取消当前草稿，再添加另一个电台。',true);radioFocus();};
+document.querySelector('#radio-cancel').onclick=()=>{if(radioBusy)return;radioReset();radioMessage('已取消，草稿已清空。');};
+document.querySelector('#radio-delete-cancel').onclick=()=>{if(radioBusy)return;radioDeleteId='';document.querySelector('#radio-delete').hidden=true;radioControls();};
+document.querySelector('#radio-delete-confirm').onclick=()=>{if(radioDeleteId&&!radioBusy&&!radioConflict)radioWrite({action:'remove',id:radioDeleteId});};
+async function poll(){if(polling||writing)return;polling=true;const generation=++readGeneration;try{const next=await api('/api/gift');if(generation!==readGeneration||writing)return;config=next;renderDays();updateBattery(config.battery);for(const form of document.querySelectorAll('[data-key]'))fill(form,config[form.dataset.key]||{});fill(document.forms.countdown,config.countdown||{name:'',date:''});fill(document.forms.location,{city:config.city||''});const date=config.today||'';fill(document.forms.mood,config.dailyRecords?.[date]||{mood:'calm'});document.querySelector('#city').textContent=config.city?'当前城市：'+config.city:'还未设置城市';const scheduleInfo=document.querySelector('#schedule-info');if(scheduleInfo)scheduleInfo.textContent=config.schedule&&config.schedule.imported?('已导入 '+config.schedule.count+' 条排课 · 学期从 '+config.schedule.termStart+' 开始'):'当前使用固件内置课表';const weatherStatus=document.querySelector('#weather-status');weatherStatus.textContent=config.weatherPending?'正在更新天气…':config.weatherError||(!config.city?'输入城市并保存':config.weather?[(config.weather.condition||''),(config.weather.temperature??'—')+'°C'].filter(Boolean).join(' · '):'等待开发板联网更新');weatherStatus.classList.toggle('error',!!config.weatherError);if(!connected){connected=true;show('已连接设备 · 无需登录');}if(config.storageError)show(config.storageError,true);}catch(error){if(generation===readGeneration&&!writing){connected=false;document.querySelector('#battery-status').textContent='设备连接中断，电池数据未更新';show(error.name==='AbortError'?'连接超时，请确认手机仍连接开发板热点':error.message,true);}}finally{polling=false;}}
+async function save(path,value,form){const draft=form?JSON.stringify(values(form)):'';writing++;readGeneration++;try{show('正在保存…');await api(path,value);if(form&&JSON.stringify(values(form))===draft)form.dataset.dirty='false';show('已保存，设备会立即更新');}catch(error){show(error.name==='AbortError'?'保存超时，草稿已保留':error.message,true);}finally{writing--;await poll();}}
+document.addEventListener('input',event=>{const form=event.target.closest('form');if(form){form.dataset.dirty='true';updateOutputs(form);}});
+for(const form of document.querySelectorAll('[data-key]'))form.onsubmit=event=>{event.preventDefault();save('/api/gift',{[form.dataset.key]:values(form)},form);};
+document.forms.wifi.onsubmit=event=>{event.preventDefault();save('/api/wifi',values(event.target),event.target);};
+document.forms.location.onsubmit=event=>{event.preventDefault();save('/api/location',values(event.target),event.target);};
+document.forms.mood.onsubmit=event=>{event.preventDefault();save('/api/gift-mood',values(event.target),event.target);};
+document.forms.countdown.onsubmit=event=>{event.preventDefault();save('/api/gift',{countdown:values(event.target)},event.target);};
+document.querySelector('#clear-countdown').onclick=()=>save('/api/gift',{countdown:null},document.forms.countdown);
+function compactSchedule(json){
+ if(!json||!Array.isArray(json.courses)||!json.term||!json.term.startDate)throw Error('不是有效的课表 JSON');
+ const tw=Number(json.term.totalWeeks)||20;if(!Number.isInteger(tw)||tw<1||tw>32)throw Error('学期周数超出 1~32');
+ const vivid=['#d9534f','#4468b8','#2b8f8f','#5f9a34','#d98a2b','#8f5fbc','#3a4f9e','#c4507f','#6f8430','#b85f3f','#368aa3','#7a4fa8','#a87724','#4f6fa3','#964343','#356f60'];
+ const names=[...new Set(json.courses.map(course=>course.name))].sort(),colors={};names.forEach((name,index)=>colors[name]=vivid[index%vivid.length]);
+ let out='V1\nTERM|'+json.term.startDate+'|'+tw+'\n',count=0;
+ for(const period of (json.periods||[]))out+='P|'+period.node+'|'+period.start+'|'+period.end+'\n';
+ for(const course of json.courses){
+  let mask=0;for(const week of (course.weeks||[])){const w=Number(week);if(!Number.isInteger(w)||w<1||w>32)throw Error('周次超出 1~32：'+week);mask=(mask|(1<<(w-1)))>>>0;}
+  const day=Number(course.day),start=Number(course.startNode),end=Number(course.endNode);
+  if(!Number.isInteger(day)||day<1||day>7)throw Error('星期超出 1~7：'+course.day);
+  if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||start>12||end<1||end>12||start>end)throw Error('节次超出 1~12：'+course.startNode+'-'+course.endNode);
+  const fields=[day,start,end,'0x'+parseInt(colors[course.name].slice(1),16).toString(16).toUpperCase(),'0x'+mask.toString(16).toUpperCase(),course.name,course.teacher||'',course.room||''].map(String);
+  if(fields.some(field=>/[|\n\r]/.test(field)))continue;
+  out+='C|'+fields.join('|')+'\n';++count;
+ }
+ if(!count)throw Error('课表里没有有效课程');
+ return out;
+}
+const scheduleFile=document.querySelector('#schedule-file'),scheduleText=document.querySelector('#schedule-json'),scheduleStatus=document.querySelector('#schedule-status');
+scheduleFile.onchange=async()=>{const file=scheduleFile.files[0];if(!file)return;try{scheduleText.value=await file.text();scheduleStatus.textContent='已读取 '+file.name+'，点“导入课表到桌面”。';}catch(error){scheduleStatus.textContent='读取失败：'+error.message;}};
+document.querySelector('#schedule-import').onclick=async()=>{try{const json=JSON.parse(scheduleText.value),text=compactSchedule(json);await api('/api/schedule',{text});await poll();scheduleStatus.textContent='已导入 '+json.courses.length+' 条排课，第六页已更新';}catch(error){scheduleStatus.textContent='导入失败：'+error.message;}};
+document.querySelector('#schedule-clear').onclick=async()=>{try{await api('/api/schedule',{clear:true});scheduleStatus.textContent='已恢复固件内置课表';}catch(error){scheduleStatus.textContent='恢复失败：'+error.message;}};
+
+document.querySelector('#export-records').onclick=()=>{const link=document.createElement('a'),url=URL.createObjectURL(new Blob([JSON.stringify(config,null,2)],{type:'application/json'}));link.href=url;link.download='小黑记录与设置.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+poll();radioLoad();setInterval(()=>{poll();radioLoad();},10000);
+})();
+</script></body></html>

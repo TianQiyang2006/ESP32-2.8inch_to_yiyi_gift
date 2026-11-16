@@ -1,0 +1,50 @@
+/* 320 × 240 postcard homepage. Artwork and live UI are separate layers. */
+:root{--postcard-clock-bg:#acc976}
+#screen .postcard-home{overflow:hidden;background:var(--gift-bg);padding:0}
+.postcard-backdrop{position:absolute;inset:0;width:320px;height:240px;object-fit:cover;pointer-events:none;opacity:.85}
+#screen.with-background .postcard-backdrop{display:none}
+.ticket-sheet{position:absolute;left:7px;top:8px;width:306px;height:126px;background:#fff;border-radius:3px;pointer-events:none;box-shadow:0 3px 8px #47543b1a}
+.ticket-sheet::before,.ticket-sheet::after{content:"";position:absolute;top:0;bottom:0;width:7px;background:radial-gradient(circle at center, #d5dfbd 3px,transparent 3.3px) center -1px/7px 18px repeat-y;z-index:3}
+.ticket-sheet::before{left:-3px}.ticket-sheet::after{right:-3px}
+#screen .postcard-picture{padding:0;border:0;background:#fff;border-radius:7px;overflow:hidden;display:block}
+.postcard-picture>img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+#screen .postcard-home .clock{padding:7px 0 0;display:block;border:0;border-radius:0 2px 2px 0;background:var(--postcard-clock-bg);text-align:center;line-height:.99;font-weight:800;letter-spacing:-1.5px;font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-variant-numeric:tabular-nums;color:#354f1d!important;overflow:hidden}
+.clock .stamp-hours,.clock .stamp-minutes{position:absolute;left:0;right:0;top:7px;display:block;height:40px;line-height:40px;font-size:inherit}
+.clock .stamp-minutes{top:49px;color:#fffbea}.clock .clock-colon{display:none}
+#screen .postcard-home .date{margin:0;color:#fffbea!important;text-align:center;line-height:13px;font-weight:650;white-space:nowrap;letter-spacing:0;pointer-events:none}
+.stamp-weekday{text-align:center;line-height:15px;font-weight:650;color:#354f1d!important;pointer-events:none}
+.postcard-home .date.selected-layer,.postcard-home .stamp-weekday.selected-layer{pointer-events:auto}
+#screen .postcard-home .weather-pill{display:block;border:4px solid #e3e8b9;box-shadow:0 2px 5px #4253321b;background:#486738;padding:0;border-radius:15px;text-align:left;overflow:hidden}
+.weather-art{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 65%;pointer-events:none}
+.postcard-home .weather-pill::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,#173318ab 0%,#17331845 40%,transparent 73%);pointer-events:none}
+.postcard-home .weather-primary{position:absolute;left:6px;top:5px;display:flex;flex-direction:column;align-items:flex-start;gap:1px;color:#fff;line-height:15px;text-shadow:0 1px 2px #20341b80}
+.postcard-home .weather-primary svg{width:22px;height:18px;fill:#fff;stroke:white;stroke-width:1.4}
+.postcard-home .weather-primary b{font-size:inherit;font-weight:650;line-height:15px}
+.postcard-home .weather-primary b small{font-size:8px;margin-left:1px}
+.postcard-home .weather-description{position:absolute;left:6px;bottom:12px;max-width:75px;font-size:8px;line-height:10px;color:#fff;white-space:nowrap;text-shadow:0 1px 3px #0009}
+.postcard-home .weather-pill .weather-note{position:absolute;left:6px;bottom:3px;max-width:75px;font-size:6px;line-height:8px;color:#edf5d8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#screen .week-card{display:block;padding:0;border:0;background:linear-gradient(#f6f7f6 78%,#daddd8);border-radius:15px;box-shadow:0 2px 4px #334c3218;overflow:hidden;color:#252d27}
+.week-mascot{position:absolute;left:10px;right:10px;top:3px;height:43px;display:flex;justify-content:center;align-items:center;pointer-events:none;overflow:hidden}
+.week-mascot>.gift-art{width:100%;height:100%;max-height:none;object-fit:contain;object-position:50% 50%}
+.week-mascot .gif-viewport{width:40px!important;height:40px!important;border-radius:4px}
+.week-dates{position:absolute;left:8px;right:8px;bottom:5px;height:27px;border:2px solid #29342b;border-radius:8px;background:#fff;display:grid;grid-template-columns:repeat(3,1fr);padding:1px 2px;color:#212723;overflow:hidden}
+.week-dates>span{display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:10px;position:relative;font-size:inherit}
+.week-dates small{display:block;background:#f8d986;width:100%;height:8px;line-height:8px;font-size:6px;text-align:center;font-weight:650}.week-dates>span:first-child small{border-radius:6px 0 0 6px}.week-dates>span:last-child small{border-radius:0 6px 6px 0}
+.week-dates b{font-size:10px;line-height:12px;font-family:"Segoe UI",sans-serif;font-weight:700}.week-dates .current b{background:#dfdfdc;width:12px;height:12px;border-radius:50%;text-align:center}
+#screen .home-calendar{display:block;border:0;border-radius:15px;background:linear-gradient(135deg,#272c2b,#353a35);padding:5px 6px 3px;box-shadow:0 2px 4px #28372820;color:#f6f7ef;overflow:hidden;text-align:left;font-family:"Segoe UI","Microsoft YaHei",sans-serif}
+.mini-month-title{display:block;font-size:10px;font-weight:650;line-height:12px;height:13px;padding-left:2px}
+.mini-week-header,.mini-month-grid{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:0}
+.mini-week-header{height:10px;color:#b2b9aa;font-size:6px;line-height:9px}.mini-month-grid{grid-auto-rows:var(--mini-row-height,8px);font-size:inherit;line-height:1;color:#e9eddf;font-weight:450}
+.mini-month-grid>span{display:flex;align-items:center;justify-content:center;min-width:0}.mini-month-grid .current{width:9px;height:9px;line-height:9px;margin:-1px auto 0;background:#8fabcc;border-radius:50%;color:#fff;z-index:1}
+#screen .postcard-home .battery-indicator{padding:0;border:0;border-radius:4px;display:flex;align-items:center;justify-content:center;gap:2px;background:transparent;color:#526642;font-size:8px;font-weight:600;box-shadow:none;white-space:nowrap;cursor:default;font-variant-numeric:tabular-nums}
+.battery-indicator svg{width:15px;height:12px;flex:0 0 15px;overflow:visible}
+.battery-body,.battery-terminal,.battery-unknown{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}.battery-fill{fill:currentColor}
+.battery-bolt{fill:#fff8dd;stroke:#497441;stroke-width:1;stroke-linejoin:round}
+#screen .battery-indicator.charging{color:#367246!important}
+#screen .battery-indicator.low{color:#b64637!important}
+#screen .battery-indicator.low .battery-bolt{stroke:#b64637}
+.weather-hero svg{fill:currentColor}
+.postcard-home .gift-wifi{top:auto;right:auto;bottom:5px;left:13px;line-height:10px;font-size:7px;gap:2px;color:#647956}.postcard-home .gift-wifi svg{width:10px;height:10px}
+#screen .postcard-home .dots{left:50%;right:auto;bottom:1px;justify-content:center;transform:translateX(-50%) scale(.85);transform-origin:center}
+#screen .postcard-home .dot::after{background:#9ab28477}#screen .postcard-home .dot.active::after{background:#617f47}
+#screen .postcard-home [data-design-layer]{min-height:0;min-width:0}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>已取消 · 游戏厅移除</title>
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+  <main>
+    <header class="page-heading">
+      <div><p class="eyebrow"><span></span> 历史设计材料</p><h1>已取消 · 游戏厅移除</h1><p class="intro">用户已取消四款重构，当前仅删除原15款游戏厅，独立俄罗斯方块保留。此页面仅保留历史方案，不再等待确认。</p></div>
+      <div class="review-state"><i></i> 已取消 · 仅供追溯</div>
+    </header>
+    <div class="workspace">
+      <aside>
+        <p class="section-label">选择游戏</p>
+        <nav id="game-nav" aria-label="选择预览游戏"></nav>
+        <div class="aside-note"><span class="tiny-cat" aria-hidden="true">●</span><p>四款替换方案已取消。<br>原游戏厅移除，俄罗斯方块保留。</p></div>
+      </aside>
+      <section class="review-panel" aria-label="屏幕预览">
+        <div class="preview-toolbar">
+          <div class="segmented" aria-label="预览方式"><button id="interactive-view" class="selected" aria-pressed="true">操作预览</button><button id="native-view" aria-pressed="false">屏幕布局</button></div>
+          <div class="segmented scale-picker" aria-label="显示比例"><button id="zoom1" aria-pressed="false">原尺寸 1×</button><button id="zoom2" class="selected" aria-pressed="true">放大 2×</button></div>
+        </div>
+        <div class="device-area">
+          <div class="device-shell"><div id="viewport"><div id="screen" role="group" aria-label="320乘240游戏触摸屏"><canvas id="game-canvas" width="320" height="240" aria-label="游戏画面"></canvas><div id="screen-controls"></div><img id="native-screen" alt="真实 LVGL 渲染的 320×240 屏幕布局" hidden></div></div></div>
+        </div>
+        <div class="preview-caption"><span><i></i> <span id="screen-caption">游戏大厅 · 四款直接进入</span></span><span id="render-caption">可触摸 · 可鼠标操作</span></div>
+        <div class="state-tools"><span>查看状态</span><button data-scene="ready">准备</button><button data-scene="pause">暂停</button><button data-scene="restart">重开确认</button><button data-scene="gameover">结算</button><button id="example">操作示例</button></div>
+      </section>
+      <section class="detail-panel" aria-live="polite">
+        <div class="detail-title"><span id="detail-number">00</span><h2 id="detail-name">小黑游戏厅</h2><span id="detail-tag">四款入口</span></div>
+        <p id="detail-description"></p>
+        <div class="detail-grid"><div><span>怎么操作</span><p id="detail-input"></p></div><div><span>屏幕怎么分</span><p id="detail-layout"></p></div><div><span>这一局的目标</span><p id="detail-goal"></p></div></div>
+        <div class="live-status" id="live-status" role="status">点击任意卡片开始体验。</div>
+      </section>
+    </div>
+    <footer><p>四款重构已取消，未接入正式固件、未据此烧录设备。原型与布局保留为历史设计材料，当前仅移除原15款游戏厅，独立俄罗斯方块保留。</p><a href="STATUS.md">查看取消状态 ↗</a></footer>
+  </main>
+  <script type="module" src="review.js"></script>
+</body>
+</html>

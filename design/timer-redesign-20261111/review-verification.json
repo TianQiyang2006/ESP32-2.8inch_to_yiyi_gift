@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-11",
+  "status": "design-for-review",
+  "native_resolution": [
+    320,
+    240
+  ],
+  "native_lvgl_screens": 6,
+  "font_glyph_and_text_bounds_checked": true,
+  "production_sources_unchanged": true,
+  "serial_opened": false,
+  "firmware_flashed": false,
+  "demonstration_data": true,
+  "assets_sha256": {
+    "01-home.png": "8dc625d2445e7cb38e9cc5b58b8f299403ded342c77f58c7ff0d323259a2bc33",
+    "02-duration.png": "0169fdc05a4d676477071b1978fb282239884ba313475c73b1754e45fe30b7c1",
+    "03-running.png": "2e1b387763c771242473c222a861a4de3a91f1e92c6c08211e6c91228e71b5b6",
+    "04-paused.png": "239c9dd8fe352abb4c6fe75adc4177f0c3ba9b344c2265c3aa60a1ba2d066c94",
+    "05-sounds.png": "da6f6287cb203fc5862772c1a55fe2e3b79ae6b3922001bdae2cf6337c47f1fc",
+    "06-finished.png": "9f020ba10988700aa41d7020e69b183d1fa39719b1c69dc58e01ff4c8036b97e",
+    "timer-home-and-settings-preview.png": "e89a6ad3770b5b6c129fefd4e5572b909614eb862ff3667beaebf14095f501cc",
+    "timer-running-and-paused-preview.png": "fa206f7ccd50736f61718977d087201ef95e000c6930bf90ef01f23502be0b65",
+    "timer-sounds-and-finished-preview.png": "334391033c74340ac9192b545a157ebdf904c7bfcb4af0e3a35c8ee6a47ac38b"
+  },
+  "clickable_prototype_links_checked": true
+}

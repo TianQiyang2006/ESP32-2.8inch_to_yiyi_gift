@@ -1,0 +1,97 @@
+:root{--ink:#263e35;--muted:#657569;--accent:#497d58;--border:#d4ddce}
+body{background:#f0f2e9;color:var(--ink)}
+main{max-width:1100px;padding:40px 24px 32px}
+h1{font-size:32px;font-weight:650;letter-spacing:1px;margin-top:8px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2.6px;color:#69845d}
+.intro{max-width:780px;font-size:14px;margin-bottom:12px}
+.layout{display:grid;grid-template-columns:390px 1fr;align-items:start;gap:32px;margin-top:25px}
+.preview-column{background:#e2e8da;border:1px solid #d4ddcc;padding:20px 16px;border-radius:20px;display:flex;flex-direction:column;align-items:center}
+.device{flex-shrink:0;background:#263b32;padding:23px 17px;border-radius:20px;box-shadow:0 12px 24px #293d3226}
+.device-label{display:flex;justify-content:space-between;align-items:center;font-size:11px;width:100%;margin-bottom:15px;color:#536b52}
+.design-mode{display:flex;gap:7px;align-items:center;font-size:12px;color:#52644d;width:100%;margin:15px 0 0}
+.design-mode input{accent-color:#497d58}
+.preview-help{font-size:11px;color:#67745e;line-height:1.75;width:100%;margin:9px 0 0}
+.guide{max-width:none;min-width:0}
+.guide p{font-size:12px;line-height:1.8;margin:0}
+.guide-card{background:#fafbf6;border:1px solid var(--border);border-radius:15px;padding:15px;margin-bottom:12px}
+.guide-title{font-size:13px;font-weight:650;margin-bottom:9px}
+.page-shortcuts{display:flex;gap:6px;flex-wrap:wrap}
+.page-shortcuts button{font-size:11px;padding:7px 9px;min-height:32px;border-radius:8px;border:1px solid #d8dfd0;background:#fff;color:#426247}
+.page-shortcuts button[aria-pressed=true]{background:#426e4d;border-color:#426e4d;color:#fff}
+.controls{margin:10px 0;gap:6px}
+.control{padding:7px 10px;font-size:11px;min-height:34px;background:#f7faf2}
+#status{font-size:11px;line-height:1.7;min-height:36px;margin-top:6px}
+.implementation-title{font-size:15px;margin:0 0 8px}
+.implementation-chip{display:inline-block;background:#e4eedb;color:#497245;border-radius:5px;padding:3px 7px;font-size:10px;margin-bottom:9px}
+.implementation-label{font-size:11px;font-weight:bold;color:#405c43;margin:9px 0 3px}
+.guide .implementation-body{font-size:12px;color:#667560;line-height:1.8}
+.fixture-panel{margin:0;padding:12px;background:transparent;border:0}
+.fixture-panel input{width:100%;font-size:11px}
+.fixture-details{border:1px solid var(--border);border-radius:12px;background:#f9faf4}
+.fixture-details summary{cursor:pointer;padding:11px 14px;font-size:12px}
+.scope{margin-top:24px;background:#fbfcf7;border:1px solid var(--border);border-radius:15px;padding:17px}
+.scope-title{font-size:14px;font-weight:650;margin-bottom:10px}
+.scope-table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}
+.scope-table th{color:#5f745b;background:#edf2e6;padding:9px;font-size:11px}
+.scope-table td{border-bottom:1px solid #e7ebdf;padding:10px;vertical-align:top;line-height:1.7}
+.scope-table tr:last-child td{border-bottom:0}
+.scope-table td:first-child{width:16%;font-weight:600;white-space:nowrap}
+.notice{font-size:11px;line-height:1.9;color:#76816c}
+#screen{background:#f7f8ec;font-family:"Microsoft YaHei","Noto Sans SC",sans-serif}
+.top{font-size:11px;color:#536f56;border-bottom:1px solid #d3dfc880;padding-bottom:3px}
+.page{padding:10px 13px}
+.home-page{background:linear-gradient(145deg,#f6f8ed,#e4edda)}
+.home-page:before{content:"";position:absolute;width:140px;height:100px;border-radius:50%;right:-23px;top:34px;background:#cfdfb980;pointer-events:none}
+.clock{font-size:48px;margin-top:10px;font-variant-numeric:tabular-nums;letter-spacing:-2px;position:relative}
+.date{font-size:12px;color:#536d50;position:relative}
+.home-cat{width:102px;height:111px;right:5px;top:61px}
+.weather-pill{font-size:12px;margin-top:14px;color:#4e6f46;position:relative;width:194px;flex-wrap:wrap;gap:6px}
+.weather-pill b{font-size:22px}
+.home-bottom{bottom:27px;left:13px;right:13px;font-size:11px}
+.album-entry{font-size:12px;min-height:31px;padding:6px 10px;background:#d4e3c4;border:1px solid #bccfac}
+.tiny{font-size:12px;min-height:28px;padding:3px 7px}
+.photo-view{height:130px;background:#21372e!important;border-radius:8px;border:1px solid #c6d4be}
+.album-widget .photo-view{height:118px}
+.photo-view:has(.placeholder-label){background:linear-gradient(155deg,#dbe8cc,#afc6a1)!important}
+.photo-view .placeholder-label{font-size:10px;color:#526e4a}
+.photo-caption{font-size:11px;color:#536b4b}
+.photo-controls{height:28px;gap:1px}
+.letter-title{font-size:15px;margin-top:7px}
+.letter-content{font-size:14px;line-height:1.7;height:136px;padding:9px 10px;border:1px solid #d9dfce;background:#fffffff0}
+.letter-content .sign{font-size:11px}
+.theme-letter.forest{background:linear-gradient(130deg,#eef3e2,#cadcbe)}
+.theme-letter.letter{background:linear-gradient(130deg,#faf4e4,#e6dcc3)}
+.theme-letter.night{background:linear-gradient(130deg,#e9eef3,#c6d3de)}
+.letter-cat{bottom:22px}
+.apps-forest{background:linear-gradient(150deg,#f0f4e1,#b9d1ac)}
+.apps-forest:before{width:350px;height:150px;bottom:-104px;left:-62px;background:#86a87b}
+.apps-forest:after{bottom:20px;right:13px}
+.app-grid{margin-top:17px;gap:13px 8px}
+.app{font-size:12px;min-height:72px;color:#345741;padding:0}
+.app span{width:48px;height:48px;border-radius:14px;margin-bottom:5px;background:#ffffffe3;box-shadow:0 2px 3px #49654312;border:1px solid #c4d6b7}
+.app svg{width:25px;height:25px}
+.voice{background:linear-gradient(155deg,#1e3932,#2e5140)}
+.voice .top{border-color:#647e6180}
+.voice-text{font-size:15px}.voice-status{font-size:11px}.voice svg{height:83px;margin-top:7px}
+.voice-actions{margin-top:11px}.voice-actions button{min-height:32px;font-size:12px}
+.scroll-body{height:191px;padding-bottom:9px}
+.row-btn{font-size:13px;min-height:37px;padding:8px 3px}.row-btn small{font-size:11px}
+.field{font-size:12px}.field input,.field select{min-height:32px;font-size:13px}
+.field input[type=checkbox]{min-height:0}.field input[type=range]{min-height:22px}
+.hint{font-size:11px;color:#607258}
+.mini-btn{font-size:12px;min-height:32px;padding:6px 8px}
+.theme-picker button{font-size:11px;padding:7px;min-height:31px}
+.message-option{font-size:12px;min-height:34px}.message-preview{font-size:12px}
+.weather-hero{height:54px}.weather-hero .sub{font-size:11px;line-height:1.6}.weather-info{font-size:12px;gap:4px}
+.forecast span{font-size:11px;padding:5px 2px}
+.about-lines{font-size:12px}
+.calendar-nav{height:30px;font-size:12px}.calendar-week{font-size:11px;height:17px}
+.calendar-grid{grid-auto-rows:18px;gap:1px}.calendar-day{font-size:12px}.calendar-empty{height:18px}
+.calendar-footer{font-size:11px;height:30px;margin-top:1px}.calendar-footer .mini-btn{font-size:11px;min-height:28px}
+.countdown-name{font-size:16px}.countdown-time{font-size:12px}.countdown-target{font-size:11px}
+.countdown-number{font-variant-numeric:tabular-nums}.countdown-page{background:linear-gradient(145deg,#f3f6e7,#dce8ce)}
+.countdown-edit{bottom:25px}.dots{bottom:3px;gap:0}.dot{width:22px;height:18px;border-radius:0;background:transparent;position:relative}
+.dot:after{content:"";position:absolute;width:5px;height:5px;top:7px;left:9px;background:#b5c6a7;border-radius:4px}
+.dot.active{width:22px;background:transparent}.dot.active:after{width:13px;left:5px;background:#537d47}
+@media(max-width:850px){.layout{grid-template-columns:1fr;gap:20px}.preview-column{max-width:410px;width:100%;margin:0 auto}.guide{width:100%}}
+@media(max-width:420px){main{padding:24px 8px}.preview-column{padding:16px 9px}.device{padding:20px 9px}.intro,h1{padding:0}h1{font-size:27px}.scope{padding:10px}.scope-table{font-size:11px}.scope-table td,.scope-table th{padding:6px}.scope-table td:first-child{white-space:normal}}

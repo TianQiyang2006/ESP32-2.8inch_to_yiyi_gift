@@ -1,0 +1,22 @@
+# 本工程是 Windows 下的嵌入式固件：保持文件字节原样，不做 CRLF 转换，
+# 避免一次 checkout 就改掉所有源码行尾（固件源码、生成字库数组都按原字节比对）。
+* -text
+
+# 二进制素材/文档不做文本 diff（加速 status/diff，并防止误合并）
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.stl binary
+*.3mf binary
+*.step binary
+*.stp binary
+*.pdf binary
+*.zip binary
+*.wav binary
+*.mp3 binary
+*.bin binary

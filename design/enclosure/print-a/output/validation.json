@@ -1,0 +1,241 @@
+{
+  "parameters": {
+    "width": 104.0,
+    "body_height": 74.0,
+    "body_center_y": 43.0,
+    "radius": 14.0,
+    "depth": 40.0,
+    "rear_plate": 2.4,
+    "wall": 2.4,
+    "screen_x": 0.0,
+    "screen_y": 37.0,
+    "screen_w": 59.4,
+    "screen_h": 44.8,
+    "pcb_x": -2.835435,
+    "pcb_y": 37.0,
+    "pcb_front_z": 7.5,
+    "pcb_thickness": 1.6,
+    "pcb_pitch_x": 78.0,
+    "pcb_pitch_y": 42.0,
+    "pilot_d": 2.1,
+    "mic_x": 36.164865,
+    "mic_y": 51.9997,
+    "mic_d": 2.6,
+    "usb_y": 37.0,
+    "usb_z": 10.17444,
+    "usb_height": 17.0,
+    "usb_depth": 13.0,
+    "speaker_w": 30.0,
+    "speaker_h": 20.0,
+    "speaker_t": 7.0,
+    "speaker_x": 5.0,
+    "speaker_y": 43.0,
+    "speaker_clearance": 0.5,
+    "rear_fit_gap": 0.3,
+    "decorative_gap": 0.2,
+    "rear_split_z": 37.6
+  },
+  "pcb_holes": [
+    [
+      -41.835435,
+      16.0
+    ],
+    [
+      -41.835435,
+      58.0
+    ],
+    [
+      36.164565,
+      16.0
+    ],
+    [
+      36.164565,
+      58.0
+    ]
+  ],
+  "rear_screws": [
+    [
+      -32,
+      8.8
+    ],
+    [
+      32,
+      8.8
+    ],
+    [
+      -34,
+      73.8
+    ],
+    [
+      34,
+      73.8
+    ]
+  ],
+  "parts": [
+    {
+      "name": "01_front_shell_black",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 29094,
+      "print_size_mm": [
+        104.0,
+        98.257,
+        48.0
+      ],
+      "volume_cm3": 62.468,
+      "minimum_z": 1.0000000116860974e-07,
+      "estimated_solid_PLA_g": 77.46
+    },
+    {
+      "name": "02_rear_cover_black",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 28304,
+      "print_size_mm": [
+        104.0,
+        74.0,
+        10.6
+      ],
+      "volume_cm3": 20.369,
+      "minimum_z": -1.7127790757749347e-15,
+      "estimated_solid_PLA_g": 25.26
+    },
+    {
+      "name": "03_speaker_clamp_black",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 1700,
+      "print_size_mm": [
+        8.0,
+        40.0,
+        2.0
+      ],
+      "volume_cm3": 0.604,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 0.75
+    },
+    {
+      "name": "04_ear_left_green",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 572,
+      "print_size_mm": [
+        11.473,
+        11.733,
+        0.8
+      ],
+      "volume_cm3": 0.06,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 0.07
+    },
+    {
+      "name": "05_ear_right_green",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 572,
+      "print_size_mm": [
+        11.473,
+        11.733,
+        0.8
+      ],
+      "volume_cm3": 0.06,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 0.07
+    },
+    {
+      "name": "06_eye_left_ivory",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 1152,
+      "print_size_mm": [
+        10.4,
+        5.8,
+        0.7
+      ],
+      "volume_cm3": 0.033,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 0.04
+    },
+    {
+      "name": "07_eye_right_ivory",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 1152,
+      "print_size_mm": [
+        10.4,
+        5.8,
+        0.7
+      ],
+      "volume_cm3": 0.033,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 0.04
+    },
+    {
+      "name": "08_board_fit_gauge",
+      "solid_count": 1,
+      "cad_valid": true,
+      "watertight": true,
+      "consistent_winding": true,
+      "triangles": 6196,
+      "print_size_mm": [
+        92.0,
+        56.0,
+        7.5
+      ],
+      "volume_cm3": 6.352,
+      "minimum_z": 0.0,
+      "estimated_solid_PLA_g": 7.88
+    }
+  ],
+  "checks": {
+    "front_rear_intersection_mm3": 0.0,
+    "rear_clamp_intersection_mm3": 0.0,
+    "vendor_step_solid_count": 1238,
+    "vendor_front_collisions": [],
+    "vendor_assembly_bounds": {
+      "xmin": -46.20385,
+      "xmax": 40.16457,
+      "ymin": 11.99994,
+      "ymax": 62.0,
+      "zmin": 3.2,
+      "zmax": 13.79944
+    },
+    "board_to_speaker_clamp_gap_mm": 13.6006,
+    "glass_to_front_face_gap_mm": 0.8,
+    "PCB_mounting_hole_fit": "5.6 mm OD posts centered on four vendor 3.2 mm holes; supports meet front PCB face",
+    "speaker_max_tolerance_intersections_mm3": {
+      "rear_cover": 0.0,
+      "clamp": 0.0
+    },
+    "3mf": {
+      "unit": "millimeter",
+      "objects": 7,
+      "build_items": 7,
+      "triangles": 62546,
+      "zip_crc_ok": true
+    }
+  },
+  "print_plate": {
+    "occupied_x": 218.0,
+    "occupied_y": 148.26,
+    "suggested_bed_mm": [
+      225,
+      155
+    ],
+    "unit": "millimeter"
+  }
+}

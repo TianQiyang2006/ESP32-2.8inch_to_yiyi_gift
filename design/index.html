@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>给依依的礼物 · 小黑设计工作台</title>
+  <link rel="stylesheet" href="designer.css">
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="index.html" aria-label="给依依的礼物设计工作台"><span class="brand-mark"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M6 12 5 4l8 5h4l8-5-1 8c5 14-23 14-18 0Z" fill="currentColor"/><ellipse cx="11" cy="16" rx="2" ry="3" fill="#dcebbd"/><ellipse cx="20" cy="16" rx="2" ry="3" fill="#dcebbd"/></svg></span><span><strong>给依依的礼物</strong><small>小黑桌面 · 设计工作台</small></span></a>
+    <div class="project-breadcrumb"><span>我的设计</span><span class="crumb-separator">/</span><span id="project-name">森林序曲</span><span class="version-badge">320 × 240</span></div>
+    <div class="header-actions"><span class="save-state" id="save-state"><i></i>已自动保存</span><button class="button quiet" id="import-button"><span data-icon="upload"></span>导入配置</button><div class="export-wrap"><button class="button primary" id="export-button" aria-expanded="false"><span data-icon="download"></span>导出设计<span data-icon="chevron"></span></button><div class="export-menu" id="export-menu" hidden><button data-export="html"><span data-icon="file"></span><span>独立预览 HTML<small>自带素材，可直接打开分享</small></span></button><button data-export="json"><span data-icon="code"></span><span>可编辑设计配置<small>保存后可重新导入工作台</small></span></button><button data-export="png"><span data-icon="image"></span><span>当前屏幕 PNG<small>320 × 240 原尺寸效果图</small></span></button></div></div></div>
+  </header>
+  <div class="studio-layout">
+    <aside class="left-sidebar">
+      <div class="sidebar-title"><span>项目页面</span><span class="count-badge">07</span></div>
+      <nav class="page-list" id="page-list" aria-label="选择设计页面"></nav>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-title"><span>当前页图层</span><button class="icon-button" id="deselect" title="取消选择" aria-label="取消图层选择"><span data-icon="layers"></span></button></div>
+      <div class="layer-list" id="layer-list"></div>
+      <div class="sidebar-bottom"><button class="material-button" id="materials-button"><span class="material-icon" data-icon="sparkles"></span><span><strong>小黑素材库</strong><small>原始 GIF · 森林插画</small></span><span data-icon="arrow-right"></span></button><div class="local-note"><span data-icon="lock"></span>设计与日常记录保存在本地</div></div>
+    </aside>
+    <main class="workspace">
+      <div class="workspace-toolbar"><div class="segmented" role="group" aria-label="工作台模式"><button class="active" id="mode-design" aria-pressed="true"><span data-icon="cursor"></span>设计</button><button id="mode-preview" aria-pressed="false"><span data-icon="play"></span>体验</button></div><div class="toolbar-options"><button class="icon-button" id="undo" title="撤销 Ctrl+Z" aria-label="撤销" disabled><span data-icon="undo"></span></button><button class="icon-button" id="redo" title="重做 Ctrl+Shift+Z" aria-label="重做" disabled><span data-icon="redo"></span></button><span class="toolbar-line"></span><button class="icon-button active" id="grid-toggle" title="显示网格" aria-label="切换画布网格" aria-pressed="true"><span data-icon="grid"></span></button><select id="zoom" aria-label="画布缩放"><option value="auto">适应画布</option><option value="1">100%</option><option value="1.5">150%</option><option value="2">200%</option><option value="3">300%</option></select></div></div>
+      <div class="canvas-area grid-on" id="canvas-area">
+        <div class="canvas-heading"><span class="canvas-kicker">A LITTLE GIFT, A LOT OF LOVE</span><h1>让每一天，都有小黑陪伴。</h1><p id="canvas-instruction">选择一个图层，把心意放在刚刚好的位置。</p></div>
+        <div class="artboard-wrap" id="artboard-wrap"><div class="artboard-label"><span><i></i><span id="artboard-name">01 / 主页</span></span><span>320 × 240 px</span></div><div class="device-frame" id="device-frame"><i class="device-screw screw-tl"></i><i class="device-screw screw-tr"></i><i class="device-screw screw-bl"></i><i class="device-screw screw-br"></i><div class="screen-window" id="screen-window"><iframe class="main-preview" id="preview" src="preview.html" title="320乘240 小黑桌面实时设计预览"></iframe></div><div class="device-logo">YIYI · WITH YOU</div></div></div>
+        <div class="preview-navigation"><button class="icon-button" id="page-prev" aria-label="上一页"><span data-icon="arrow-left"></span></button><div class="navigation-dots" id="navigation-dots"></div><button class="icon-button" id="page-next" aria-label="下一页"><span data-icon="arrow-right"></span></button></div>
+        <div class="canvas-tip" id="canvas-tip"><span data-icon="cursor"></span>点击图层选中 · 拖动调整位置 · 修改后实时预览</div>
+      </div>
+      <section class="filmstrip"><div class="filmstrip-top"><span>七个页面，一份小小的心意</span><button class="text-button" id="home-button"><span data-icon="home"></span>回到主页</button></div><div class="thumbnail-list" id="thumbnail-list"></div></section>
+    </main>
+    <aside class="inspector">
+      <div class="inspector-heading"><span class="eyebrow">CUSTOMIZE</span><h2 id="inspector-title">主页设计</h2><p>每一处细节，都可以是你的心意。</p></div>
+      <div class="inspector-tabs" role="tablist"><button class="active" id="tab-design" role="tab" aria-selected="true" aria-controls="design-panel">外观</button><button id="tab-content" role="tab" aria-selected="false" aria-controls="content-panel">内容</button><button id="tab-layer" role="tab" aria-selected="false" aria-controls="layer-panel">图层</button></div>
+      <div class="inspector-scroll">
+        <div id="design-panel" role="tabpanel">
+          <section class="inspector-section"><div class="section-heading">主题风格<span>01</span></div><div class="palette-list" id="palette-list"></div></section>
+          <section class="inspector-section"><div class="section-heading">自定义配色<span data-icon="sliders"></span></div><div id="color-fields" class="color-fields"></div><label class="range-label">卡片圆角<span><output id="radius-output">14</output> px</span></label><input id="radius" type="range" min="0" max="32" value="14" data-bind="radius"></section>
+          <section class="inspector-section"><div class="section-heading">陪伴你的小黑<button class="text-button" id="all-materials">全部素材<span data-icon="arrow-right"></span></button></div><div class="quick-assets" id="quick-assets"></div><button class="upload-zone" id="artwork-upload-button"><span data-icon="upload"></span>替换自己的图片 / GIF</button><p class="field-hint">GIF 使用原始颜色与帧数，按比例显示。</p></section>
+          <section class="inspector-section"><div class="section-heading">页面背景<span data-icon="image"></span></div><div class="background-actions"><button class="button small" id="background-upload-button">上传背景</button><button class="button small quiet" id="background-clear">恢复纯色</button></div></section>
+          <section class="inspector-section last"><button class="reset-button" id="reset-button"><span data-icon="reset"></span>恢复初始设计</button><p class="field-hint">可以使用撤销找回刚刚的修改。</p></section>
+        </div>
+        <div id="content-panel" role="tabpanel" hidden></div>
+        <div id="layer-panel" role="tabpanel" hidden><div id="layer-fields"></div></div>
+      </div>
+      <div class="inspector-footer"><span class="live-dot"></span>修改即预览<span>HTML · 本地设计</span></div>
+    </aside>
+  </div>
+  <footer class="statusbar"><span><span class="status-dot"></span>桌面礼物设计<span class="status-separator">/</span><span id="status-page">主页</span></span><span id="status-selection">没有选中图层</span><span>2.8 英寸 · ESP32-S3<span class="status-separator">·</span>横屏 320 × 240</span></footer>
+  <dialog id="materials-dialog" class="materials-dialog"><div class="dialog-heading"><div><span class="eyebrow">A LITTLE COMPANION</span><h2>选一只今天的小黑</h2><p>直接使用文件夹里的原始动图，保留每一帧的小表情。</p></div><button class="icon-button" id="materials-close" aria-label="关闭素材库"><span data-icon="close"></span></button></div><div class="asset-gallery" id="asset-gallery"></div><p class="dialog-note"><span data-icon="info"></span>原始 GIF 的深色底会保留；上下多余黑边仅在页面中裁切，原文件不变。</p></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <input type="file" id="config-file" accept=".json,application/json" hidden>
+  <input type="file" id="artwork-file" accept="image/png,image/jpeg,image/gif,image/webp" hidden>
+  <input type="file" id="background-file" accept="image/png,image/jpeg,image/webp" hidden>
+  <input type="file" id="postcard-picture-file" accept="image/png,image/jpeg,image/webp" hidden>
+  <input type="file" id="postcard-weather-file" accept="image/png,image/jpeg,image/webp" hidden>
+  <script src="designer-model.js"></script>
+  <script src="data/timetable.js"></script>
+  <script src="designer-bundle.js"></script>
+  <script src="designer.js"></script>
+</body>
+</html>

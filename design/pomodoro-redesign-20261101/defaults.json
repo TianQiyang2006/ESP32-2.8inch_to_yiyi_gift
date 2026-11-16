@@ -1,0 +1,17 @@
+{
+  "status": "proposal-for-user-review",
+  "date": "2026-11-01",
+  "classic": {"focus_minutes": 25, "short_break_minutes": 5, "long_break_minutes": 15, "rounds": 4},
+  "deep": {"focus_minutes": 50, "short_break_minutes": 10, "long_break_minutes": 20, "rounds": 4},
+  "limits": {"focus_minutes": [5, 90], "short_break_minutes": [1, 30], "long_break_minutes": [5, 60], "rounds": [2, 8]},
+  "auto_start_break": false,
+  "auto_start_focus": false,
+  "auto_start_new_cycle": false,
+  "sound": {"enabled": true, "ringtone": "gentle", "volume_percent": 40, "maximum_seconds": 3},
+  "resume_after_reboot": "mark_interrupted_and_ask_to_restart_current_round",
+  "apply_duration_changes": "next_cycle",
+  "clock": "monotonic_64_bit",
+  "display_resolution": [320, 240],
+  "firmware_implemented": false,
+  "hardware_tested": false
+}

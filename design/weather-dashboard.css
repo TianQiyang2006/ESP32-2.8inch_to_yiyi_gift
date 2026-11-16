@@ -1,0 +1,28 @@
+/* Weather board adapted from retouch_2026100722582310.jpg to 320 × 240. */
+#screen .weather-page{padding:0;overflow:hidden}
+.weather-dashboard{position:absolute;inset:0;color:var(--gift-ink);font-family:"Microsoft YaHei","Segoe UI",sans-serif}
+.weather-dashboard::before{content:"";position:absolute;inset:3px 4px 20px;border:1px solid color-mix(in srgb,var(--gift-muted) 24%,transparent);border-radius:5px;pointer-events:none}
+.weather-city,.weather-date{position:absolute;padding:0;border:0;background:transparent;color:inherit;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.weather-city{left:65px;top:8px;width:190px;height:20px;font-size:14px;font-weight:650;line-height:20px}
+.weather-date{left:65px;top:29px;width:190px;height:14px;font-size:8px;line-height:14px}
+.weather-updated{position:absolute;left:226px;top:4px;width:86px;height:10px;text-align:right;font-size:6px;line-height:10px;color:var(--gift-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.weather-current{position:absolute;left:8px;top:52px;width:138px;height:100px;font-size:34px}
+.weather-main-icon{position:absolute;left:0;top:14px;width:68px;height:68px}.weather-symbol{display:block;width:100%;height:100%;overflow:visible}
+#screen .weather-dashboard .weather-hero{position:absolute;left:72px;right:0;top:9px;display:block;height:auto;font-size:inherit;line-height:1.05}
+.weather-dashboard .weather-hero b{display:block;font-size:inherit;letter-spacing:-1.5px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.weather-dashboard .weather-hero b small{font-size:11px;letter-spacing:0;vertical-align:top;display:inline-block;margin:5px 0 0 1px}
+#screen .weather-dashboard .weather-hero .sub{display:block;font-size:8px;color:var(--gift-ink);line-height:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.weather-feels{position:absolute;left:72px;top:61px;font-size:7px;white-space:nowrap}.weather-range{position:absolute;left:72px;top:75px;font-size:10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.weather-extra{position:absolute;left:0;right:0;bottom:0;font-size:6px;text-align:center;color:var(--gift-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#screen .weather-dashboard .weather-metrics{position:absolute;left:155px;top:53px;width:157px;height:98px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,1fr);gap:3px 4px;font-size:10px}
+.weather-metric{display:flex;gap:4px;align-items:center;min-width:0}.weather-metric>.weather-symbol{width:19px;height:21px;flex:0 0 19px}.weather-metric>div{min-width:0}
+#screen .weather-dashboard .weather-metric span{display:block;background:transparent;padding:0;border:0;border-radius:0;color:inherit}
+.metric-label{font-size:.8em;line-height:11px;white-space:nowrap}.metric-value{font-size:1.15em;line-height:16px;white-space:nowrap;letter-spacing:-.15px;font-weight:550;font-variant-numeric:tabular-nums}.metric-value small{font-size:6px;font-weight:400;margin-left:2px;letter-spacing:0}.weather-metric[data-metric="aqi"] small{font-size:5px}
+.weather-seven-day{position:absolute;left:8px;top:160px;width:304px;height:60px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;font-size:8px}
+.forecast-card{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1px;padding:4px 1px 5px;border:1px solid color-mix(in srgb,var(--gift-muted) 55%,transparent);border-radius:7px;background:color-mix(in srgb,var(--gift-surface) 18%,transparent);overflow:hidden}
+.forecast-weekday{font-size:inherit;line-height:10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.forecast-card>.weather-symbol{width:27px;height:27px;flex:0 0 27px}.forecast-temperatures{font-size:.9em;line-height:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.weather-toolbar{position:absolute;left:8px;top:222px;width:304px;height:16px;display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:7px}
+.weather-controls{display:flex;align-items:center;gap:6px}.weather-controls button{padding:0;border:0;background:transparent;color:var(--gift-muted);font-size:inherit;min-height:14px;cursor:pointer}.weather-controls button:disabled{opacity:.5;cursor:wait}
+.weather-status{display:block;max-width:77px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.85em;color:var(--gift-muted);line-height:12px}
+#screen .weather-page .dots{left:74px;right:80px;bottom:0;justify-content:center;transform:scale(.75);transform-origin:center}
+.weather-settings{padding:12px 14px;height:240px}.weather-settings .scroll-body{height:182px}

@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-01",
+  "status": "user-approved",
+  "screen_size": [
+    320,
+    240
+  ],
+  "maximum_apps_per_page": 6,
+  "second_page_entries": [
+    "闹钟",
+    "番茄时钟",
+    "俄罗斯方块"
+  ],
+  "second_page_tiles": [
+    {
+      "name": "闹钟",
+      "position": [
+        20,
+        59
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ]
+    },
+    {
+      "name": "番茄时钟",
+      "position": [
+        120,
+        59
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ]
+    },
+    {
+      "name": "俄罗斯方块",
+      "position": [
+        220,
+        59
+      ],
+      "size": [
+        80,
+        95
+      ],
+      "icon_position": [
+        12,
+        8
+      ],
+      "icon_size": [
+        56,
+        56
+      ]
+    }
+  ],
+  "caption_style": {
+    "font": "saved_gift_font_bold_14_0",
+    "color": "#FBF6E9",
+    "background_opacity": 0
+  },
+  "tetris_layout": {
+    "board": {
+      "position": [
+        2,
+        0
+      ],
+      "size": [
+        160,
+        240
+      ],
+      "cell": [
+        16,
+        15
+      ],
+      "columns": 10,
+      "rows": 16
+    },
+    "header": {
+      "back_hit": [
+        166,
+        0,
+        24,
+        32
+      ],
+      "title": [
+        192,
+        3
+      ],
+      "title_font": "fd_sans_bold_16_ui",
+      "pause": [
+        276,
+        2,
+        38,
+        24
+      ]
+    },
+    "score_card": {
+      "position": [
+        166,
+        34
+      ],
+      "size": [
+        84,
+        76
+      ]
+    },
+    "score_label": [
+      172,
+      39
+    ],
+    "score_value": [
+      172,
+      54
+    ],
+    "score_font": "fd_mont_26",
+    "level_line": [
+      172,
+      87
+    ],
+    "next_card": {
+      "position": [
+        258,
+        34
+      ],
+      "size": [
+        60,
+        76
+      ]
+    },
+    "next_label": [
+      262,
+      39
+    ],
+    "next_box": {
+      "position": [
+        266,
+        52
+      ],
+      "size": [
+        48,
+        48
+      ]
+    },
+    "buttons": {
+      "left": [
+        166,
+        116,
+        73,
+        38
+      ],
+      "right": [
+        243,
+        116,
+        73,
+        38
+      ],
+      "rotate": [
+        166,
+        156,
+        73,
+        38
+      ],
+      "down": [
+        243,
+        156,
+        73,
+        38
+      ],
+      "hard_drop": [
+        166,
+        196,
+        150,
+        38
+      ]
+    }
+  },
+  "assets_sha256": {
+    "launcher-page-2.png": "9feeda53c064a4b0a4f46eaf0b3272c3d0001f6c3ba412b8a76f0be624c0cc5a",
+    "tetris-start.png": "2cfaa7a5eead40b7e44f4fe8a1328a9476ea1c085d1617c08981bf514fe6d840",
+    "tetris-play.png": "c8cb2d703ea2134ffbea13b7c8f0391ce6534f1ec0100f5fd326d8b85f90b463",
+    "tetris-paused.png": "26d5c8dad50f9d742de0c4ba4883d33d672a97dad75a385ca2f1c8f8c2263b93",
+    "tetris-gameover.png": "c83b64fe3237f8711e7bd6a900848a9e4a72d165a681c9dd023de57a566875c8",
+    "tetris-icon.png": "41be238ee538d1548a93f197ca797168f926bf73578060249270b348706d2464"
+  },
+  "sources_sha256": {
+    "hardware/arduino/yiyi_desk/src/pages/tetris_page.cpp": "78eaadaf092d32dadffe111fd97fd5931a09dcf1349d68892f70bb94175bb077",
+    "hardware/arduino/yiyi_desk/src/pages/tetris_engine.h": "66a684467e415ca3b58701eb991ffb101df71d50eb8c339b57b5362b02fc1c00",
+    "hardware/arduino/yiyi_desk/src/pages/assets/gen_tetris_icon.py": "21d1d5d64465cb5a03a3372abfb8ba8f01f8b8d3acac625ab5bd1a0242624387",
+    "hardware/tests/host/tetris_runner.cpp": "36d137b82b626e7153b3af88ec365d5e2fd33a1d04c0fd676c40101bfb205850",
+    "hardware/tests/host/tetris_engine_test.cpp": "b0b7efb353ee7fd470b47f7e21a884e583471b00a27ffab5f43cd2634f95a782"
+  },
+  "approval": {
+    "approved_by_user": true,
+    "approval_text": "写入吧",
+    "approved_at": "2026-11-02T12:51:25+08:00"
+  }
+}

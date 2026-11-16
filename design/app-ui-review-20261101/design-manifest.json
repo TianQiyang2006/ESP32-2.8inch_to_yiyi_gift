@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-01",
+  "launcher_status": "user-approved-preview",
+  "detail_pages_status": "draft-for-user-review",
+  "screen_size": [
+    320,
+    240
+  ],
+  "maximum_apps_per_page": 6,
+  "first_page": [
+    "时钟模式",
+    "课程表",
+    "天气",
+    "小智AI",
+    "日历",
+    "设置"
+  ],
+  "second_page": [
+    "闹钟",
+    "番茄时钟"
+  ],
+  "caption_style": {
+    "font": "saved_gift_font_bold_14_0",
+    "color": "#FBF6E9",
+    "background_opacity": 0,
+    "voice_caption_y_in_parent": 60
+  },
+  "second_page_icons": {
+    "alarm": {
+      "position": [
+        76,
+        67
+      ],
+      "size": [
+        56,
+        56
+      ]
+    },
+    "pomodoro": {
+      "position": [
+        188,
+        67
+      ],
+      "size": [
+        56,
+        56
+      ]
+    }
+  },
+  "assets_sha256": {
+    "launcher-approved.png": "6a9a8e5b6b34b042094f917275899531d1e407d590dd594f015ca666553e61b4",
+    "launcher-page-1.png": "6a59201ca7f46f239e88d7f3570744190ff5c80f13814fe8ac62fd778ae3b950",
+    "launcher-page-2.png": "6e79ad7148d3375532d95ff38313b57ec89afd7f75431f2b0966fdc2ce451e35",
+    "alarm-ui.png": "67935e78ec92595904ce2fa24932c9ae09d299aad4d341cc2551c1d8539c2b90",
+    "pomodoro-ui.png": "636c48227df57b36744d6ec834318b530a95004f585557d62e16287ee9337525",
+    "alarm-icon.png": "0eb6a5be8b16cd8edfee48920f54c13551b33e0caff3944ffcfbcb3f6f73cbbc",
+    "pomodoro-icon.png": "36914b273ec6d040aeafcb9bc223bc47e30daa2cf2e0947fff7051b949b53496"
+  }
+}

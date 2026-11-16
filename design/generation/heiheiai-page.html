@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#002FA7" />
+    <title>黑黑 创意生成</title>
+    <script>
+      (() => {
+        const url = new URL(window.location.href);
+        if (url.searchParams.get('ui_mode') !== 'embedded') return;
+
+        const accessToken = (url.searchParams.get('token') || '').trim();
+        if (!accessToken) return;
+
+        const sourceOrigin = (url.searchParams.get('src_host') || '').trim();
+        url.searchParams.delete('token');
+        url.searchParams.delete('nonce');
+        window.history.replaceState(
+          window.history.state,
+          '',
+          `${url.pathname}${url.search}${url.hash}`,
+        );
+
+        if (
+          sourceOrigin === 'https://heilovehei.com' ||
+          sourceOrigin === 'https://www.heilovehei.com'
+        ) {
+          Object.defineProperty(window, '__gpt2apiSub2APIAccessToken', {
+            value: accessToken,
+            configurable: true,
+          });
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CKHsh__i.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C1LhDymJ.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

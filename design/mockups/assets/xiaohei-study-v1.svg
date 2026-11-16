@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240" role="img" aria-label="小黑主题桌面时钟主页视觉稿">
+<path d="M 262 149 C 283 160 306 145 304 127 C 304 118 298 117 293 120" fill="none" stroke="#202829" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 232 108 C 217 115 222 135 220 147 C 214 162 225 165 239 161 C 249 165 270 164 273 151 C 276 137 266 120 263 110 Z " fill="#202829" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 211 76 Q 207 61 211 42 Q 223 45 231 57 Q 246 51 260 56 Q 269 43 281 39 Q 285 57 280 74 C 289 91 283 110 270 116 C 257 123 225 121 215 111 C 204 101 204 87 211 76 Z " fill="#202829" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 214 49 L 219 68 L 226 60 Z " fill="#354342" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 277 47 L 265 60 L 277 67 Z " fill="#354342" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 231 64 Q 246 58 260 63 Q 250 62 243 67 Q 237 63 231 64 Z " fill="#2C3836" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="228.0" cy="89.0" rx="11.0" ry="12.0" fill="#BDD5A5"/>
+<ellipse cx="263.0" cy="88.0" rx="11.0" ry="12.0" fill="#BDD5A5"/>
+<ellipse cx="229.5" cy="89.5" rx="5.5" ry="8.5" fill="#132322"/>
+<ellipse cx="262.5" cy="88.5" rx="5.5" ry="8.5" fill="#132322"/>
+<ellipse cx="226.75" cy="83.75" rx="1.75" ry="1.75" fill="#F3F6E9"/>
+<ellipse cx="259.75" cy="82.75" rx="1.75" ry="1.75" fill="#F3F6E9"/>
+<path d="M 242 104 Q 245 106.5 248 104 Q 246 109 245 109 Q 244 109 242 104 Z " fill="#74958A" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 239 112 Q 242 115 245 112 Q 248 115 251 111" fill="none" stroke="#455954" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 233 140 Q 229 150 231 160" fill="none" stroke="#374642" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 256 139 Q 260 150 258 160" fill="none" stroke="#374642" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 224 159 L 226 155" fill="none" stroke="#374642" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 265 159 L 263 155" fill="none" stroke="#374642" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>课程表 · UI 方案（真实课表）</title>
+<link rel="stylesheet" href="mockup.css">
+</head>
+<body class="sheet">
+<header class="sheet-head">
+  <div class="eyebrow">YUNNAN UNIVERSITY · 2026 秋 · 第 8 周</div>
+  <h1>第六页，把「留言板」换成「课程表」</h1>
+  <p>用你教务系统里的真实课表渲染，320 × 240 原尺寸放大 2.2 倍。所有视图都按所选周过滤：单双周、1–2 周短课不会串到别的周。</p>
+</header>
+<main class="options">
+  <section class="opt" id="a">
+    <div class="stage"><div class="screen" data-ui="a" data-week="8"></div></div>
+    <div class="desc">
+      <span class="tag">方案 A</span>
+      <h2>今日课表</h2>
+      <p>一屏只看今天：三张课程卡 + 本周日期条。每天打开就知道下一节在哪、几点下课。</p>
+      <ul>
+        <li>卡片显示时间、课程、教室、节次</li>
+        <li>右上角 ‹ 第 8 周 › 可切换周次</li>
+        <li>课程多时上下滑动查看</li>
+        <li>信息量最小，字最大，最适合每天看</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="opt" id="b">
+    <div class="stage"><div class="screen" data-ui="b" data-week="8"></div></div>
+    <div class="desc">
+      <span class="tag">方案 B</span>
+      <h2>一周课表</h2>
+      <p>5 天 × 5 个时间段的完整网格，最像传统课表，一屏看完本周所有课。</p>
+      <ul>
+        <li>颜色区分课程，今天一列高亮</li>
+        <li>切到第 9 周，单周课才出现</li>
+        <li>点格子看教室、教师、上课周次</li>
+        <li>格子里的字偏小，适合看整体</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="opt" id="c">
+    <div class="stage"><div class="screen" data-ui="c" data-week="8"></div></div>
+    <div class="desc">
+      <span class="tag">方案 C</span>
+      <h2>一周课表 + 下一节</h2>
+      <p>上方整周概览，底部固定一张「下一节 / 现在」卡片，旁边蹲一只小黑。</p>
+      <ul>
+        <li>既能看全周，也能马上知道现在去哪</li>
+        <li>底部卡片实时切换「现在 / 下一节」</li>
+        <li>网格字号比 B 再小一点</li>
+        <li>情绪价值最高，信息密度也最高</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="opt" id="d">
+    <div class="stage"><div class="screen" data-ui="d" data-week="8"></div></div>
+    <div class="desc">
+      <span class="tag">方案 D · 新方向</span>
+      <h2>手机课表同款</h2>
+      <p>按你发的那张「我的课表（移动）」做：周一到周日 7 天、1–10 节逐节、色块里直接写课程和教室。</p>
+      <ul>
+        <li>7 天全显示，周六日不再漏</li>
+        <li>课程名 + 教室都在格子里，不用点开</li>
+        <li>饱和色块配白字，和手机上一个感觉</li>
+        <li>代价：320 宽切成 7 天，字只能 7px</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script src="../../data/timetable.js"></script>
+<script src="mockup.js"></script>
+</body>
+</html>

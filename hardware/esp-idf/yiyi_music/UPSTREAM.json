@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/Maggotxy/xiaozhi-esp32-music",
+  "branch": "main",
+  "snapshot": "2025-12-18 (last commit, Merge PR #13)",
+  "upstream": "https://github.com/78/xiaozhi-esp32",
+  "upstreamBase": "v1.8.5",
+  "espIdf": "v5.4.3",
+  "projectVersion": "2.5.0-music",
+  "board": "yiyi-es3c28p",
+  "layout": "app0 desktop 7.5MiB / app1 music 5.0MiB / model 2.5MiB / spiffs 960KiB",
+  "integration": [
+    "dual-app partitions",
+    "desktop Wi-Fi/UUID import",
+    "exit to desktop button",
+    "OTA firmware upgrade disabled",
+    "wake word model on model partition",
+    "USB serial diagnostics",
+    "configurable music server URL"
+  ]
+}

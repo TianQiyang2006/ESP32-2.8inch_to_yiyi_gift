@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-02",
+  "status": "user-approved",
+  "music_ui_revision": 2,
+  "approval": {
+    "approved_by_user": true,
+    "music_ui_approval_text": "定稿这一版的设计，然后重新排序第二页app的排序",
+    "launcher_order_approval_text": "闹钟、番茄时钟、音乐、俄罗斯方块",
+    "launcher_grid_approval_text": "2*2排列"
+  },
+  "screen_size": [
+    320,
+    240
+  ],
+  "default_volume": 40,
+  "playlist_visibility": "shown-only-after-tap",
+  "first_page_order": [
+    "时钟模式",
+    "课程表",
+    "天气",
+    "小智AI",
+    "日历",
+    "设置"
+  ],
+  "second_page_rows": [
+    [
+      "闹钟",
+      "番茄时钟"
+    ],
+    [
+      "音乐",
+      "俄罗斯方块"
+    ]
+  ],
+  "launcher_layout": "launcher/layout.json",
+  "music_ui_screen_assets": [
+    "music-player-v2-320x240.png",
+    "music-playlist-v2-320x240.png",
+    "music-lyrics-v2-320x240.png",
+    "music-volume-v2-320x240.png"
+  ],
+  "implementation_status": "design-only",
+  "firmware_modified_by_this_work": false,
+  "hardware_flashed_by_this_work": false,
+  "vps_accessed_by_this_work": false,
+  "assets_sha256": {
+    "music-lyrics-v2-320x240.png": "4d717eae99a65ad30feda8bdc93fe6725e7ecc1670b4e9749f729c1f947cc113",
+    "music-lyrics-v2-preview-3x.png": "4cf32f00900db2da0d810bdeac39cdf661349d03a7cb5859b088d10dc557537d",
+    "music-player-v2-320x240.png": "b0befe237bc5d9d09b9371bf38b720dc94fba020d32604513d8d64c0913a35ec",
+    "music-player-v2-preview-3x.png": "d46fa1bd476278f32e0a077ca143bcf6a0e812ec00309bfa79ca4ffe49bec1d7",
+    "music-playlist-v2-320x240.png": "c22d8cd0bf40978e9645b351161a66f593364965fca1be8cf6543c6e8c95fe0b",
+    "music-playlist-v2-preview-3x.png": "1fed0d8c431db8636e614d7295b8612abaa2e1d6c3eb5c6c08615f007a1dbb23",
+    "music-ui-v2-overview.png": "e5df621ba30279277dcf039ccd05e27998beaa1655c1357382f4ec922ca98fea",
+    "music-volume-v2-320x240.png": "d538d7b36ee492c99944d52c24db35e9d041dfafa0f469724aeebd3f988bb0f2",
+    "music-volume-v2-preview-3x.png": "eb4172b9d8c49eccc3852a98711e8da6b4044f864c334304d2e0210fadefc9e4",
+    "launcher/launcher-page-2-final-320x240.png": "74f8ab22014adab97dc67f984acfd208da232f66b22e3c3527c547b8a70a2f1c",
+    "launcher/launcher-page-2-final-preview-3x.png": "5a304148d1cf175b54a327f721024754c25a46957e172e2051cf244d2e15f548",
+    "launcher/music-app-icon.png": "da54fad098a178b28896731d251e45950fe739134e3ec87e84532370033c20ca",
+    "interaction-map.json": "b856f6a0fd822b00c5679dbbbc467dbf8e078f6c1dd548a6a4cfc3ce9a4df793",
+    "launcher/layout.json": "49dce515b2716b8300e6b1aeb83e15f635111d9febe7d30aa85e7ecb46299dac"
+  },
+  "design_sources_sha256": {
+    "render_mockup.py": "73139c6391be57c1f95c53a9d703ae86713bab17593683d50f03b43a23bf21cc",
+    "launcher/render_launcher.py": "2c54b5e09bab6230f63cb0bf78572fa22ad3e4abd94884a854b1a3baeb0fca66",
+    "launcher/launcher_preview.cpp": "a05083d92523be93fcb17d13c51f1569f02e3882521d0d76d72179140bacc9f8",
+    "README.md": "259a22dfe71fe509319c96f876c1d335768d96f7fbd39efae61c3bab4ae93afb",
+    "launcher/README.md": "15c0ad6d80409f7d43a61eab268ef5a21ac424027a6166511e4ebcf453f53562"
+  },
+  "second_page_grid": [
+    2,
+    2
+  ]
+}

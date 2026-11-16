@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>给依依的在线 FM · 界面预览</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef0e5;color:#294b3b;font:15px/1.7 "Microsoft YaHei",system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:52px 28px 40px}.eyebrow{font-size:11px;letter-spacing:.22em;color:#71806c}h1{font-size:32px;line-height:1.35;margin:12px 0 14px;font-weight:650}p{margin:0;color:#71806c}.intro{max-width:680px}.work{display:grid;grid-template-columns:1.55fr 1fr;gap:40px;align-items:center;margin-top:35px}.device{padding:20px;background:#d4dac9;border-radius:24px;box-shadow:0 15px 30px #294b3b10}.bezel{background:#263b30;border-radius:14px;padding:12px;position:relative}.screen{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:#faf8f0;cursor:pointer}.screen img{display:block;width:100%;height:100%;image-rendering:pixelated}.badge{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);height:2px;width:29px;background:#94a088;border-radius:2px}.foot{padding:10px 4px 0;display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#71806c}.number{color:#b18a4d}.detail h2{font-size:20px;margin:0 0 10px}.detail p{font-size:14px}.states{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}.states button{border:1px solid #d6ddca;border-radius:9px;background:#faf8f0;color:#526b53;padding:8px 13px;font:inherit;font-size:13px;cursor:pointer}.states button[aria-pressed=true]{background:#294e3d;border-color:#294e3d;color:#fffbed}.states button:hover{border-color:#819674}.note{border-left:2px solid #e7b66d;padding:0 0 0 15px;margin-top:25px;font-size:13px;color:#71806c}.caption{margin-top:14px;font-size:12px;text-align:center}.gallery{margin-top:55px;padding-top:28px;border-top:1px solid #d6ddca}.gallery h2{font-size:17px;margin:0 0 18px}.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.thumbs button{display:block;border:0;background:none;padding:0;text-align:left;color:#526b53;cursor:pointer}.thumbs img{width:100%;display:block;border-radius:7px;box-shadow:0 2px 7px #294b3b0d}.thumbs span{display:block;font-size:12px;margin-top:6px}.tip{margin-top:25px;font-size:12px;color:#7d8b75}footer{margin-top:25px;font-size:11px;color:#91a086}@media(max-width:700px){main{padding:28px 18px}.work{grid-template-columns:1fr;gap:24px}.device{max-width:560px;width:100%;margin:auto}.thumbs{grid-template-columns:repeat(2,1fr)}h1{font-size:27px}.states{margin-top:15px}}
+</style>
+<main>
+ <div class="eyebrow">YIYI DESK · ONLINE FM</div>
+ <h1>把喜欢的声音，留在桌边。</h1>
+ <p class="intro">奶油纸色、墨绿机身与一点琥珀光。把网络电台做成一台小收音机，和现有桌面自然放在一起。</p>
+ <div class="work">
+  <div>
+   <div class="device"><div class="bezel"><div class="screen" id="screen"><img id="preview" alt="在线 FM 实际 LVGL 界面" draggable="false"></div></div><div class="foot"><span>320 × 240 · 横屏</span><span class="number">给依依的小收音机</span></div></div>
+   <p class="caption">可以点击屏幕里的选台、播放、爱心、音量和返回按钮。</p>
+  </div>
+  <div class="detail">
+   <h2 id="state-title"></h2><p id="state-detail"></p>
+   <div class="states" id="states"></div>
+   <div class="note">这里展示的是固件同源 LVGL 渲染画面，默认六个电台与固件一致。节目文字为状态演示；设备默认不请求节目元数据，无元数据时显示陪伴提示。此预览不连接音频，也不会操作设备。</div>
+  </div>
+ </div>
+ <div class="gallery"><h2>也照顾收听之外的时刻</h2><div class="thumbs" id="gallery"></div></div>
+ <p class="tip">主界面保留上一台／播放或停止／下一台。电台列表可以切换全部与收藏；音量放在底部抽屉。网络电台没有虚构的 MHz 频率。</p>
+ <footer>2026.11.14 · 用户批准后已刷入 0.19.0-online-fm。中国之声通过 60 秒解码输出检查，另四台通过 15 秒检查；广东音乐之声仍有缓冲，未通过吞吐要求。<a href="README.md">查看构建与实机记录</a>。</footer>
+</main>
+<script>
+const base='../../build/online-fm-20261114/ui/';
+const states={
+ ready:{file:'radio-01-ready',title:'准备收听',detail:'打开时保留上次电台，由你点播放。台名、分类与操作分开，第一眼就能找到想听的声音。'},
+ playing:{file:'radio-02-playing',title:'正在直播',detail:'琥珀色 LIVE 点与停止按钮清楚标记播放状态。有节目标题时在台名下面滚动显示。'},
+ favorite:{file:'radio-03-favorite',title:'留住喜欢的电台',detail:'点一下爱心，收藏状态立即高亮。下次从「我的收藏」直接找到它。'},
+ stations:{file:'radio-06-stations',title:'全部电台',detail:'大面积点按区域，台名与分类分两行。正在收听的电台有浅绿底与音符，底部保留迷你播放器。'},
+ favorites:{file:'radio-08-favorites',title:'我的收藏',detail:'全部与收藏各有一页，选台后回到收听界面。底部播放器也能随时停止直播。'},
+ volume:{file:'radio-04-volume',title:'音量抽屉',detail:'拖动滑块、加减按钮和三档快捷音量，照顾安静时刻。点暗处或右上角关闭。'},
+ empty:{file:'radio-09-empty-favorites',title:'还没有收藏',detail:'不留一张空白列表：用一句简单的话告诉你，收听时点爱心就能把电台留在这里。'},
+ offline:{file:'radio-10-offline',title:'还没联网',detail:'未联网时保持真实状态，不显示假播放。联网以后，点播放开始收听。'},
+ error:{file:'radio-12-error',title:'连接失败时',detail:'把重试提示放在收音机下面，点击即可重新接入当前电台。也可以直接换一个台。'},
+ connecting:{file:'radio-11-connecting',title:'正在连接',detail:'连接过程有明确文字提示，并保留停止按钮，让你随时取消等待。'}
+};
+let current='ready',returnState='playing';const preview=document.getElementById('preview');
+function show(key){current=key;let s=states[key];preview.src=base+s.file+'.png';document.getElementById('state-title').textContent=s.title;document.getElementById('state-detail').textContent=s.detail;for(let b of document.querySelectorAll('[data-state]'))b.setAttribute('aria-pressed',b.dataset.state===key);}
+for(const key of ['ready','playing','stations','favorites','volume','offline']){let b=document.createElement('button');b.dataset.state=key;b.textContent=states[key].title;b.addEventListener('click',()=>show(key));document.getElementById('states').append(b);}
+for(const key of ['empty','offline','error','connecting']){let b=document.createElement('button');b.innerHTML='<img loading="lazy" src="'+base+states[key].file+'.png" alt="'+states[key].title+'"><span>'+states[key].title+'</span>';b.addEventListener('click',()=>show(key));document.getElementById('gallery').append(b);}
+document.getElementById('screen').addEventListener('click',e=>{let r=e.currentTarget.getBoundingClientRect(),x=(e.clientX-r.left)*320/r.width,y=(e.clientY-r.top)*240/r.height;
+ if(current==='volume'){if(y<91||x>275&&y<145){show(returnState);return;}return;}
+ if(['stations','favorites','empty'].includes(current)){
+  if(y<38&&x<42){show('playing');return;}
+  if(y>42&&y<76){show(x<160?'stations':'favorites');return;}
+  if(y>202){show('playing');return;}if(y>82&&y<198&&current!=='empty'){show('playing');return;}return;
+ }
+ if(x>240&&y<37){show('stations');return;}
+ if(x>264&&y>44&&y<80){show(current==='favorite'?'playing':'favorite');return;}
+ if(y>193&&x<62){returnState=current;show('volume');return;}
+ if(y>193&&x>255){show('favorites');return;}
+ if(y>188&&x>125&&x<192){show(current==='ready'||current==='offline'||current==='error'?'playing':'ready');return;}
+ if(current==='error'&&y>163&&y<196){show('connecting');return;}
+});show('ready');
+</script>
+</html>

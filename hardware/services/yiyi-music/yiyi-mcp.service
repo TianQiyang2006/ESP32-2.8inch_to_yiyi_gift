@@ -1,0 +1,26 @@
+[Unit]
+Description=Yiyi companion MCP bridge for XiaoZhi
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=yiyi-music
+Group=yiyi-music
+WorkingDirectory=/opt/yiyi-music
+Environment=YIYI_MUSIC_ROOT=/opt/yiyi-music
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/yiyi-music/.venv/bin/python -u /opt/yiyi-music/bridge.py
+Restart=on-failure
+RestartSec=5
+KillMode=control-group
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/yiyi-music/data
+MemoryMax=192M
+TasksMax=48
+CPUQuota=40%
+
+[Install]
+WantedBy=multi-user.target

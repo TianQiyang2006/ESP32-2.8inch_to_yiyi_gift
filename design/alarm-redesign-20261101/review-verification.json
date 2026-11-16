@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-01",
+  "status": "user-approved-design-pending-implementation",
+  "approved_launcher_hashes_unchanged": true,
+  "native_ui_frames": 5,
+  "native_resolution": [
+    320,
+    240
+  ],
+  "ringtone_samples": [
+    {
+      "file": "ringtone-classic.wav",
+      "seconds": 8.0
+    },
+    {
+      "file": "ringtone-gentle.wav",
+      "seconds": 8.0
+    },
+    {
+      "file": "ringtone-progressive.wav",
+      "seconds": 8.0
+    }
+  ],
+  "hardware_flashed": false,
+  "device_alarm_latency_measured": false
+}

@@ -1,0 +1,27 @@
+#screen .reading-page{padding:0;background:var(--reading-bg,#a4ccac)}
+.reading-dashboard{position:relative;width:320px;height:240px}
+.reading-quote,.reading-poem{position:absolute;border-radius:13px;overflow:hidden}
+.reading-quote{left:8px;top:5px;width:304px;height:131px;background:var(--reading-quote-card,#fff);color:var(--reading-quote-ink,#292929);font-size:16px;text-align:center}
+.reading-poem{left:27px;top:140px;width:266px;height:91px;background:var(--reading-poem-card,#b80e10);color:var(--reading-poem-ink,#fff);font-size:19px}
+.reading-date{position:absolute;top:4%;left:33%;width:34%;font:bold 21px/1.15 Georgia,serif;color:#a6a6a6;font-variant-numeric:tabular-nums}
+.reading-marks{position:absolute;pointer-events:none;user-select:none;font:210px/.8 Georgia,serif;top:16%;left:25%;width:50%;color:currentColor;opacity:.055;filter:blur(2px)}
+.reading-poem .reading-marks{font-size:64px;filter:none;opacity:.18;top:2%;left:6%;width:auto}
+.reading-refresh{position:absolute;z-index:2;top:5px;right:7px;max-width:33%;border:0;background:transparent;color:inherit;opacity:.56;font:6px/1.3 "Microsoft YaHei",sans-serif;padding:2px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.reading-refresh:hover{opacity:1}.reading-refresh:disabled{cursor:default}
+.reading-content{position:absolute;left:5%;top:28%;width:90%;height:47%;border:0;padding:0;background:transparent;color:inherit;display:flex;align-items:center;justify-content:center;font:inherit;line-height:1.45;text-align:center}
+.reading-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;white-space:pre-line;overflow-wrap:anywhere;font-weight:750;max-height:100%}
+.reading-author{position:absolute;left:12%;bottom:6%;width:76%;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;font-weight:700;line-height:1.3;white-space:nowrap}
+.reading-author span{overflow:hidden;text-overflow:ellipsis}.reading-author svg{width:15px;height:15px;flex-shrink:0}
+.reading-poem .reading-content{left:8%;top:24%;width:84%;height:50%;justify-content:flex-start;text-align:left;line-height:1.35;font-family:KaiTi,STKaiti,"楷体",serif}
+.reading-poem .reading-text{-webkit-line-clamp:2;font-weight:400}
+.reading-poem .reading-author{left:6%;bottom:4%;width:88%;justify-content:flex-end;font:12px/1.3 KaiTi,STKaiti,"楷体",serif}
+.reading-poem .reading-author i{width:4px;height:12px;background:currentColor;opacity:.2;border-radius:4px;flex-shrink:0}
+.reading-detail{height:240px;background:var(--reading-quote-card);color:var(--reading-quote-ink)}
+.reading-detail-nav{height:32px;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 8px;border-bottom:1px solid #0001;font-size:11px}
+.reading-detail-nav button{border:0;background:transparent;color:inherit;padding:4px;font-size:9px;flex-shrink:0}.reading-detail-nav b{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.reading-detail-body{height:208px;padding:8px 16px;user-select:text}
+.reading-full-text{white-space:pre-wrap;overflow-wrap:anywhere;font:22px/1.65 "Microsoft YaHei","PingFang SC",sans-serif;margin:6px 0 12px}
+.reading-full-author{text-align:right;font-size:11px}.reading-source{font-size:8px;color:#777;line-height:1.6}.reading-error{font-size:10px;color:#a22}
+#screen .reading-page .dots{bottom:0;height:18px}#screen .reading-page .dot:after{top:13px;height:4px}#screen .reading-page:has(.reading-detail) .dots{display:none}
+.calendar-countdown-summary{display:block;width:100%;border:0;background:var(--gift-header);border-radius:6px;padding:5px 8px;text-align:left;font-size:10px;color:var(--gift-ink);margin-bottom:8px}
+.calendar-countdown-summary #countdown-readout{font-size:20px}.calendar-countdown-summary .countdown-number{display:inline}.calendar-countdown-summary .countdown-time{font-size:10px}

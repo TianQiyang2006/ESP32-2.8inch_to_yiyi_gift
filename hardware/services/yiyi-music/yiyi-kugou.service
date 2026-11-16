@@ -1,0 +1,23 @@
+[Unit]
+Description=Yiyi Kugou source adapter (loopback only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=yiyi-music
+Group=yiyi-music
+WorkingDirectory=/opt/yiyi-music
+Environment=NODE_ENV=production
+ExecStart=/opt/yiyi-music/runtime/node/bin/node /opt/yiyi-music/kugou_server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+MemoryMax=160M
+TasksMax=24
+CPUQuota=30%
+
+[Install]
+WantedBy=multi-user.target

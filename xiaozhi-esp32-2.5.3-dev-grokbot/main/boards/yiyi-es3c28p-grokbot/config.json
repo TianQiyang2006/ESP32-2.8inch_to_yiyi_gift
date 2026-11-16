@@ -1,0 +1,19 @@
+{
+    "type": "yiyi-es3c28p-grokbot",
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "yiyi-es3c28p-grokbot",
+            "sdkconfig_append": [
+                "CONFIG_PARTITION_TABLE_CUSTOM_FILENAME=\"partitions/yiyi-dual.csv\"",
+                "CONFIG_XIAOZHI_DISABLE_FIRMWARE_UPGRADE=y",
+                "CONFIG_XIAOZHI_DISABLE_ASSET_DOWNLOAD=y",
+                "CONFIG_XIAOZHI_PRESERVE_SHARED_NVS=y",
+                "CONFIG_FREERTOS_HZ=1000",
+                "CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y",
+                "CONFIG_ESPTOOLPY_FLASHMODE_DIO=y",
+                "CONFIG_LWIP_UDP_RECVMBOX_SIZE=16"
+            ]
+        }
+    ]
+}

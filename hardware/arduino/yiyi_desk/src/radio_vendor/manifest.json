@@ -1,0 +1,312 @@
+{
+  "upstream": "https://github.com/earlephilhower/ESP8266Audio/tree/1.9.9",
+  "archive": "https://codeload.github.com/earlephilhower/ESP8266Audio/zip/refs/tags/1.9.9",
+  "archive_sha256": "4773c1bfd044510665c853c313a2c9d021403cc47645d18d19f5c25240a44fa2",
+  "files": [
+    {
+      "path": "libhelix-aac/aaccommon.h",
+      "upstream_sha256": "1a060ffde26d31cde87455488eeac177fbb53e06c32896414c4b277ec9e28c9a",
+      "sha256": "1a060ffde26d31cde87455488eeac177fbb53e06c32896414c4b277ec9e28c9a"
+    },
+    {
+      "path": "libhelix-aac/aacdec.c",
+      "upstream_sha256": "f3260aeca52c91675761b8dccf2ec83cf42f8cc07ef47da10676ec1aa66ea5d6",
+      "sha256": "f3260aeca52c91675761b8dccf2ec83cf42f8cc07ef47da10676ec1aa66ea5d6"
+    },
+    {
+      "path": "libhelix-aac/aacdec.h",
+      "upstream_sha256": "0a785bb854aacdb4d1d6f8211a1ad443a9ff8040d658a477707e0504916f32fe",
+      "sha256": "0a785bb854aacdb4d1d6f8211a1ad443a9ff8040d658a477707e0504916f32fe"
+    },
+    {
+      "path": "libhelix-aac/aactabs.c",
+      "upstream_sha256": "1ac0aa85d5cc71f4708b7bddc9c4a6b9d7c4abb4a52d389a4235d44c3bc9b4f9",
+      "sha256": "1ac0aa85d5cc71f4708b7bddc9c4a6b9d7c4abb4a52d389a4235d44c3bc9b4f9"
+    },
+    {
+      "path": "libhelix-aac/assembly.h",
+      "upstream_sha256": "48fe917ad75b8d0c5c5aa9f757a64505e620d847b2bdeb9f8a7a7061f0e15d02",
+      "sha256": "c2962026122e0890e22326dd004d6f55bf7de03bb46f27f2b9a2665f29a78c07"
+    },
+    {
+      "path": "libhelix-aac/bitstream.c",
+      "upstream_sha256": "e98f902d23f52f9baf4a750bf5002a5d49c475ef4253c302724f0e6ab6530b32",
+      "sha256": "e98f902d23f52f9baf4a750bf5002a5d49c475ef4253c302724f0e6ab6530b32"
+    },
+    {
+      "path": "libhelix-aac/bitstream.h",
+      "upstream_sha256": "4ed211b90c5b94b7495c3d1608257875b4163d72b5186d8629a9b32c0ea5d8b8",
+      "sha256": "4ed211b90c5b94b7495c3d1608257875b4163d72b5186d8629a9b32c0ea5d8b8"
+    },
+    {
+      "path": "libhelix-aac/buffers.c",
+      "upstream_sha256": "54985819a12d977a85ee600ee2d833f49804e7358f3bec97c2bf047a98ec8a31",
+      "sha256": "b0593bd0035b1cae34b11f64d739881d28aa0c04739bf7a9d2ebc3e68fd0301d"
+    },
+    {
+      "path": "libhelix-aac/coder.h",
+      "upstream_sha256": "a4237d6e46bb97cb7beec8035cf9b5b73c87b83817ff21d7198c6636e47d49bc",
+      "sha256": "a4237d6e46bb97cb7beec8035cf9b5b73c87b83817ff21d7198c6636e47d49bc"
+    },
+    {
+      "path": "libhelix-aac/dct4.c",
+      "upstream_sha256": "c59be9a4c71702003e837ff844e6c18d51e2281b11afad69f5792b189a6bd830",
+      "sha256": "c59be9a4c71702003e837ff844e6c18d51e2281b11afad69f5792b189a6bd830"
+    },
+    {
+      "path": "libhelix-aac/decelmnt.c",
+      "upstream_sha256": "6a44ac9c7b95660249154039bcb42161513c70c80a0b66b1e65140fe2102668a",
+      "sha256": "6a44ac9c7b95660249154039bcb42161513c70c80a0b66b1e65140fe2102668a"
+    },
+    {
+      "path": "libhelix-aac/dequant.c",
+      "upstream_sha256": "f634ee29ab8a20109e755f69e3409c1bf4095a1bb3020818b9259829d43b2142",
+      "sha256": "f634ee29ab8a20109e755f69e3409c1bf4095a1bb3020818b9259829d43b2142"
+    },
+    {
+      "path": "libhelix-aac/fft.c",
+      "upstream_sha256": "e36eebff1f045810d5e794f52a1d55dc37cce12aa988bac407a4d547b5c8b2f8",
+      "sha256": "e36eebff1f045810d5e794f52a1d55dc37cce12aa988bac407a4d547b5c8b2f8"
+    },
+    {
+      "path": "libhelix-aac/filefmt.c",
+      "upstream_sha256": "4bf23208e04036e8c18edbef9ff978c1581d67ae8c7580b748c35f2be5583f67",
+      "sha256": "4bf23208e04036e8c18edbef9ff978c1581d67ae8c7580b748c35f2be5583f67"
+    },
+    {
+      "path": "libhelix-aac/huffman.c",
+      "upstream_sha256": "a740d7a42d414a707c8268d902c01b2c219a91c785e15a477806a733a0625e4c",
+      "sha256": "a740d7a42d414a707c8268d902c01b2c219a91c785e15a477806a733a0625e4c"
+    },
+    {
+      "path": "libhelix-aac/hufftabs.c",
+      "upstream_sha256": "987745530598c1220c363acf2de8c692318117a975137ff5de33c36a61fc7a2b",
+      "sha256": "987745530598c1220c363acf2de8c692318117a975137ff5de33c36a61fc7a2b"
+    },
+    {
+      "path": "libhelix-aac/imdct.c",
+      "upstream_sha256": "8ccdb031c86eb97c5c6779942104fcd9ec35050690fa49e1fef9c287a71d075c",
+      "sha256": "8ccdb031c86eb97c5c6779942104fcd9ec35050690fa49e1fef9c287a71d075c"
+    },
+    {
+      "path": "libhelix-aac/noiseless.c",
+      "upstream_sha256": "5405de40dbf87345767aaa561ed1166592fad48a270f9328cd1310ab28c71404",
+      "sha256": "5405de40dbf87345767aaa561ed1166592fad48a270f9328cd1310ab28c71404"
+    },
+    {
+      "path": "libhelix-aac/pns.c",
+      "upstream_sha256": "e18c5e0f7f57c5e3a4fd4c4da9690738ab721d821719ef444e4afb2c5ccccfd7",
+      "sha256": "e18c5e0f7f57c5e3a4fd4c4da9690738ab721d821719ef444e4afb2c5ccccfd7"
+    },
+    {
+      "path": "libhelix-aac/readme.txt",
+      "upstream_sha256": "d6bd4073d25e8a0cb742aa386e37ff266c4e616ddf7b64342c51d5eeceed0bb2",
+      "sha256": "d6bd4073d25e8a0cb742aa386e37ff266c4e616ddf7b64342c51d5eeceed0bb2"
+    },
+    {
+      "path": "libhelix-aac/sbr.c",
+      "upstream_sha256": "a234e931e7e2442ddc63f70e190ba0e2355a313de20e5b163cd494ebcb515bd2",
+      "sha256": "a1fb15bbe5d2c46076667862bf60d3c6d78aa1192e751ccd3d8b89e2ccf1dbd3"
+    },
+    {
+      "path": "libhelix-aac/sbr.h",
+      "upstream_sha256": "ece2b90048bb59e106010af679a2b5ed389ef16257193f6b8e99f0d5f4a27ed0",
+      "sha256": "ece2b90048bb59e106010af679a2b5ed389ef16257193f6b8e99f0d5f4a27ed0"
+    },
+    {
+      "path": "libhelix-aac/sbrfft.c",
+      "upstream_sha256": "0d89f8a00c206b6c501f79fa01bef57d4cb36126ada492778c34d44369225dd6",
+      "sha256": "0d89f8a00c206b6c501f79fa01bef57d4cb36126ada492778c34d44369225dd6"
+    },
+    {
+      "path": "libhelix-aac/sbrfreq.c",
+      "upstream_sha256": "fc3743a1a8d5e86a5477de73c0489038ffd7d748071a75e57ace4193cea9b7cd",
+      "sha256": "fc3743a1a8d5e86a5477de73c0489038ffd7d748071a75e57ace4193cea9b7cd"
+    },
+    {
+      "path": "libhelix-aac/sbrhfadj.c",
+      "upstream_sha256": "8b010ce2d045db25898312a08b62645b5bf6455dafcf368e0364c529345306db",
+      "sha256": "8b010ce2d045db25898312a08b62645b5bf6455dafcf368e0364c529345306db"
+    },
+    {
+      "path": "libhelix-aac/sbrhfgen.c",
+      "upstream_sha256": "6606ee5d5ab654d31100d90ce72107fccf45f814a07f6cece4946614249e0c37",
+      "sha256": "6606ee5d5ab654d31100d90ce72107fccf45f814a07f6cece4946614249e0c37"
+    },
+    {
+      "path": "libhelix-aac/sbrhuff.c",
+      "upstream_sha256": "58cd03f791804efef645e8f69b0831a6151bb72a5068d05f8de68e0b6714058b",
+      "sha256": "58cd03f791804efef645e8f69b0831a6151bb72a5068d05f8de68e0b6714058b"
+    },
+    {
+      "path": "libhelix-aac/sbrimdct.c",
+      "upstream_sha256": "57c45ba5165af39f1e369b54998f427be5f0bb0b01f36597a6f8697428913644",
+      "sha256": "57c45ba5165af39f1e369b54998f427be5f0bb0b01f36597a6f8697428913644"
+    },
+    {
+      "path": "libhelix-aac/sbrmath.c",
+      "upstream_sha256": "9b595e6e5e79eb6d8f2e099f9fea5e2caa2cb204727cbb9946c4ba74df94f399",
+      "sha256": "9b595e6e5e79eb6d8f2e099f9fea5e2caa2cb204727cbb9946c4ba74df94f399"
+    },
+    {
+      "path": "libhelix-aac/sbrqmf.c",
+      "upstream_sha256": "36fb101c054e10680b1c9df4b4240c9f194f4090e2aad09c5f583f2f9b8520ad",
+      "sha256": "36fb101c054e10680b1c9df4b4240c9f194f4090e2aad09c5f583f2f9b8520ad"
+    },
+    {
+      "path": "libhelix-aac/sbrside.c",
+      "upstream_sha256": "e5f362438c68593ffd60d83f2b251c85cf7fde43d59c271ded2d7ee883457054",
+      "sha256": "e5f362438c68593ffd60d83f2b251c85cf7fde43d59c271ded2d7ee883457054"
+    },
+    {
+      "path": "libhelix-aac/sbrtabs.c",
+      "upstream_sha256": "a07b45f637d8fa27e21c5d9d7aa25a267668a121b273d065b2ed7edce8a57d8d",
+      "sha256": "a07b45f637d8fa27e21c5d9d7aa25a267668a121b273d065b2ed7edce8a57d8d"
+    },
+    {
+      "path": "libhelix-aac/statname.h",
+      "upstream_sha256": "51c29896b8bcb4aa12e97f9fd60ba98cf02983d432f23a427e1ecbcb18cf667c",
+      "sha256": "51c29896b8bcb4aa12e97f9fd60ba98cf02983d432f23a427e1ecbcb18cf667c"
+    },
+    {
+      "path": "libhelix-aac/stproc.c",
+      "upstream_sha256": "f08bac8c95fce3f312f14ccdbd0fee27b24fb009d1a11ea4091231e23c123908",
+      "sha256": "f08bac8c95fce3f312f14ccdbd0fee27b24fb009d1a11ea4091231e23c123908"
+    },
+    {
+      "path": "libhelix-aac/tns.c",
+      "upstream_sha256": "0bf75a4db30200a42fbb83ee62836cf7c1433985ecc3794693c0b1e2ad6f1504",
+      "sha256": "0bf75a4db30200a42fbb83ee62836cf7c1433985ecc3794693c0b1e2ad6f1504"
+    },
+    {
+      "path": "libhelix-aac/trigtabs.c",
+      "upstream_sha256": "62cab3ca6df574c2fb51b7d9f2fc97e6869cbf950be1d30972295a3ca317b4da",
+      "sha256": "62cab3ca6df574c2fb51b7d9f2fc97e6869cbf950be1d30972295a3ca317b4da"
+    },
+    {
+      "path": "libhelix-mp3/LICENSE.txt",
+      "upstream_sha256": "86cd65f6dd725044f6cd23e8ddab1dd447722d58b74bc6b9a3a13088fa8b44fa",
+      "sha256": "86cd65f6dd725044f6cd23e8ddab1dd447722d58b74bc6b9a3a13088fa8b44fa"
+    },
+    {
+      "path": "libhelix-mp3/RCSL.txt",
+      "upstream_sha256": "b1b22032413a5918f4157f3a182bd4c72f3642ee4eaa421f7da0f968499755e8",
+      "sha256": "b1b22032413a5918f4157f3a182bd4c72f3642ee4eaa421f7da0f968499755e8"
+    },
+    {
+      "path": "libhelix-mp3/RPSL.txt",
+      "upstream_sha256": "2333af002fd705cc1d78b8a7221e7e987a5d235337a9db54edccd60753fca287",
+      "sha256": "2333af002fd705cc1d78b8a7221e7e987a5d235337a9db54edccd60753fca287"
+    },
+    {
+      "path": "libhelix-mp3/assembly.h",
+      "upstream_sha256": "370c158150210a0344192bb1db8a2654c0d8ca50b6199773df670becba6d6bbf",
+      "sha256": "cf0971dd658e3207ea3be58cd803f95c6c8ef8722d27f2ebbea12f397a9155aa"
+    },
+    {
+      "path": "libhelix-mp3/bitstream.c",
+      "upstream_sha256": "32d214fe0827be15a600f9b5c1561e1b8c268eca24155e086bcfce2bb661c6d8",
+      "sha256": "32d214fe0827be15a600f9b5c1561e1b8c268eca24155e086bcfce2bb661c6d8"
+    },
+    {
+      "path": "libhelix-mp3/buffers.c",
+      "upstream_sha256": "d8e62d401cc7e23afd2c001a0dae8e2ad8076bbe7d969493cc61797a1d1bd159",
+      "sha256": "54685eff0ae64feeb5a4356923dc3d940478ca7c396bcc5f4604f9311527fe86"
+    },
+    {
+      "path": "libhelix-mp3/coder.h",
+      "upstream_sha256": "765364a17886c26bbb9cf07c40d8f6ec51a9c66e1839005053251f6eb45c8f10",
+      "sha256": "765364a17886c26bbb9cf07c40d8f6ec51a9c66e1839005053251f6eb45c8f10"
+    },
+    {
+      "path": "libhelix-mp3/dct32.c",
+      "upstream_sha256": "690492a2dd066ca9ee8adc6a442f5fe53e4f3c97134b31bc058b323a5174e528",
+      "sha256": "690492a2dd066ca9ee8adc6a442f5fe53e4f3c97134b31bc058b323a5174e528"
+    },
+    {
+      "path": "libhelix-mp3/dequant.c",
+      "upstream_sha256": "9c143abfa37e7e4cc09947066f0ed1391b2a1bf7aae88975bca9125f891976a0",
+      "sha256": "9c143abfa37e7e4cc09947066f0ed1391b2a1bf7aae88975bca9125f891976a0"
+    },
+    {
+      "path": "libhelix-mp3/dqchan.c",
+      "upstream_sha256": "cde4410b65c9d7666f6dd883b44763a5bc27de455a9be7e78f7af83260a6a9db",
+      "sha256": "cde4410b65c9d7666f6dd883b44763a5bc27de455a9be7e78f7af83260a6a9db"
+    },
+    {
+      "path": "libhelix-mp3/huffman.c",
+      "upstream_sha256": "43988ed8db0eb9699c4c5a9166be07b27bd47a542509227df1d6216dcd7a3b67",
+      "sha256": "43988ed8db0eb9699c4c5a9166be07b27bd47a542509227df1d6216dcd7a3b67"
+    },
+    {
+      "path": "libhelix-mp3/hufftabs.c",
+      "upstream_sha256": "80a8865eb9733ee657ddc1e3fef714453e1defee8db66d70e66ac963284e2094",
+      "sha256": "80a8865eb9733ee657ddc1e3fef714453e1defee8db66d70e66ac963284e2094"
+    },
+    {
+      "path": "libhelix-mp3/imdct.c",
+      "upstream_sha256": "04ba0165f94afde35e619ee5e4f69218d4ebcd79664aba18ce56a560f49268a8",
+      "sha256": "04ba0165f94afde35e619ee5e4f69218d4ebcd79664aba18ce56a560f49268a8"
+    },
+    {
+      "path": "libhelix-mp3/mp3common.h",
+      "upstream_sha256": "3e871a66b581ec6c6918008e1e1d4f58d647de22281463efda368a55ca64543b",
+      "sha256": "3e871a66b581ec6c6918008e1e1d4f58d647de22281463efda368a55ca64543b"
+    },
+    {
+      "path": "libhelix-mp3/mp3dec.c",
+      "upstream_sha256": "12e5812e82e9c2115835860a4629e9438894e83f11ed2301da8abab1080ce700",
+      "sha256": "12e5812e82e9c2115835860a4629e9438894e83f11ed2301da8abab1080ce700"
+    },
+    {
+      "path": "libhelix-mp3/mp3dec.h",
+      "upstream_sha256": "11490b1c3b70ec7e15ee48b349cc72d79fb6641cc8c8d7a54055bb31f4f71148",
+      "sha256": "11490b1c3b70ec7e15ee48b349cc72d79fb6641cc8c8d7a54055bb31f4f71148"
+    },
+    {
+      "path": "libhelix-mp3/mp3tabs.c",
+      "upstream_sha256": "327887460078f048c7a126ccea7bd094dcf7991a09ea192e9e89c9f8e0b0251a",
+      "sha256": "327887460078f048c7a126ccea7bd094dcf7991a09ea192e9e89c9f8e0b0251a"
+    },
+    {
+      "path": "libhelix-mp3/mpadecobjfixpt.h",
+      "upstream_sha256": "8959754bbb75615ec0e26550b8d92fea0594eebee207e874134d46f2c3672950",
+      "sha256": "8959754bbb75615ec0e26550b8d92fea0594eebee207e874134d46f2c3672950"
+    },
+    {
+      "path": "libhelix-mp3/player.h",
+      "upstream_sha256": "c2f1be4eb390257c36252d4d31fe5a619779944b34da33c9bc85f65f08e431ca",
+      "sha256": "c2f1be4eb390257c36252d4d31fe5a619779944b34da33c9bc85f65f08e431ca"
+    },
+    {
+      "path": "libhelix-mp3/polyphase.c",
+      "upstream_sha256": "3de9db3fdc4ef3bd21ae402add8a389239ecb496bccde7f1f34724e60cc861e1",
+      "sha256": "3de9db3fdc4ef3bd21ae402add8a389239ecb496bccde7f1f34724e60cc861e1"
+    },
+    {
+      "path": "libhelix-mp3/scalfact.c",
+      "upstream_sha256": "08e3b4462584fb35eddd77f35ff80a53023dfbea93c79835e645ab89a5066b84",
+      "sha256": "08e3b4462584fb35eddd77f35ff80a53023dfbea93c79835e645ab89a5066b84"
+    },
+    {
+      "path": "libhelix-mp3/statname.h",
+      "upstream_sha256": "2729e3d50857c673996172177a6c1cc139084d087a9d13d290b6ca57c82f0b16",
+      "sha256": "2729e3d50857c673996172177a6c1cc139084d087a9d13d290b6ca57c82f0b16"
+    },
+    {
+      "path": "libhelix-mp3/stproc.c",
+      "upstream_sha256": "6ef24ff527feaae320482f24fb89432e7b2d8bf8d214fea397cb958f8caf83fa",
+      "sha256": "6ef24ff527feaae320482f24fb89432e7b2d8bf8d214fea397cb958f8caf83fa"
+    },
+    {
+      "path": "libhelix-mp3/subband.c",
+      "upstream_sha256": "a79aab1ca9cae3c7e042d9549def33af2306949c12a171c1604cbda4aa2d05a7",
+      "sha256": "a79aab1ca9cae3c7e042d9549def33af2306949c12a171c1604cbda4aa2d05a7"
+    },
+    {
+      "path": "libhelix-mp3/trigtabs.c",
+      "upstream_sha256": "b2eae6ed55d5f4292166ec8b3eb046aae91417703d1b83496e75e1561d506e21",
+      "sha256": "b2eae6ed55d5f4292166ec8b3eb046aae91417703d1b83496e75e1561d506e21"
+    }
+  ]
+}

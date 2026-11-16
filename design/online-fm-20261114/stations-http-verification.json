@@ -1,0 +1,648 @@
+{
+  "tested_on": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "method": "Plain HTTP GET of each existing production HTTPS station URL with scheme changed only; User-Agent:YiyiRadio/1.0, Icy-MetaData:0; urllib handles HTTP transfer chunk framing; two separate 32KiB reads from one connection, each checked for >=32 consecutive complete MPEG Layer III frames. No audio retained.",
+  "purpose": "Validate plain HTTP source compatibility for ESP32 TLS throughput/heap comparison; this check does not modify production station table.",
+  "all_selected_passed": true,
+  "limits": [
+    "Point-in-time PC connectivity and encoded-audio check only; does not verify ESP32 playback, decoder output or long-term uptime.",
+    "Icy-MetaData:0 was used to validate MP3 continuity; existing HTTPS/ICY1 tests established metaint16000 for Beijing music."
+  ],
+  "stations": [
+    {
+      "id": "beijing_music",
+      "name": "北京音乐广播",
+      "tag": "音乐 · FM97.4",
+      "url": "http://lhttp.qingting.fm/live/332/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.609011+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qingting.fm/live/332/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.722,
+          "sha256": "00b81d69f5f2d4ce79d9792ee6e01420b4c659587cbf4e192fcd97b013370cfe",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 70,
+            "consecutive_complete_frames": 156
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.615,
+          "sha256": "b93e1da0b144da5afdbf0561a7d275a3cb9cedfbe7ea9a53bc7df194aa9f0499",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 112,
+            "consecutive_complete_frames": 156
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 2.186
+    },
+    {
+      "id": "shanghai_pop",
+      "name": "动感101",
+      "tag": "流行 · FM101.7",
+      "url": "http://lhttp.qingting.fm/live/274/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.609628+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qingting.fm/live/274/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.696,
+          "sha256": "a6b52d56ab3e7b84228fe7fa06efdedb4c964f35e5cee76d2ba2df02101aa796",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 84,
+            "consecutive_complete_frames": 156
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 1.53,
+          "sha256": "fe2d22f2515e7260d8a9bb8c2a22f9f2f6c4fb9ef41daeb5a14f308da89a546b",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 126,
+            "consecutive_complete_frames": 156
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 3.102
+    },
+    {
+      "id": "shanghai_classic",
+      "name": "经典947",
+      "tag": "古典 · FM94.7",
+      "url": "http://lhttp.qingting.fm/live/267/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.610045+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qingting.fm/live/267/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 3.278,
+          "sha256": "030ce01007273b460aefd281f442d8fa4498df0e69efbf6a00c65c26a7b5c468",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 12,
+            "consecutive_complete_frames": 156
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 1.739,
+          "sha256": "7ecfe077e0d1e6622fffc401233b0c741ebb047c15fc28748d71057623867117",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 44100,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 53,
+            "consecutive_complete_frames": 156
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 6.992
+    },
+    {
+      "id": "guangdong_music",
+      "name": "广东音乐之声",
+      "tag": "音乐 · FM99.3",
+      "url": "http://lhttp.qtfm.cn/live/1260/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.610613+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qtfm.cn/live/1260/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.498,
+          "sha256": "60b56749eb6f342c47e58af54ffc632c02ae6fd71a994b0702f82ad1dc834c23",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 86,
+            "consecutive_complete_frames": 170
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.719,
+          "sha256": "a63b9d4baf6175dd8f75e5347425115b2d9f5d1a17ee118bc79e6309fd96e045",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 150,
+            "consecutive_complete_frames": 169
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 1.773
+    },
+    {
+      "id": "cnr_voice",
+      "name": "中国之声",
+      "tag": "新闻 · 综合",
+      "url": "http://lhttp.qtfm.cn/live/15318317/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.611222+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qtfm.cn/live/15318317/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 0.793,
+          "sha256": "c6d89cf3dba11971ef94daebd4e86898e424ce2e9f0f4e7eeaac73b2754fd860",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 86,
+            "consecutive_complete_frames": 170
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 2.97,
+          "sha256": "3e9fb507900ea64ffcd2acc9dd9cc0bb95cfb1c18b6dad5cdc4ede8b3a072ebd",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 150,
+            "consecutive_complete_frames": 169
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 4.637
+    },
+    {
+      "id": "beijing_news",
+      "name": "北京新闻广播",
+      "tag": "新闻 · FM94.5",
+      "url": "http://lhttp.qtfm.cn/live/339/64k.mp3",
+      "tested_at": "2026-11-14T11:41:59.660255+08:00",
+      "http_status": 200,
+      "final_url": "http://lhttp.qtfm.cn/live/339/64k.mp3",
+      "redirected": false,
+      "content_type": "audio/mpeg",
+      "transfer_encoding": "chunked",
+      "content_length": null,
+      "icy_metaint": null,
+      "reads": [
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 2.855,
+          "sha256": "778950398da93e2c3d6db8ac4031a25df0f9a3ba3f8f22d1afd6b24517f714cd",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 146,
+            "consecutive_complete_frames": 169
+          }
+        },
+        {
+          "bytes": 32768,
+          "elapsed_seconds": 2.977,
+          "sha256": "cfad7584eefcc9d8721fb09e1b2ee173f47566defd804d3b9013fa623072df9e",
+          "audio": {
+            "codec": "mp3",
+            "sample_rate_hz": 48000,
+            "bitrate_kbps": 64,
+            "channels": 2,
+            "first_frame_offset": 18,
+            "consecutive_complete_frames": 170
+          }
+        }
+      ],
+      "bytes_read": 65536,
+      "passed": true,
+      "total_elapsed_seconds": 9.615
+    }
+  ],
+  "continuous_icy1_validation": {
+    "purpose": "Validate all six currently selected plain HTTP URLs using firmware request headers over a sustained connection, beyond the previously observed device cutoff. HTTP transfer framing is decoded by http.client; ICY metadata is stripped separately before MP3 header/frame-length validation. No encoded audio retained.",
+    "requested_read_duration_seconds": 15,
+    "all_selected_passed": true,
+    "limits": [
+      "PC network and encoded frame continuity check only; does not validate ESP32 networking, runtime heap, playback audio, or long-term uptime.",
+      "No redirects are followed; an HTTP redirect makes a station fail this check."
+    ],
+    "stations": [
+      {
+        "id": "beijing_music",
+        "name": "北京音乐广播",
+        "tag": "音乐 · FM97.4",
+        "url": "http://lhttp.qingting.fm/live/332/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.973948+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:43 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qingting.fm/live/332/64k.mp3",
+        "elapsed_seconds": 15.348,
+        "read_duration_seconds": 15.07,
+        "entity_bytes_read_after_http_dechunk": 151215,
+        "audio_bytes_after_icy_strip": 151190,
+        "audio_sha256": "15e7e6c222e631e6ef95286c2f5e8a4141b3070b49b21b550112a0e4c6fbb451",
+        "first_byte_seconds": 0.382,
+        "max_read_gap_seconds": 4.3,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 9,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 8,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 722,
+          "first_frame_offset": 140,
+          "sample_rate_hz": 44100,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      },
+      {
+        "id": "shanghai_pop",
+        "name": "动感101",
+        "tag": "流行 · FM101.7",
+        "url": "http://lhttp.qingting.fm/live/274/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.974327+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:43 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qingting.fm/live/274/64k.mp3",
+        "elapsed_seconds": 17.098,
+        "read_duration_seconds": 16.094,
+        "entity_bytes_read_after_http_dechunk": 184815,
+        "audio_bytes_after_icy_strip": 184788,
+        "audio_sha256": "7e64fc71445b4d049f493c202013a4b2b28e85ebc36f374c7d1a57dca1d0214d",
+        "first_byte_seconds": 1.004,
+        "max_read_gap_seconds": 3.574,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 11,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 10,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 883,
+          "first_frame_offset": 203,
+          "sample_rate_hz": 44100,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      },
+      {
+        "id": "shanghai_classic",
+        "name": "经典947",
+        "tag": "古典 · FM94.7",
+        "url": "http://lhttp.qingting.fm/live/267/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.974757+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:43 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qingting.fm/live/267/64k.mp3",
+        "elapsed_seconds": 15.647,
+        "read_duration_seconds": 15.061,
+        "entity_bytes_read_after_http_dechunk": 208616,
+        "audio_bytes_after_icy_strip": 208587,
+        "audio_sha256": "98ff496c82ffe3f889fa70895922d4c41f5b1d957f2ef62c5700f2d50ffac8e6",
+        "first_byte_seconds": 1.098,
+        "max_read_gap_seconds": 3.179,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 13,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 12,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 997,
+          "first_frame_offset": 123,
+          "sample_rate_hz": 44100,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      },
+      {
+        "id": "guangdong_music",
+        "name": "广东音乐之声",
+        "tag": "音乐 · FM99.3",
+        "url": "http://lhttp.qtfm.cn/live/1260/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.975084+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:43 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qtfm.cn/live/1260/64k.mp3",
+        "elapsed_seconds": 15.952,
+        "read_duration_seconds": 15.554,
+        "entity_bytes_read_after_http_dechunk": 182016,
+        "audio_bytes_after_icy_strip": 181989,
+        "audio_sha256": "ea762500911e9328dc894bf53f5120d7245fdb8e095a9e26d976768270f98f6f",
+        "first_byte_seconds": 0.79,
+        "max_read_gap_seconds": 0.919,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 11,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 10,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 947,
+          "first_frame_offset": 139,
+          "sample_rate_hz": 48000,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      },
+      {
+        "id": "cnr_voice",
+        "name": "中国之声",
+        "tag": "新闻 · 综合",
+        "url": "http://lhttp.qtfm.cn/live/15318317/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.975294+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:44 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qtfm.cn/live/15318317/64k.mp3",
+        "elapsed_seconds": 16.671,
+        "read_duration_seconds": 15.062,
+        "entity_bytes_read_after_http_dechunk": 183416,
+        "audio_bytes_after_icy_strip": 183389,
+        "audio_sha256": "b70869a9e31034873cf450b51c3e1b3ac881ca9aa9cc2e38bc03a99ff8f37b1e",
+        "first_byte_seconds": 1.819,
+        "max_read_gap_seconds": 1.025,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 11,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 10,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 954,
+          "first_frame_offset": 184,
+          "sample_rate_hz": 48000,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      },
+      {
+        "id": "beijing_news",
+        "name": "北京新闻广播",
+        "tag": "新闻 · FM94.5",
+        "url": "http://lhttp.qtfm.cn/live/339/64k.mp3",
+        "tested_at": "2026-11-14T11:48:40.975717+08:00",
+        "request_http_version": "HTTP/1.1",
+        "request_headers": {
+          "User-Agent": "YiyiRadio/1.0",
+          "Icy-MetaData": "1",
+          "Connection": "close"
+        },
+        "http_status": 200,
+        "response_http_version": "HTTP/1.1",
+        "response_headers": {
+          "Date": "Sat, 14 Nov 2026 03:48:43 GMT",
+          "Content-Type": "audio/mpeg",
+          "Transfer-Encoding": "chunked",
+          "Connection": "close",
+          "Cache-Control": "no-cache, no-store",
+          "Expires": "Mon, 26 Jul 1997 05:00:00 GMT",
+          "Pragma": "no-cache",
+          "Access-Control-Allow-Origin": "*",
+          "icy-metadata": "1",
+          "icy-pub": "0",
+          "icy-metaint": "16000",
+          "Server": "elb"
+        },
+        "redirected": false,
+        "content_type": "audio/mpeg",
+        "transfer_encoding": "chunked",
+        "content_length": null,
+        "icy_metaint": 16000,
+        "final_url": "http://lhttp.qtfm.cn/live/339/64k.mp3",
+        "elapsed_seconds": 15.851,
+        "read_duration_seconds": 15.267,
+        "entity_bytes_read_after_http_dechunk": 184816,
+        "audio_bytes_after_icy_strip": 184789,
+        "audio_sha256": "a1d82d08493840cbd5d12778da20c335041a6516f46c527fa3f271f2a02b127e",
+        "first_byte_seconds": 0.891,
+        "max_read_gap_seconds": 0.613,
+        "eof_observed": false,
+        "error": null,
+        "icy_metadata_blocks": 11,
+        "icy_nonempty_blocks": 1,
+        "icy_zero_length_blocks": 10,
+        "icy_metadata_examples": [
+          "StreamTitle='';"
+        ],
+        "audio": {
+          "codec": "mp3",
+          "consecutive_complete_frames": 962,
+          "first_frame_offset": 49,
+          "sample_rate_hz": 48000,
+          "bitrate_kbps": 64,
+          "channels": 2
+        },
+        "passed": true
+      }
+    ]
+  }
+}
